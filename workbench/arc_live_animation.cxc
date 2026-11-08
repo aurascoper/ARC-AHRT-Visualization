@@ -28,9 +28,9 @@ size #1/F atomRadius 3.5
 view orient
 zoom 1.05
 
-2dlabels create title_hud text "AHRT v0.1 Live Animation: PDB 6TAP dArc1 Capsid + Interior NC/Zn Target [MEASURED GEOMETRY]" xpos 0.02 ypos 0.95 size 15 color #f8fafc
-2dlabels create sub_hud text "Outer Shell: 240 CA subunits (Chains A-D, blue translucent, R_out=19.93 nm) | Interior: 60 NC Zn-knuckle (Chain E, pink) + 60 Zn2+ (Chain F, yellow spheres)" xpos 0.02 ypos 0.90 size 12 color #94a3b8
-2dlabels create axes_hud text "Orbiting verified 6TAP icosahedral axes: 5-fold (0.276,-0.851,-0.447) -> 3-fold (0.304,0.934,0.188) -> 2-fold (0.688,0.500,-0.526)" xpos 0.02 ypos 0.03 size 12 color #38bdf8
+2dlabels create title_hud text "AHRT v0.1 Live Animation: PDB 6TAP dArc1 Capsid + Interior NC/Zn Geometry [MEASURED GEOMETRY]" xpos 0.02 ypos 0.95 size 15 color #f8fafc
+2dlabels create sub_hud text "Two Populations (300 chains): 240 CA shell (Chains A-D, T=4, blue, R_out=19.93 nm) + 60 interior NC Zn-knuckle (Chain E, pink) + 60 Zn2+ (Chain F, yellow)" xpos 0.02 ypos 0.90 size 12 color #94a3b8
+2dlabels create axes_hud text "Scale Regime: Photon attenuation ~1e-6 (transparent); active regime is ~1 keV e- tracks (~50 nm) & OH radical scavenging across CA shell / 60 Zn sites" xpos 0.02 ypos 0.03 size 12 color #38bdf8
 
 # Orbit on the verified 5-fold, 3-fold, and 2-fold icosahedral axes, then continuous roll
 turn 0.276393,-0.850651,-0.447213 1.0 360 coordinateSystem #1

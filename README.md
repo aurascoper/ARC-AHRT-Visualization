@@ -12,7 +12,7 @@ All structural coordinates in `structures/` are read-only copies of RCSB PDB mmC
 
 | PDB ID | Organism | Resolution / Method | Role in Workbench | Key Measured / Deposited Properties |
 | :--- | :--- | :--- | :--- | :--- |
-| **`6TAP`** | *Drosophila melanogaster* | 3.5 A (Cryo-EM) | Primary global capsid + radiation target | 60 icosahedral operators (`6TAP_operators.json`); 240 CA shell subunits (Chains `A-D`, T=4) + 60 interior NC zinc-knuckle fragments (Chain `E`, res 224-250) + 60 `Zn` ions (Chain `F`); $R_{\text{in}} = 15.54\text{ nm}$, $R_{\text{out}} = 19.93\text{ nm}$, $R_g = 17.55\text{ nm}$ |
+| **`6TAP`** | *Drosophila melanogaster* | 3.5 A (Cryo-EM) | Primary global capsid + radical-scavenging geometry | 60 icosahedral operators (`6TAP_operators.json`); 300 deposited polymer chains across two populations: 240 outer CA shell subunits (Chains `A-D`, $T=4$ surface lattice) + 60 interior NC zinc-knuckle fragments (Chain `E`, res 224-250) + 60 `Zn` ions (Chain `F`); $R_{\text{in}} = 15.54\text{ nm}$, $R_{\text{out}} = 19.93\text{ nm}$, $R_g = 17.55\text{ nm}$ |
 | **`6TAR`** | *Drosophila melanogaster* | Cryo-EM | Local 5-fold capsomer reference | dArc1 five-fold capsomer |
 | **`6S7X`** | *Drosophila melanogaster* | X-ray | Local CA dimer interface | dArc1 CA domain dimer (orthorhombic) |
 | **`6S7Y`** | *Drosophila melanogaster* | X-ray | Local CA dimer interface | dArc1 CA domain dimer (hexagonal) |
@@ -23,7 +23,9 @@ All structural coordinates in `structures/` are read-only copies of RCSB PDB mmC
 | **`3H47`** | HIV-1 | X-ray | Retroviral CA hexamer | HIV-1 CA hexamer local interface reference |
 
 > [!IMPORTANT]
-> Neither `6GSE` nor `4X3H` contains an icosahedral capsid lattice. All full-capsid icosahedral reconstructions and radiation-target geometries use `6TAP` (*Drosophila* dArc1) alongside `6R24` (yeast Ty3/gypsy) and `1OHF` (NwV $T=4$).
+> 1. **Domain-only vs Capsid Accessions**: Neither `6GSE` (rat Arc NMR monomer) nor `4X3H` (rat Arc N-lobe crystal domain) contains an icosahedral capsid lattice. All full-capsid icosahedral reconstructions use `6TAP` (*Drosophila* dArc1) alongside `6R24` (yeast Ty3/gypsy) and `1OHF` (NwV $T=4$).
+> 2. **Two-Population Subunit Decomposition in `6TAP`**: $T=4$ ($60 \times 4 = 240$) applies strictly to the outer CA shell (`Chains A-D`). The `300` total deposited polymer chains sum two populations (`240` outer CA shell + `60` interior `Chain E` NC zinc-knuckle fragments, plus `60` `Chain F` $\text{Zn}^{2+}$ ions); `300/60 = 5` is not a Caspar-Klug triangulation number.
+> 3. **Physical Scale & Regime (Radical Chemistry, Not Photon Shielding)**: Across a $39.85\text{ nm}$ protein shell at $\rho \approx 1.35\text{ g/cm}^3$ (mass thickness $\approx 5.4 \times 10^{-6}\text{ g/cm}^2$), $100\text{ keV}$ photon interaction probability is $\sim 10^{-6}$ (the shell is transparent to photons). The physically active regime at the $1\text{ to }50\text{ nm}$ scale is downstream of primary ionization: low-energy secondary electron track structure ($\sim 1\text{ keV}$ range $\approx 50\text{ nm}$ in water) and aqueous radical diffusion/scavenging ($\text{OH}^\bullet$ interception by aromatic/sulfur residues in the `240`-subunit CA shell and redox chemistry at the `60` interior $\text{Cys}_2\text{HisCys-Zn}^{2+}$ sites).
 
 ---
 
