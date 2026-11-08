@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.venv311/
+.DS_Store
+*.cxs
+*.phsp
+topas/G4Data-11.3.2/
+topas/extbuild/
+build/

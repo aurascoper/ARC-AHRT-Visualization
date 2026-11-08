@@ -1,0 +1,23 @@
+{
+  "module": "W-A-03 reconciliation",
+  "date": "2026-11-04",
+  "paper": "Ramos-Mendez et al. 2021, PMB 66(17), DOI 10.1088/1361-6560/ac1f39; eScholarship item 4t00418c (author manuscript w/ digitized figure tables)",
+  "extraction_rules": {
+    "text_anchors": "transcribed verbatim from article prose (4.8+-0.2 OH at 7ps El Omar 2011; 4.2+-0.2 e_aq at 7ps Wang 2018, D2O-qualified)",
+    "figure_data": "digitized tables supplied by eScholarship posting; series unlabeled -> identity recorded as inference, NEVER relabeled to experimental",
+    "h2o2_hdot": "pure-water curves excluded from experimental-agreement claims; scavenger-condition comparison deferred to V4",
+    "time_domain": "comparisons restricted to 1 ps-1 us (shared with the paper's plotted figure range); no extrapolation to the paper's 10 us chemical stage"
+  },
+  "config_audit": {
+    "paper": {"energy_keV": 1000, "geometry": "1 cm cube, isotropic center source, density 1 g/cm3", "primary_cut": "stop after losing >10 keV", "secondary_floor_eV": 10, "physics": "G4EmDNAPhysics_option2 + ELSEPA", "thermalization": "one-step, Ritchie 1994 + Shin 2019 correction", "rms_displacement_nm": 1.24, "chemistry_end_us": 10, "reactions": "Table 1 (Buxton 1988 etc.)"},
+    "my_refB": {"energy_keV": 999.999, "geometry": "1 cm cube water (TsBox sWorld in World)", "primary_cut": "Sc KillPrimaryIfEnergyLossExceeds = 1% of beam (9.99999 keV) + KillPrimaryBasedOnTrackLength 100 um", "secondary_floor_eV": "ELSEPA floor; exact value = upstream default (not re-derived)", "physics": "TsEmDNAPhysics + ELSEPA", "thermalization": "Meesungnoen (upstream config)", "rms_displacement_nm": "1.24 (in TsDNAWaterDissociationDisplacer.cc)", "chemistry_end_ps": "1e6 (1 us)", "reactions": "TOPASDefaultReactions.txt"},
+    "differences_flagged": ["chemistry time end 10 us (paper) vs 1 us (mine) -- comparison clipped to shared domain", "primary-kill threshold semantics differ slightly (10 keV loss vs 1% of beam energy = ~10 keV at 999.999 keV): equivalent within rounding at this energy", "thermalization model names differ in spelling conventions (Ritchie one-step vs Meesungnoen label in upstream file) -- flagged for follow-up inspection of the module source"]
+  },
+  "results_summary": {
+    "anchor_OH_7ps": {"exp": "4.8 +/- 0.2", "refB": "4.8237 +/- 0.0029", "residual_sigma": 0.119, "verdict": "PASS"},
+    "anchor_eaq_7ps": {"exp": "4.2 +/- 0.2", "refB": "4.1772 +/- 0.0026", "residual_sigma": -0.114, "verdict": "PASS"},
+    "figure_curve_consistency": "123 matched points in comparison_results.csv; curve-to-curve deviations recorded quantitatively, unweighted"
+  },
+  "verdict": "W-A-03 limited-scope PASS at the two 7 ps anchors; W-A-03 full time-domain experimental agreement PENDING extraction of the eight original measurement tables",
+  "files": ["experimental_reference.csv", "comparison_results.csv", "species_time_comparison.png", "uncertainty_report.md"]
+}

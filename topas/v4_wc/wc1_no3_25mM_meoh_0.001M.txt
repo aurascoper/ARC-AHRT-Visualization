@@ -1,0 +1,79 @@
+## 
+i:Ts/Verbosity = 0
+sv:Ph/Default/Modules = 2 "TsEmDNAPhysics" "TsEmDNAChemistry"
+s:Ph/Default/Electron/SetElasticScatteringModel = "ELSEPA"
+
+includeFile = TOPAS-DefaultReactions.txt
+
+s:Ch/ChemistryName = "TOPASChemistry"
+b:Ch/TOPASChemistry/ChemicalStageTransportActive = "True"
+d:Ch/TOPASChemistry/ChemicalStageTimeEnd = 1.00001 ps
+dv:Ch/TOPASChemistry/ChemicalStageTimeStepsHighEdges = 1 999999 ps
+dv:Ch/TOPASChemistry/ChemicalStageTimeStepsResolutions = 1 0.5 ps
+
+Ge/World/HLX= 1 km 
+Ge/World/HLY= 1 km 
+Ge/World/HLZ= 1 km 
+Ge/World/Material ="G4_WATER"
+
+d:Ge/sWorld/HLX= 1 km 
+d:Ge/sWorld/HLY= 1 km 
+d:Ge/sWorld/HLZ= 1 km 
+s:Ge/sWorld/Material ="G4_WATER"
+s:Ge/sWorld/Type = "TsBox"
+s:Ge/sWorld/Parent = "World"
+
+Ge/BeamPosition/TransZ = -0.0 * Ge/World/HLZ um
+Ge/BeamPosition/RotX = 0 deg
+
+So/Demo/BeamPositionDistribution = "None"
+So/Demo/BeamEnergySpread = 0
+So/Demo/BeamParticle = "e-"
+So/Demo/BeamEnergy = 999.999 keV 
+
+u:perCent = 0.01 
+
+s:Sc/nbOfMol/Quantity = "TsIRTGvalue"
+s:Sc/nbOfMol/Component = "sWorld"
+s:Sc/nbOfMol/OutputFile = "gv_wc1_no3_25mM_meoh_0.001M"
+s:Sc/nbOfMol/IfOutputFileAlreadyExists = "Overwrite"
+s:Sc/nbOfMol/OutputType = "ascii"
+d:Sc/nbOfMol/KillPrimaryIfEnergyLossExceeds = So/Demo/BeamEnergy keV * perCent
+d:Sc/nbOfMol/AbortEventIfPrimaryEnergyLossExceeds = 1.01 * Sc/nbOfMol/KillPrimaryIfEnergyLossExceeds keV
+b:Sc/nbOfMol/KillPrimaryBasedOnEnergyLoss = "true"
+d:Sc/nbOfMol/KillPrimaryBasedOnTrackLength = 100 km 
+i:Sc/nbOfMol/OutputBufferSize = 1
+d:Sc/nbOfMol/CutOffTime = 1 ps
+d:Sc/nbOfMol/TimeLower = 1.0 ps
+d:Sc/nbOfMol/TimeUpper = 1e6 ps  # capped to W-A shared domain 
+i:Sc/nbOfMol/TimeBins  = 200
+b:Sc/nbOfMol/EnableHighTimeScavengers = "True"
+sv:Sc/nbOfMol/ReportMoleculesNamed = 5 "OH^0" "e_aq^-1" "H2O2^0" "H_2^0" "H^0"
+
+i:So/Demo/NumberOfHistoriesInRun = 3000
+i:Ts/Seed = 20261104
+i:Ts/ShowHistoryCountAtInterval = 30
+
+i:Ts/MaxInterruptedHistories  = So/Demo/NumberOfHistoriesInRun
+
+Ts/NumberOfThreads = 1
+b:Ts/ShowCPUTime = "True"
+
+# V4 W-C1 (deaerated; e- 999.999 keV)
+s:Mo/Nitrate/Symbol = "NO3m"
+u:Mo/Nitrate/Charge = -1
+d:Mo/Nitrate/Radius = 0.24 nm
+d:Mo/Nitrate/DiffusionCoefficient = 1.9e9 nm2/s
+s:Mo/Methanol/Symbol = "MeOH"
+u:Mo/Methanol/Charge = 0
+d:Mo/Methanol/Radius = 0.2 nm
+d:Mo/Methanol/DiffusionCoefficient = 1.6e9 nm2/s
+d:Ch/TOPASChemistry/BackgroundReaction/SolvatedElectron/Nitrate/ReactionRate = 9.7e9 /M/s
+d:Ch/TOPASChemistry/BackgroundReaction/SolvatedElectron/Nitrate/Concentration = 0.025 M
+sv:Ch/TOPASChemistry/BackgroundReaction/SolvatedElectron/Nitrate/Products = 1 "None"  # deliberate terminal sink: products untracked (documented in v4 manifest)
+d:Ch/TOPASChemistry/BackgroundReaction/Hydrogen/Nitrate/ReactionRate = 1.4e6 /M/s
+d:Ch/TOPASChemistry/BackgroundReaction/Hydrogen/Nitrate/Concentration = 0.025 M
+sv:Ch/TOPASChemistry/BackgroundReaction/Hydrogen/Nitrate/Products = 1 "None"  # deliberate terminal sink: products untracked (documented in v4 manifest)
+d:Ch/TOPASChemistry/BackgroundReaction/Hydroxyl/Methanol/ReactionRate = 9.7e8 /M/s
+d:Ch/TOPASChemistry/BackgroundReaction/Hydroxyl/Methanol/Concentration = 0.001 M
+sv:Ch/TOPASChemistry/BackgroundReaction/Hydroxyl/Methanol/Products = 1 "None"  # deliberate terminal sink: products untracked (documented in v4 manifest)

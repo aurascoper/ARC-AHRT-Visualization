@@ -1,0 +1,26 @@
+{
+  "schema": "hydrated_target_spec_v0",
+  "prepared": "2026-11-04",
+  "basis_structure": {
+    "deposit": "6TAP.cif (hash-pinned in ArcAdvisor/structures/MANIFEST.json and gamma_heterarchy/geometry/static_6tap_manifest.json)",
+    "assembly_operators": "6TAP_operators.json (hash-pinned); 60 operators; 240 CA / 60 NC / 60 Zn-marker accounting VERIFIED",
+    "zn_note": "one deposited Zn atom (chain F HETATM 5619); 60 scene markers are symmetry-transformed visualization instances, not 60 deposits"
+  },
+  "hydration_model": {
+    "status": "NOT_GENERATED",
+    "must_record": ["water-placement method", "excluded volumes", "protonation assumptions", "ionic composition", "temperature", "equilibration protocol", "coordinate transformation to the static_6tap_frame"],
+    "authority": "molecular-dynamics layer, NOT ChimeraX"
+  },
+  "geometry_nesting": {
+    "outer": "bulk water world with source boundary and escape boundary conditions",
+    "middle": "hydrated capsid: assembly + solvent-accessible volume + internal/external solvent regions where supported + ionic conditions",
+    "inner": "atom-level CA/NC/RNA/Zn with explicit chemical identity and bonding/coordination info where deposited"
+  },
+  "overlap_checks_required": true,
+  "conversion": "PDB->transport-geometry conversion path undecided (atom-level vs voxelized); PDB4DNA is a reference pattern, not a production config",
+  "stop_conditions": [
+    "no invented hydration waters in receipts/scene claims",
+    "no undocumented Zn coordination changes",
+    "preserve one-deposited-Zn vs 60-marker distinction in every downstream artifact"
+  ]
+}

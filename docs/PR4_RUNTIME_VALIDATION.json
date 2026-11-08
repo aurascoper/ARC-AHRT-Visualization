@@ -1,0 +1,122 @@
+{
+ "module": "M7 PR4 runtime validation",
+ "date": "2026-11-05",
+ "validator": "hermes local ChimeraX 1.12",
+ "pr": "aurascoper/flow-cytometry-model-bridge#4 @ 2811d1ef893a15c3fdf7c49d251849e1d7f82618",
+ "result_state": "COMPLETED",
+ "scripts": [
+  {
+   "script": "m7hud_00_receipt_index",
+   "profile": "receipt_index",
+   "matches": [
+    0,
+    1
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_01_w_c1_deaerated",
+   "profile": "w_c1",
+   "matches": [
+    0,
+    1
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_02_w_c2_oxygenated",
+   "profile": "w_c2",
+   "matches": [
+    0,
+    1
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_03_w_c1_w_c2_compare",
+   "profile": "paired_comparison",
+   "matches": [
+    0,
+    1
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_04_m7_three_authorities",
+   "profile": "three_authorities",
+   "matches": [
+    3,
+    3
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_05_arc_structural_provenance",
+   "profile": "arc_provenance",
+   "matches": [
+    2,
+    2
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_06_scale_firewall",
+   "profile": "scale_firewall",
+   "matches": [
+    2,
+    2
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_07_svd_modes",
+   "profile": "svd_modes",
+   "matches": [
+    2,
+    2
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  },
+  {
+   "script": "m7hud_08_evidence_disposition",
+   "profile": "evidence_disposition",
+   "matches": [
+    2,
+    2
+   ],
+   "exit": 0,
+   "chimerax": "1.12 (local)",
+   "mode": "headless nogui --offscreen",
+   "errors": 0
+  }
+ ],
+ "notes": [
+  "9/9 scripts executed, 0 errors; all profiles rendered with profile-scoped labels",
+  "four evidence-viewer profiles report matches=0/1: that one source is ahrt_v4_receipts declared with no path in the manifest (state USER_REPORTED_LOCAL_ONLY_NOT_RETRIEVED) \u2014 renderer correctly returns UNAVAILABLE, not a fabricated hit",
+  "cross-repo receipt pinning can be done by vendoring AHRT docs receipts into the M7 repo (paths must stay repo-relative per the renderer's escape guard)"
+ ]
+}

@@ -1,0 +1,576 @@
+{
+  "schema_id": "m7-arc-level2-independent-crosscheck-v1",
+  "schema_version": "1.0.0",
+  "module": "M7ArcLevel2IndependentCrosscheck",
+  "evidence_class": "INDEPENDENT_GEOMETRIC_AND_VORONOI_SASA_CROSSCHECK",
+  "independence_scope": "COMPUTATIONAL_IMPLEMENTATION_INDEPENDENT_SAME_DEPOSITED_6TAP_COORDINATES",
+  "independence_scope_statement": "This cross-check provides computational and algorithmic implementation independence (regex stream parser, dense 3D tensor + Gram-matrix distances without KD-trees, frame-consistent Lee-Richards z-slice arc integration, and Voronoi radical-plane cell-face clipping) rather than experimental biological independence: both implementations evaluate the same deposited PDB 6TAP atomic coordinates and _pdbx_struct_oper_list icosahedral assembly operators (point_symmetry = I).",
+  "point_symmetry": "I",
+  "symmetry_provenance_note": "PDB 6TAP has icosahedral point-group symmetry I (_em_single_particle_entity.point_symmetry = I, 60 rotation operators). Cubic space-group notation I432 (No. 211, octahedral) is not applicable to 6TAP.",
+  "verification_disposition": "remotely_published_on_github_pr6_local_tests_verified_remote_ci_not_run",
+  "publication_and_ci_provenance": {
+    "github_pr_url": "https://github.com/aurascoper/flow-cytometry-model-bridge/pull/6",
+    "historical_v1_baseline_commit": "955e32dc673d3a874f874ffb8965497db03ca112",
+    "level1_v2_repair_commit": "6a09714d03fccf29905c99bddc416785781063d1",
+    "level2_atlas_and_crosscheck_commit": "fc5e1a407e375014653b2b72f73b89559c14e2ee",
+    "level3_initial_publication_commit": "1abeaad2e44fe25e3e4cd17b7920a51f990fc55e",
+    "local_test_execution_summary": "28/28 Python pytest assertions and 2,996/2,996 Julia assertions executed and verified locally",
+    "remote_github_actions_ci_status": "No GitHub Actions workflow runs executed on remote; test counts are recorded local verification results, not remote CI reruns"
+  },
+  "artifact_hashes": {
+    "cif_path": "structures/6TAP.cif",
+    "cif_sha256": "61397d5502c44f6fd83d887de353a698ed6f70fbd00604e2fc1c85fd1cd68e69",
+    "level2_receipt_path": "artifacts/m7_arc_level2_validation_receipt.json",
+    "level2_receipt_sha256": "975fd6a3ada9b3834d82766c0246d6ca8c907f18e65e7bb3faeebcb7bb59432c",
+    "crosscheck_script_path": "src/m7_arc_level2_independent_crosscheck.py",
+    "crosscheck_script_sha256": "0c8f9b7dd52023aeabd400f091660fc17361b30677616e96ed4e7aa588d271a8"
+  },
+  "block_matrix_contact_crosscheck": {
+    "algorithm": "Direct 3D tensor operator expansion np.einsum('kij,nj->kni', R_stack, X_asu) + T_stack[:, None, :] and dense Gram-matrix Euclidean distance evaluation ||X||^2 + ||Y||^2 - 2 X Y^T (zero KD-tree usage).",
+    "exact_5A_residue_pair_set_comparison": {
+      "independent_unique_pair_count_at_5A": 204,
+      "level2_atlas_unique_pair_count_at_5A": 204,
+      "intersection_count": 204,
+      "union_count": 204,
+      "symmetric_difference_count": 0,
+      "jaccard_similarity": 1.0,
+      "hundred_percent_identity_verified": true,
+      "max_minimum_distance_abs_diff_A": 4.99e-05,
+      "atom_pair_hit_count_mismatches_across_204_pairs": 0
+    },
+    "multi_cutoff_census_verification": {
+      "3.5": {
+        "cutoff_angstrom": 3.5,
+        "independent_unique_asym_residue_pair_count": {
+          "A-A": 11,
+          "A-B": 0,
+          "A-C": 0,
+          "A-D": 8,
+          "B-B": 0,
+          "B-C": 16,
+          "B-D": 5,
+          "C-C": 2,
+          "C-D": 8,
+          "D-D": 0
+        },
+        "independent_unique_total": 50,
+        "level2_atlas_unique_total": 50,
+        "independent_instance_edge_total": 3000,
+        "independent_heavy_atom_hit_total": 6660,
+        "independent_canonical_pair_count": 50,
+        "level2_atlas_canonical_pair_count": 50,
+        "intersection_count": 50,
+        "union_count": 50,
+        "symmetric_difference_count": 0,
+        "all_10_chain_pairs_exact_match": true,
+        "jaccard_similarity_with_level2_atlas": 1.0
+      },
+      "4.0": {
+        "cutoff_angstrom": 4.0,
+        "independent_unique_asym_residue_pair_count": {
+          "A-A": 21,
+          "A-B": 0,
+          "A-C": 0,
+          "A-D": 12,
+          "B-B": 0,
+          "B-C": 24,
+          "B-D": 8,
+          "C-C": 2,
+          "C-D": 12,
+          "D-D": 0
+        },
+        "independent_unique_total": 79,
+        "level2_atlas_unique_total": 79,
+        "independent_instance_edge_total": 4740,
+        "independent_heavy_atom_hit_total": 14340,
+        "independent_canonical_pair_count": 79,
+        "level2_atlas_canonical_pair_count": 79,
+        "intersection_count": 79,
+        "union_count": 79,
+        "symmetric_difference_count": 0,
+        "all_10_chain_pairs_exact_match": true,
+        "jaccard_similarity_with_level2_atlas": 1.0
+      },
+      "4.5": {
+        "cutoff_angstrom": 4.5,
+        "independent_unique_asym_residue_pair_count": {
+          "A-A": 29,
+          "A-B": 0,
+          "A-C": 0,
+          "A-D": 21,
+          "B-B": 0,
+          "B-C": 37,
+          "B-D": 23,
+          "C-C": 4,
+          "C-D": 22,
+          "D-D": 0
+        },
+        "independent_unique_total": 136,
+        "level2_atlas_unique_total": 136,
+        "independent_instance_edge_total": 8160,
+        "independent_heavy_atom_hit_total": 31860,
+        "independent_canonical_pair_count": 136,
+        "level2_atlas_canonical_pair_count": 136,
+        "intersection_count": 136,
+        "union_count": 136,
+        "symmetric_difference_count": 0,
+        "all_10_chain_pairs_exact_match": true,
+        "jaccard_similarity_with_level2_atlas": 1.0
+      },
+      "5.0": {
+        "cutoff_angstrom": 5.0,
+        "independent_unique_asym_residue_pair_count": {
+          "A-A": 41,
+          "A-B": 1,
+          "A-C": 0,
+          "A-D": 32,
+          "B-B": 0,
+          "B-C": 54,
+          "B-D": 35,
+          "C-C": 7,
+          "C-D": 34,
+          "D-D": 0
+        },
+        "independent_unique_total": 204,
+        "level2_atlas_unique_total": 204,
+        "independent_instance_edge_total": 12240,
+        "independent_heavy_atom_hit_total": 66390,
+        "independent_canonical_pair_count": 204,
+        "level2_atlas_canonical_pair_count": 204,
+        "intersection_count": 204,
+        "union_count": 204,
+        "symmetric_difference_count": 0,
+        "all_10_chain_pairs_exact_match": true,
+        "jaccard_similarity_with_level2_atlas": 1.0
+      },
+      "5.5": {
+        "cutoff_angstrom": 5.5,
+        "independent_unique_asym_residue_pair_count": {
+          "A-A": 55,
+          "A-B": 1,
+          "A-C": 0,
+          "A-D": 40,
+          "B-B": 0,
+          "B-C": 77,
+          "B-D": 53,
+          "C-C": 10,
+          "C-D": 48,
+          "D-D": 0
+        },
+        "independent_unique_total": 284,
+        "level2_atlas_unique_total": 284,
+        "independent_instance_edge_total": 17040,
+        "independent_heavy_atom_hit_total": 120930,
+        "independent_canonical_pair_count": 284,
+        "level2_atlas_canonical_pair_count": 284,
+        "intersection_count": 284,
+        "union_count": 284,
+        "symmetric_difference_count": 0,
+        "all_10_chain_pairs_exact_match": true,
+        "jaccard_similarity_with_level2_atlas": 1.0
+      },
+      "6.0": {
+        "cutoff_angstrom": 6.0,
+        "independent_unique_asym_residue_pair_count": {
+          "A-A": 72,
+          "A-B": 4,
+          "A-C": 0,
+          "A-D": 52,
+          "B-B": 0,
+          "B-C": 108,
+          "B-D": 67,
+          "C-C": 11,
+          "C-D": 57,
+          "D-D": 0
+        },
+        "independent_unique_total": 371,
+        "level2_atlas_unique_total": 371,
+        "independent_instance_edge_total": 22260,
+        "independent_heavy_atom_hit_total": 202020,
+        "independent_canonical_pair_count": 371,
+        "level2_atlas_canonical_pair_count": 371,
+        "intersection_count": 371,
+        "union_count": 371,
+        "symmetric_difference_count": 0,
+        "all_10_chain_pairs_exact_match": true,
+        "jaccard_similarity_with_level2_atlas": 1.0
+      }
+    }
+  },
+  "sasa_and_voronoi_surface_crosscheck": {
+    "methodology_references": [
+      "Lee, B. & Richards, F. M. (1971) The interpretation of protein structures: estimation of static accessibility. J. Mol. Biol. 55, 379-400.",
+      "Olechnovic, K. & Venclovas, C. (2014/2021) VoroContacts: a tool for the analysis of interatomic contacts in macromolecular structures based on Voronoi tessellation within the solvent-accessible shell.",
+      "Interfacial residues in protein-protein complexes are in the eyes of the beholder (2023): multi-criterion comparison of heavy-atom distance (d <= 5.0 A), solvent-accessibility burial (delta_SASA > 1.0 A^2), and Voronoi cell-face contact area."
+    ],
+    "lee_richards_z_slices_per_atom": 40,
+    "solvent_probe_radius_angstrom": 1.4,
+    "representative_subinterface_bsa_sums_A2": {
+      "shrake_rupley_fibonacci_pairwise_bsa_sum_A2": 9570.22,
+      "shrake_rupley_one_side_bsa_sum_A2": 4785.1,
+      "lee_richards_zslice_pairwise_bsa_sum_A2": 9400.64,
+      "voronoi_radical_plane_contact_area_sum_A2": 4236.73,
+      "pearson_r_shrake_rupley_vs_lee_richards": 0.999512,
+      "pearson_r_shrake_rupley_vs_voronoi": 0.999183,
+      "pearson_r_lee_richards_vs_voronoi": 0.999763
+    },
+    "voronoi_vs_bsa_geometric_distinction_and_linear_calibration": {
+      "geometric_distinction_note": "Voronoi radical-plane contact area (sum = 4236.73 A^2 across the 10 representative sub-interfaces) measures the area of the single dividing radical-plane polygon mosaic shared between two contacting subunits within the solvent-accessible shell, whereas two-sided pairwise BSA (9570.22 A^2 Shrake-Rupley / 9400.64 A^2 Lee-Richards) sums the curved solvent-excluded surface patches on both partner subunits (and one-side BSA = 4785.10 A^2 is half of the two-sided pairwise BSA). Thus Voronoi contact area scales as ~0.445x two-sided pairwise BSA (~0.890x one-side BSA) with R^2 = 0.9984.",
+      "ols_vs_two_sided_shrake_rupley_pairwise_bsa": {
+        "formula": "voronoi_A2 = slope * sr_pairwise_bsa_A2 + intercept_A2",
+        "slope": 0.444876,
+        "intercept_A2": -2.0833,
+        "r_squared": 0.998367,
+        "rmse_A2": 11.1209,
+        "max_abs_residual_A2": 24.143
+      },
+      "ols_vs_one_side_shrake_rupley_bsa": {
+        "formula": "voronoi_A2 = slope * sr_one_side_bsa_A2 + intercept_A2",
+        "slope": 0.889755,
+        "intercept_A2": -2.0838,
+        "r_squared": 0.998368,
+        "rmse_A2": 11.1203,
+        "max_abs_residual_A2": 24.1445
+      }
+    },
+    "global_asu_interfacial_residue_comparison": {
+      "total_asu_ca_residues": 659,
+      "distance_le_5p0A_residue_count": 235,
+      "sasa_buried_gt_1p0A2_residue_count": 282,
+      "sasa_buried_gt_0p1A2_residue_count": 289,
+      "voronoi_contact_gt_0A2_residue_count": 289,
+      "intersection_all_three_count": 233,
+      "distance_5A_and_sasa_1A2_intersection_count": 233,
+      "distance_5A_and_voronoi_intersection_count": 234,
+      "sasa_1A2_and_voronoi_intersection_count": 282,
+      "jaccard_distance_5A_vs_sasa_1A2": 0.8204,
+      "jaccard_distance_5A_vs_voronoi": 0.8069,
+      "jaccard_sasa_1A2_vs_voronoi": 0.9758,
+      "fraction_of_distance_5A_residues_in_voronoi": 0.9957,
+      "fraction_of_distance_5A_residues_in_sasa_1A2": 0.9915,
+      "observer_threshold_explanation": "Per M7 Falsification Design Rule 2 and the 'eyes of the beholder' framework, 234/235 (fraction = 0.9957) of distance-defined interfacial residues (d <= 5.0 A) share a positive Voronoi radical-plane cell face and 233/235 (fraction = 0.9915) satisfy delta_SASA > 1.0 A^2 (with 9 of 10 sub-interfaces at 1.0000), while SASA burial (282 ASU residues) and Voronoi tessellation (289 ASU residues, Jaccard = 0.9758) additionally capture peripheral rim residues at 5.0 < d <= 6.2 A where the 1.40 A rolling water probe is sterically excluded without direct heavy-atom contact <= 5.0 A."
+    },
+    "sub_interface_crosschecks": [
+      {
+        "interface_class": "A-A_C5_pentamer_op36",
+        "chain_pair": "A-A",
+        "operator_pair": [
+          "1",
+          "36"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 1882.0,
+        "shrake_rupley_one_side_bsa_A2": 941.0,
+        "lee_richards_zslice_bsa_A2": 1843.14,
+        "voronoi_radical_plane_contact_area_A2": 837.98,
+        "voronoi_to_two_sided_bsa_ratio": 0.4453,
+        "voronoi_to_one_side_bsa_ratio": 0.8905,
+        "predicted_voronoi_A2": 835.17,
+        "residual_A2": 2.81,
+        "voronoi_contacting_atom_pairs": 288,
+        "voronoi_contacting_residue_pairs": 66,
+        "distance_5A_residue_pairs": 41,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 44,
+          "sasa_buried_gt_1p0A2_residues": 56,
+          "voronoi_contact_gt_0A2_residues": 58,
+          "intersection_all_three": 44
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.7857,
+          "jaccard_distance_5A_vs_voronoi": 0.7586,
+          "jaccard_sasa_1A2_vs_voronoi": 0.9655,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "A-B_C2_peripheral_op2",
+        "chain_pair": "A-B",
+        "operator_pair": [
+          "1",
+          "2"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 48.65,
+        "shrake_rupley_one_side_bsa_A2": 24.33,
+        "lee_richards_zslice_bsa_A2": 68.42,
+        "voronoi_radical_plane_contact_area_A2": 31.97,
+        "voronoi_to_two_sided_bsa_ratio": 0.6571,
+        "voronoi_to_one_side_bsa_ratio": 1.314,
+        "predicted_voronoi_A2": 19.56,
+        "residual_A2": 12.41,
+        "voronoi_contacting_atom_pairs": 12,
+        "voronoi_contacting_residue_pairs": 3,
+        "distance_5A_residue_pairs": 1,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 2,
+          "sasa_buried_gt_1p0A2_residues": 5,
+          "voronoi_contact_gt_0A2_residues": 5,
+          "intersection_all_three": 2
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.4,
+          "jaccard_distance_5A_vs_voronoi": 0.4,
+          "jaccard_sasa_1A2_vs_voronoi": 1.0,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "A-D_C1_intra_asu_op1",
+        "chain_pair": "A-D",
+        "operator_pair": [
+          "1",
+          "1"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 1287.13,
+        "shrake_rupley_one_side_bsa_A2": 643.56,
+        "lee_richards_zslice_bsa_A2": 1254.46,
+        "voronoi_radical_plane_contact_area_A2": 569.95,
+        "voronoi_to_two_sided_bsa_ratio": 0.4428,
+        "voronoi_to_one_side_bsa_ratio": 0.8856,
+        "predicted_voronoi_A2": 570.53,
+        "residual_A2": -0.58,
+        "voronoi_contacting_atom_pairs": 220,
+        "voronoi_contacting_residue_pairs": 40,
+        "distance_5A_residue_pairs": 27,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 30,
+          "sasa_buried_gt_1p0A2_residues": 32,
+          "voronoi_contact_gt_0A2_residues": 32,
+          "intersection_all_three": 30
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.9375,
+          "jaccard_distance_5A_vs_voronoi": 0.9375,
+          "jaccard_sasa_1A2_vs_voronoi": 1.0,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "A-D_C5_inter_asu_seam_op36",
+        "chain_pair": "A-D",
+        "operator_pair": [
+          "1",
+          "36"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 179.98,
+        "shrake_rupley_one_side_bsa_A2": 89.99,
+        "lee_richards_zslice_bsa_A2": 171.41,
+        "voronoi_radical_plane_contact_area_A2": 77.67,
+        "voronoi_to_two_sided_bsa_ratio": 0.4315,
+        "voronoi_to_one_side_bsa_ratio": 0.8631,
+        "predicted_voronoi_A2": 77.99,
+        "residual_A2": -0.32,
+        "voronoi_contacting_atom_pairs": 27,
+        "voronoi_contacting_residue_pairs": 8,
+        "distance_5A_residue_pairs": 5,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 6,
+          "sasa_buried_gt_1p0A2_residues": 8,
+          "voronoi_contact_gt_0A2_residues": 8,
+          "intersection_all_three": 6
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.75,
+          "jaccard_distance_5A_vs_voronoi": 0.75,
+          "jaccard_sasa_1A2_vs_voronoi": 1.0,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "B-C_C1_intra_asu_op1",
+        "chain_pair": "B-C",
+        "operator_pair": [
+          "1",
+          "1"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 1272.29,
+        "shrake_rupley_one_side_bsa_A2": 636.15,
+        "lee_richards_zslice_bsa_A2": 1278.56,
+        "voronoi_radical_plane_contact_area_A2": 572.26,
+        "voronoi_to_two_sided_bsa_ratio": 0.4498,
+        "voronoi_to_one_side_bsa_ratio": 0.8996,
+        "predicted_voronoi_A2": 563.93,
+        "residual_A2": 8.33,
+        "voronoi_contacting_atom_pairs": 190,
+        "voronoi_contacting_residue_pairs": 50,
+        "distance_5A_residue_pairs": 26,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 34,
+          "sasa_buried_gt_1p0A2_residues": 45,
+          "voronoi_contact_gt_0A2_residues": 47,
+          "intersection_all_three": 34
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.7556,
+          "jaccard_distance_5A_vs_voronoi": 0.7234,
+          "jaccard_sasa_1A2_vs_voronoi": 0.9574,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "B-C_C3_inter_asu_hexamer_op33",
+        "chain_pair": "B-C",
+        "operator_pair": [
+          "1",
+          "33"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 1365.72,
+        "shrake_rupley_one_side_bsa_A2": 682.86,
+        "lee_richards_zslice_bsa_A2": 1322.38,
+        "voronoi_radical_plane_contact_area_A2": 581.35,
+        "voronoi_to_two_sided_bsa_ratio": 0.4257,
+        "voronoi_to_one_side_bsa_ratio": 0.8513,
+        "predicted_voronoi_A2": 605.49,
+        "residual_A2": -24.14,
+        "voronoi_contacting_atom_pairs": 244,
+        "voronoi_contacting_residue_pairs": 43,
+        "distance_5A_residue_pairs": 28,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 31,
+          "sasa_buried_gt_1p0A2_residues": 30,
+          "voronoi_contact_gt_0A2_residues": 34,
+          "intersection_all_three": 29
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.9062,
+          "jaccard_distance_5A_vs_voronoi": 0.8571,
+          "jaccard_sasa_1A2_vs_voronoi": 0.8824,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 0.9355,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 0.9677
+        }
+      },
+      {
+        "interface_class": "B-D_C2_dimer_op2",
+        "chain_pair": "B-D",
+        "operator_pair": [
+          "1",
+          "2"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 1342.37,
+        "shrake_rupley_one_side_bsa_A2": 671.18,
+        "lee_richards_zslice_bsa_A2": 1345.08,
+        "voronoi_radical_plane_contact_area_A2": 611.62,
+        "voronoi_to_two_sided_bsa_ratio": 0.4556,
+        "voronoi_to_one_side_bsa_ratio": 0.9113,
+        "predicted_voronoi_A2": 595.11,
+        "residual_A2": 16.51,
+        "voronoi_contacting_atom_pairs": 216,
+        "voronoi_contacting_residue_pairs": 52,
+        "distance_5A_residue_pairs": 28,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 33,
+          "sasa_buried_gt_1p0A2_residues": 48,
+          "voronoi_contact_gt_0A2_residues": 48,
+          "intersection_all_three": 33
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.6875,
+          "jaccard_distance_5A_vs_voronoi": 0.6875,
+          "jaccard_sasa_1A2_vs_voronoi": 1.0,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "B-D_C3_inter_asu_vertex_op33",
+        "chain_pair": "B-D",
+        "operator_pair": [
+          "1",
+          "33"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 344.66,
+        "shrake_rupley_one_side_bsa_A2": 172.33,
+        "lee_richards_zslice_bsa_A2": 319.29,
+        "voronoi_radical_plane_contact_area_A2": 147.4,
+        "voronoi_to_two_sided_bsa_ratio": 0.4277,
+        "voronoi_to_one_side_bsa_ratio": 0.8553,
+        "predicted_voronoi_A2": 151.25,
+        "residual_A2": -3.85,
+        "voronoi_contacting_atom_pairs": 51,
+        "voronoi_contacting_residue_pairs": 10,
+        "distance_5A_residue_pairs": 7,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 9,
+          "sasa_buried_gt_1p0A2_residues": 12,
+          "voronoi_contact_gt_0A2_residues": 12,
+          "intersection_all_three": 9
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.75,
+          "jaccard_distance_5A_vs_voronoi": 0.75,
+          "jaccard_sasa_1A2_vs_voronoi": 1.0,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "C-C_C3_trimer_op33",
+        "chain_pair": "C-C",
+        "operator_pair": [
+          "1",
+          "33"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 359.89,
+        "shrake_rupley_one_side_bsa_A2": 179.94,
+        "lee_richards_zslice_bsa_A2": 325.12,
+        "voronoi_radical_plane_contact_area_A2": 146.43,
+        "voronoi_to_two_sided_bsa_ratio": 0.4069,
+        "voronoi_to_one_side_bsa_ratio": 0.8138,
+        "predicted_voronoi_A2": 158.02,
+        "residual_A2": -11.59,
+        "voronoi_contacting_atom_pairs": 54,
+        "voronoi_contacting_residue_pairs": 10,
+        "distance_5A_residue_pairs": 7,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 9,
+          "sasa_buried_gt_1p0A2_residues": 12,
+          "voronoi_contact_gt_0A2_residues": 12,
+          "intersection_all_three": 9
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.75,
+          "jaccard_distance_5A_vs_voronoi": 0.75,
+          "jaccard_sasa_1A2_vs_voronoi": 1.0,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      },
+      {
+        "interface_class": "C-D_C1_intra_asu_op1",
+        "chain_pair": "C-D",
+        "operator_pair": [
+          "1",
+          "1"
+        ],
+        "shrake_rupley_fibonacci_bsa_A2": 1487.53,
+        "shrake_rupley_one_side_bsa_A2": 743.76,
+        "lee_richards_zslice_bsa_A2": 1472.78,
+        "voronoi_radical_plane_contact_area_A2": 660.1,
+        "voronoi_to_two_sided_bsa_ratio": 0.4438,
+        "voronoi_to_one_side_bsa_ratio": 0.8875,
+        "predicted_voronoi_A2": 659.68,
+        "residual_A2": 0.42,
+        "voronoi_contacting_atom_pairs": 220,
+        "voronoi_contacting_residue_pairs": 57,
+        "distance_5A_residue_pairs": 34,
+        "interfacial_residue_counts": {
+          "distance_le_5p0A_residues": 42,
+          "sasa_buried_gt_1p0A2_residues": 51,
+          "voronoi_contact_gt_0A2_residues": 52,
+          "intersection_all_three": 42
+        },
+        "interfacial_residue_set_agreement": {
+          "jaccard_distance_5A_vs_sasa_1A2": 0.8235,
+          "jaccard_distance_5A_vs_voronoi": 0.8077,
+          "jaccard_sasa_1A2_vs_voronoi": 0.9808,
+          "fraction_of_distance_5A_residues_buried_in_sasa": 1.0,
+          "fraction_of_distance_5A_residues_present_in_voronoi": 1.0
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "mode": "full",
+  "histories": 100000,
+  "seed": 20261104,
+  "tallies": {
+    "cell": {
+      "scatter": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "coherent-scatter": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "incoherent-scatter": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "photoelectric": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "pair-production": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "heating": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    "macro": {
+      "scatter": {
+        "mean": 0.04078583234002135,
+        "std": 0.00017535750729886135
+      },
+      "coherent-scatter": {
+        "mean": 6.477967540100991e-05,
+        "std": 2.9515221951006026e-07
+      },
+      "incoherent-scatter": {
+        "mean": 0.04072105266461988,
+        "std": 0.0001751093189307423
+      },
+      "photoelectric": {
+        "mean": 5.167659978633082e-06,
+        "std": 4.076895830877132e-08
+      },
+      "pair-production": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "heating": {
+        "mean": 10164.399455577914,
+        "std": 56.99284672863161
+      }
+    }
+  }
+}

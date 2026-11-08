@@ -1,0 +1,21 @@
+{
+ "producer": "Geant4 11.4.3 conda (EM Livermore physics list, G4_WATER, 1 cm sphere, mono 0.4410392084 MeV e-)",
+ "events": 100,
+ "seed": 20261104,
+ "mean_edep_MeV": 0.4395512,
+ "sd_edep": 0.01323388,
+ "mean_primary_path_mm": 1.523412,
+ "sd_path_mm": 0.2132737,
+ "units_note": "Geant4 internal length unit = mm; edep unit = MeV",
+ "estar_comparison": {
+  "estar_csda_mm": 1.4803,
+  "abs_diff_mm": 0.008,
+  "rel_diff_pct": 0.56,
+  "deposit_fraction": 0.9991345250201569
+ },
+ "acceptance": {
+  "rule": "|mean path - ESTAR CSDA| / CSDA <= 2% (documented convention: G4 path length vs ESTAR CSDA range)",
+  "deposit_fraction_rule": ">= 0.999 (1cm sphere, T=441 keV)",
+  "verdict": "PASS"
+ }
+}

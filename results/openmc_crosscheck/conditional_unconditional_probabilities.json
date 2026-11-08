@@ -1,0 +1,39 @@
+{
+  "P_unconditional_StageA": {
+    "phat": 0.0,
+    "n": 100000,
+    "poisson95_hi": 2.995732273553991e-05,
+    "note": "0 observed direct cell interactions in 100k full-beam histories"
+  },
+  "P_unconditional_OpenMC": {
+    "mean_per_source": 0.0,
+    "std": 0.0,
+    "source": "full-beam run n=100000"
+  },
+  "P_conditional_StageA_analytic": {
+    "value": 6.72471111582418e-05,
+    "note": "E[1-exp(-mu*chord)] over aimed beam footprint; mu from imported XCOM row",
+    "frozen_baseline_number": 8.6e-05
+  },
+  "P_conditional_OpenMC": {
+    "mean_per_source": 6.674999999999996e-05,
+    "std": 1.6092609463809003e-06,
+    "source": "aimed-beam run n=2000000",
+    "count": 134,
+    "wilson95_ci": [
+      5.657594452154208e-05,
+      7.934452382236396e-05
+    ],
+    "idealized_bernoulli_std": 5.787724552879136e-06,
+    "stddev_note": "OpenMC statepoint std (1.6e-6) is a batch-replicated statistic (10 batches) and is ~3.6x tighter than the idealized Bernoulli std (5.8e-6); rare-event batches are mostly zero, so the batch statistic underestimates. Reported uncertainty here is count-based (Wilson 95% CI) instead."
+  },
+  "definitions": {
+    "P_conditional": "P(primary photon interacts in ROI | photon crosses ROI footprint)",
+    "P_unconditional": "P(primary photon interacts in ROI | photon launched from full source)"
+  },
+  "chord_distinction": {
+    "frozen_baseline_8.6e-5": "max (diametral) chord through ROI center: 1-exp(-mu*2R), R=5 um",
+    "mean_chord_beam_6.7e-5": "E[1-exp(-mu*chord)] over uniformly sampled impact parameters; mean chord = pi R / 2 = 7.854 um",
+    "note": "Both estimate P(interact | photon crosses ROI); the difference is geometric (max vs mean chord), not physical or numerical."
+  }
+}

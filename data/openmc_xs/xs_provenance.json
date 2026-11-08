@@ -1,0 +1,14 @@
+{
+  "generated_utc": "2026-11-04T05:26:59.154346Z",
+  "eval_source": "ENDF/B-VII.1 photoat + atomic_relax (NNDC endf-b7.1/zips, downloaded 2026-11-04)",
+  "files": {
+    "H1": {
+      "path": "data/openmc_xs/H1.h5",
+      "sha256": "6636e8401b28bf35"
+    },
+    "O16": {
+      "path": "data/openmc_xs/O16.h5",
+      "sha256": "4005b4d1aa248bdc"
+    }
+  }
+}

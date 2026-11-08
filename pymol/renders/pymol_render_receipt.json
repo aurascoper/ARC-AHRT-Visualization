@@ -1,0 +1,23 @@
+{
+  "schema": "arc-ahrt-pymol-render-receipt-v1",
+  "operator_count": 60,
+  "ca_subunits": 240,
+  "nc_subunits": 60,
+  "zn_ions": 60,
+  "resolution_px": [
+    1920,
+    1080
+  ],
+  "renders": {
+    "pymol_arc_domain_and_asu_comparison.png": {
+      "path": "pymol/renders/pymol_arc_domain_and_asu_comparison.png",
+      "bytes": 55014,
+      "sha256": "063cdd39bf976d3fe2a61ad93351e52226de528234df5a3b82a29759b70c7f92"
+    },
+    "pymol_6tap_icosahedral_radiation_target.png": {
+      "path": "pymol/renders/pymol_6tap_icosahedral_radiation_target.png",
+      "bytes": 1495037,
+      "sha256": "a6329c9b93d71deb1b42e9bea6fcf411c51c76c95ca2b1fe9e034b4bf68fe8e7"
+    }
+  }
+}

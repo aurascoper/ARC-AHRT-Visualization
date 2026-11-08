@@ -1,0 +1,18 @@
+{
+ "gate": "P0 \u2014 provenance linkage (paste_35+36 blocker resolution)",
+ "ahrt_commit": "196229c406fe38f85f8141c811768d9dd0ed87cc",
+ "ahrt_head": "196229c406fe38f85f8141c811768d9dd0ed87cc",
+ "receipt_hashes_on_disk": {
+  "docs/V4_ASRA_RECEIPT.json": "467c3331b1d3f27089b22dce7d78668a01f19024f41431ccaf9bbeef9f6511f5",
+  "docs/V2_ELECTRON_REPORT.md": "d9248e705b1657937ceb84b7416cb40216fd242d37fd5fed8cdae37570c0d61a",
+  "docs/wa03/uncertainty_report.md": "650d378505b5d14d4b2e1de0b5f9897345d5368f96c617fa41b2649125cd0eb8",
+  "docs/wa03/extraction_manifest.json": "cb53c400ba276601cabebea3194e43732a79036998964f3353ee8217c2e84451"
+ },
+ "v4_output_hashes_sample": {
+  "wc1_no3_25mM_meoh_0.001M": "1acb8e3626466d88",
+  "wc1_no3_25mM_meoh_10M": "bf89626feabac763",
+  "wc2_o2sat_dmso_1e-06M": "3df3afb09a5dbda1",
+  "wc2_o2sat_dmso_1M": "76b42d04464439d2"
+ },
+ "note": "AHRT repo is LOCAL (~ /Users/aurascoper/Developer/AHRT, no remote configured); the blocker is resolved by this linkage record plus commit ancestry \u2014 the receipts are tracked in the same commit family (196229c is reachable from HEAD)."
+}

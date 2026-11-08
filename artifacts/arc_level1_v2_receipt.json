@@ -1,0 +1,93 @@
+{
+ "module": "M7ArcClusterBridge Level 1 v2",
+ "evidence_class": "CALCULATED_EXPLORATORY",
+ "corrections_from_review": "residue-level interfaces; sign-invariant orientation; inventory independently asserted (240 CA/60 NC/60 Zn); sklearn KMeans+silhouette; k-sweep; symmetry agreement; vendored inputs",
+ "inputs": {
+  "cif_sha256": "61397d5502c44f6fd83d887de353a698ed6f70fbd00604e2fc1c85fd1cd68e69",
+  "ops_sha256": "176dcfc3c500ea286bae0dd0ea0a3053a82007d80d11d44530339062073b16e2",
+  "cif_path": "structures/6TAP.cif",
+  "ops_path": "structures/6TAP_operators.json"
+ },
+ "feature_definition": "xyz_rel_capsid_centroid(3) + radial_distance(1) + |cos|(PC1,radial)(1)+|cos|(PC1,X)(1)+|cos|(PC1,Y)(1) + interface_instances(1) + cross-residue-contact-count(1)",
+ "inventory": {
+  "CA_instances": 240,
+  "NC_instances": 60,
+  "Zn_instances": 60,
+  "nc_atoms_per_instance": 233,
+  "zn_atoms_per_instance": 1,
+  "expected": {
+   "CA": 240,
+   "NC": 60,
+   "Zn": 60
+  }
+ },
+ "k_sweep": {
+  "2": {
+   "silhouette": 0.3320375311178091,
+   "pairwise_seed_stability": 1.0,
+   "cluster_sizes": [
+    60,
+    180
+   ],
+   "symmetry_within_chain_agreement": {
+    "C": 1.0,
+    "A": 1.0,
+    "D": 1.0,
+    "B": 1.0
+   }
+  },
+  "3": {
+   "silhouette": 0.21288741565549857,
+   "pairwise_seed_stability": 0.8316259259259259,
+   "cluster_sizes": [
+    83,
+    97,
+    60
+   ],
+   "symmetry_within_chain_agreement": {
+    "C": 0.492090395480226,
+    "A": 1.0,
+    "D": 0.492090395480226,
+    "B": 0.5056497175141242
+   }
+  },
+  "4": {
+   "silhouette": 0.1701523656943008,
+   "pairwise_seed_stability": 0.8418354166666667,
+   "cluster_sizes": [
+    83,
+    97,
+    30,
+    30
+   ],
+   "symmetry_within_chain_agreement": {
+    "C": 0.492090395480226,
+    "A": 0.4915254237288136,
+    "D": 0.492090395480226,
+    "B": 0.5056497175141242
+   }
+  },
+  "6": {
+   "silhouette": 0.16583974965755466,
+   "pairwise_seed_stability": 0.8702212962962964,
+   "cluster_sizes": [
+    48,
+    53,
+    30,
+    30,
+    38,
+    41
+   ],
+   "symmetry_within_chain_agreement": {
+    "C": 0.24745762711864408,
+    "A": 0.4915254237288136,
+    "D": 0.24463276836158193,
+    "B": 0.2401129943502825
+   }
+  }
+ },
+ "feature_matrix_sha256": "694aec17ef07cc6d019b3e612e1ace8b3b43a3d6c3d6e4dbe9d27bc49bf8539b",
+ "caveats": [
+  "geometric clusters != structural modules != biological functions; symmetry agreement measures self-consistency under chain labels, NOT icosahedral correctness"
+ ]
+}

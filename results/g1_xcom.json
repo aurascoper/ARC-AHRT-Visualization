@@ -1,0 +1,34 @@
+{
+  "gate": "G0/G1-XCOM",
+  "status": "PASS",
+  "material": "H2O",
+  "source": "https://physics.nist.gov/PhysRefData/Xcom/",
+  "data_sha256": "9c829492a9b1a468887a2d5b7fff7d0cd071d969168f26d02df690c6b6122ac3",
+  "energy_MeV": 0.661657,
+  "interpolation": "log-log linear between adjacent XCOM rows",
+  "mu_total_without_coherent_cm2_g": 0.08563156600105291,
+  "mu_total_with_coherent_cm2_g": 0.08575998265489725,
+  "mu_partial_sum_without_coherent_cm2_g": 0.08563156600105291,
+  "relative_closure_error_without_coherent": 0.0,
+  "relative_closure_error_with_coherent_at_requested_energy": 0.0,
+  "raw_imported_row_closure": {
+    "max_relative_error_without_coherent": 0.0003686816050026257,
+    "worst_energy_without_coherent_MeV": 0.003,
+    "max_relative_error_with_coherent": 0.0008061262959473535,
+    "worst_energy_with_coherent_MeV": 0.4
+  },
+  "closure_acceptance_relative_error": 0.01,
+  "mean_free_path_cm": 11.677936614959304,
+  "attenuation_test": {
+    "density_g_cm3": 1.0,
+    "slab_thickness_cm": 1.0,
+    "linear_mu_cm_inv": 0.08563156600105291,
+    "histories": 3000000,
+    "seed": 445566,
+    "expected_interaction_probability_beer_lambert": 0.08206763358140311,
+    "observed_interaction_probability": 0.08195033333333333,
+    "relative_error": 0.001429311933960218,
+    "acceptance_relative_error": 0.01
+  },
+  "scope_note": "Internal closure plus sampled attenuation against Beer-Lambert using the imported XCOM coefficient. This is not an independent re-query or experimental validation of NIST XCOM."
+}

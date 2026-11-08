@@ -1,0 +1,32 @@
+[run]
+model = "AHRT Stage A v0.1"
+photon_energy_MeV = 0.661657
+histories = 100000
+seed = 20261103
+photon_cutoff_MeV = 0.001
+max_photon_interactions = 100
+
+[material]
+name = "water-equivalent reference medium"
+density_g_cm3 = 1.0
+xcom_material = "H2O"
+
+[macro_domain]
+geometry = "finite_cylinder_axis_z"
+radius_cm = 0.3
+length_cm = 0.6
+beam_direction = [1.0, 0.0, 0.0]
+
+[cell_roi]
+geometry = "finite_cylinder_axis_z"
+radius_cm = 0.0005
+length_cm = 0.002
+center_cm = [0.0, 0.0, 0.0]
+
+[physics]
+transport_total = "XCOM total attenuation without coherent scattering"
+compton_angular_model = "unpolarized free-electron Klein-Nishina"
+coherent_rayleigh = "excluded in Stage A v0.1"
+electron_transport = "not implemented; export recoil-electron phase space"
+photoelectric = "local unresolved energy tally"
+pair_production = "out of scope for 661.657 keV baseline"

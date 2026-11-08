@@ -1,0 +1,102 @@
+i:Ts/Seed = 20261104  # W-A-ARC-441 provenance seed
+##########################
+#### TOPAS Parameters ####
+##########################
+
+i:Ts/Verbosity = 0
+i:Ts/ShowHistoryCountAtInterval = 300
+i:Ts/MaxInterruptedHistories  = So/Demo/NumberOfHistoriesInRun
+Ts/NumberOfThreads = 10
+b:Ts/ShowCPUTime = "True"
+
+##########################
+### Physics & Chemistry ##
+##########################
+
+sv:Ph/Default/Modules = 2 "TsEmDNAPhysics" "TsEmDNAChemistry"
+s:Ph/Default/Electron/SetElasticScatteringModel = "ELSEPA" 
+s:Ph/Default/SolvatedElectronThermalizationModel =  "Meesungnoen"
+
+includeFile = TOPAS-DefaultReactions.txt 
+
+s:Ch/ChemistryName = "TOPASChemistry"
+b:Ch/TOPASChemistry/ChemicalStageTransportActive = "True"
+d:Ch/TOPASChemistry/ChemicalStageTimeEnd = 1.00001 ps
+dv:Ch/TOPASChemistry/ChemicalStageTimeStepsHighEdges = 1 999999 ps
+dv:Ch/TOPASChemistry/ChemicalStageTimeStepsResolutions = 1 0.5 ps
+b:Ch/TOPASChemistry/TestForContactReactions = "True"
+
+##########################
+######## Geometry ########
+##########################
+
+Ge/World/HLX= 1 cm
+Ge/World/HLY= 1 cm 
+Ge/World/HLZ= 1 cm 
+Ge/World/Material ="G4_WATER"
+
+d:Ge/sWorld/HLX= 1 cm 
+d:Ge/sWorld/HLY= 1 cm 
+d:Ge/sWorld/HLZ= 1 cm 
+s:Ge/sWorld/Material ="G4_WATER"
+s:Ge/sWorld/Type = "TsBox"
+s:Ge/sWorld/Parent = "World"
+
+##########################
+######### Source #########
+##########################
+
+Ge/BeamPosition/TransZ = -0.0 * Ge/World/HLZ um
+Ge/BeamPosition/RotX = 0 deg
+
+So/Demo/BeamPositionDistribution = "None"
+So/Demo/BeamEnergySpread = 0
+So/Demo/BeamParticle = "e-"
+So/Demo/BeamEnergy = 441.039 keV
+i:So/Demo/NumberOfHistoriesInRun = 5
+
+##########################
+######### Scorer #########
+##########################
+
+u:perCent = 0.01 
+
+s:Sc/nbOfMol/Quantity = "TsIRTGvalue"
+s:Sc/nbOfMol/Component = "sWorld"
+s:Sc/nbOfMol/OutputFile = "gv_wc1_no3_25mM_meoh_0.001M"
+s:Sc/nbOfMol/IfOutputFileAlreadyExists = "Overwrite"
+s:Sc/nbOfMol/OutputType                           = "ASCII"
+d:Sc/nbOfMol/KillPrimaryIfEnergyLossExceeds       = So/Demo/BeamEnergy keV * perCent
+d:Sc/nbOfMol/AbortEventIfPrimaryEnergyLossExceeds = 1.01 * Sc/nbOfMol/KillPrimaryIfEnergyLossExceeds keV
+d:Sc/nbOfMol/KillPrimaryBasedOnTrackLength        = 100 um
+i:Sc/nbOfMol/OutputBufferSize = 1
+d:Sc/nbOfMol/CutOffTime = 1 ps
+d:Sc/nbOfMol/TimeLower = 1.0 ps
+d:Sc/nbOfMol/TimeUpper = 1e6 ps 
+i:Sc/nbOfMol/TimeBins  = 100
+
+##########################
+
+
+s:Mo/Methanol/Symbol = "MeOH"
+u:Mo/Methanol/Charge = 0
+d:Mo/Methanol/Radius = 0.2 nm
+d:Mo/Methanol/DiffusionCoefficient = 1.6e9 nm2/s
+# V4 custom molecule declarations (required by TOPAS-nBio registry for BackgroundReaction species B).
+# NOTE: Radius/DiffusionCoefficient values are PLUMBING ONLY -- continuum background reactions use
+# concentration + reaction rate exclusively; these fields are unused by the IRT continuum path.
+s:Mo/Nitrate/Symbol = "NO3m"
+u:Mo/Nitrate/Charge = -1
+d:Mo/Nitrate/Radius = 0.24 nm
+d:Mo/Nitrate/DiffusionCoefficient = 1.9e9 nm2/s
+
+# V4-ASRA wc1_no3_25mM_meoh_0.001M: deaerated, NO3- 0.025 M + CH3OH 0.001 M (Hiroki 2002 conditions, Ramos-Mendez 2021 Table 1)
+d:Ch/TOPASChemistry/BackgroundReaction/SolvatedElectron/Nitrate/ReactionRate = 9.7e9 /M/s
+d:Ch/TOPASChemistry/BackgroundReaction/SolvatedElectron/Nitrate/Concentration = 0.025 M
+sv:Ch/TOPASChemistry/BackgroundReaction/SolvatedElectron/Nitrate/Products = 1 "Product"
+d:Ch/TOPASChemistry/BackgroundReaction/Hydrogen/Nitrate/ReactionRate = 1.4e6 /M/s
+d:Ch/TOPASChemistry/BackgroundReaction/Hydrogen/Nitrate/Concentration = 0.025 M
+sv:Ch/TOPASChemistry/BackgroundReaction/Hydrogen/Nitrate/Products = 1 "Product"
+d:Ch/TOPASChemistry/BackgroundReaction/Hydroxyl/Methanol/ReactionRate = 9.7e8 /M/s
+d:Ch/TOPASChemistry/BackgroundReaction/Hydroxyl/Methanol/Concentration = 0.001 M
+sv:Ch/TOPASChemistry/BackgroundReaction/Hydroxyl/Methanol/Products = 1 "Product"

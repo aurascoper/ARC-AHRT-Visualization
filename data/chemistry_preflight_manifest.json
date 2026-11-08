@@ -1,0 +1,24 @@
+{
+  "schema": "water_chemistry_preflight_v0",
+  "prepared": "2026-11-04",
+  "status": "PENDING_REFERENCE_EXTRACTION — numeric values must be extracted from cited upstream sources before any simulation; no field below may be filled from memory",
+  "fixtures": {
+    "W-A_pure_water": {
+      "target": "time-dependent G-values in pure liquid water",
+      "references_pending": ["TOPAS-nBio 2021 water-radiolysis validation", "gMicroMC 2020 662 keV"],
+      "requires": ["temperature_K", "pH_assumption", "oxygen_condition=null", "species_list", "dissociation_channels", "diffusion_coefficients", "reaction_rates_units", "chemical_stage_time_interval", "gvalue_output_times", "source_per_numeric_entry"]
+    },
+    "W-B_aerated_water": {
+      "target": "oxygen-dependent species evolution",
+      "references_pending": ["TOPAS-nBio 2021", "TOPAS-nBio chemistry 2018"],
+      "requires": ["temperature_K", "pH_assumption", "oxygen_condition=aerated declared level", "species_list", "dissociation_channels", "diffusion_coefficients", "reaction_rates_units", "chemical_stage_time_interval", "gvalue_output_times", "source_per_numeric_entry"]
+    },
+    "W-C_scavenger": {
+      "target": "scavenger-dependent reaction yields",
+      "references_pending": ["TOPAS-nBio 2021 DMSO-scavenged Cs-137 plasmid experiments"],
+      "requires": ["temperature_K", "pH_assumption", "declared_scavenger_and_concentration", "species_list", "dissociation_channels", "diffusion_coefficients", "reaction_rates_units", "chemical_stage_time_interval", "gvalue_output_times", "source_per_numeric_entry"]
+    }
+  },
+  "exclusion": "Arc-specific molecular damage scoring is NOT coupled to this chemistry until the chemistry validation passes",
+  "stop_condition": "Do not label any fixture as validated merely because TOPAS-nBio executed it"
+}

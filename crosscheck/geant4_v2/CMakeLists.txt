@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(v2_electron)
+find_package(Geant4 REQUIRED)
+include(${Geant4_USE_FILE})
+add_executable(v2_electron v2_electron.cc)
+target_link_libraries(v2_electron ${Geant4_LIBRARIES})

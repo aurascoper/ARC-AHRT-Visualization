@@ -1,0 +1,99 @@
+{
+ "module": "Level1-v2 follow-up checks",
+ "result_state": "COMPLETED",
+ "census_summary": {
+  "A": {
+   "instances": 60,
+   "partners_per_instance_mean": 5.0,
+   "partners_per_instance_std": 0.0,
+   "partner_chain_composition": {
+    "B": 60,
+    "A": 120,
+    "D": 120
+   }
+  },
+  "B": {
+   "instances": 60,
+   "partners_per_instance_mean": 5.0,
+   "partners_per_instance_std": 0.0,
+   "partner_chain_composition": {
+    "D": 120,
+    "C": 120,
+    "A": 60
+   }
+  },
+  "C": {
+   "instances": 60,
+   "partners_per_instance_mean": 5.0,
+   "partners_per_instance_std": 0.0,
+   "partner_chain_composition": {
+    "C": 120,
+    "B": 120,
+    "D": 60
+   }
+  },
+  "D": {
+   "instances": 60,
+   "partners_per_instance_mean": 5.0,
+   "partners_per_instance_std": 0.0,
+   "partner_chain_composition": {
+    "B": 120,
+    "C": 60,
+    "A": 120
+   }
+  }
+ },
+ "neighbor_counts_by_chain": {
+  "A": {
+   "mean": 5.0,
+   "std": 0.0
+  },
+  "B": {
+   "mean": 5.0,
+   "std": 0.0
+  },
+  "C": {
+   "mean": 5.0,
+   "std": 0.0
+  },
+  "D": {
+   "mean": 5.0,
+   "std": 0.0
+  }
+ },
+ "radial_by_chain": {
+  "A": {
+   "mean_A": 180.38273293977755
+  },
+  "B": {
+   "mean_A": 173.0040206905827
+  },
+  "C": {
+   "mean_A": 171.12273936750094
+  },
+  "D": {
+   "mean_A": 173.65987384261186
+  }
+ },
+ "ablation_k2_B_vs_ACD_survives_without": {
+  "centroid": false,
+  "radial": false,
+  "orientation": false,
+  "contacts": false,
+  "res_contacts": false
+ },
+ "interpretation_label": "CHAIN_ENVIRONMENT_CLASS_B_VS_ACD (hypothesis-generating annotation only; not a module claim)",
+ "earlier_acd_same_class_contact_rationale_status": ":Superseded",
+ "census_findings_human": {
+  "regularity": "every instance has exactly 5 interface partners (std 0) -- perfectly regular lattice",
+  "chain_B_distinction": "B's partners are Cx2, Dx2, Ax1 with ZERO B-B contacts; B and D both lack homotypic interfaces in the 6TAP residue-contact census (B-B = 0 and D-D = 0 across 3.5..6.0 A; only A-A = 41 and C-C = 7 are homotypic at 5.0 A)",
+  "earlier_acd_same_class_contact_rationale_disposition": ":Superseded",
+  "interpretation": "B and D both lack homotypic interfaces in the 6TAP residue-contact census (B-B = 0 and D-D = 0 across 3.5..6.0 A; only A-A = 41 and C-C = 7 are homotypic at 5.0 A); earlier A/C/D same-class-contact rationale is :Superseded. Under the Level-2 interface graph, B separates from A/C/D not by unique absence of homotypic contacts (since D-D = 0 as well), but by its heterotypic partner-composition and interface-area profile (B forms two B-C interfaces [1,272.29 and 1,365.72 A^2] and two B-D interfaces [1,342.37 and 344.66 A^2] with only a marginal 48.65 A^2 A-B contact, whereas D anchors the pentamer-to-hexamer seam via A-D_op1 [1,287.13 A^2, 27 pairs] and A-D_op36 [179.98 A^2, 5 pairs] alongside C-D_op1 [1,487.53 A^2, 34 pairs]). Label: CHAIN_ENVIRONMENT_CLASS_B_VS_ACD; not a module claim"
+ },
+ "level2_re_evaluation_of_k2_B_vs_ACD_partition": {
+  "earlier_acd_same_class_contact_rationale_status": ":Superseded",
+  "homotypic_census_finding": "B and D both lack homotypic interfaces in the 6TAP residue-contact census (B-B = 0 and D-D = 0 across 3.5..6.0 A; only A-A = 41 and C-C = 7 are homotypic at 5.0 A)",
+  "heterotypic_partner_and_bsa_profile": "B separates from A/C/D not by unique absence of homotypic contacts (since D-D = 0 as well), but by its heterotypic partner-composition and interface-area profile (B forms two B-C interfaces [1,272.29 and 1,365.72 A^2] and two B-D interfaces [1,342.37 and 344.66 A^2] with only a marginal 48.65 A^2 A-B contact, whereas D anchors the pentamer-to-hexamer seam via A-D_op1 [1,287.13 A^2, 27 pairs] and A-D_op36 [179.98 A^2, 5 pairs] alongside C-D_op1 [1,487.53 A^2, 34 pairs])."
+ },
+ "ablation_note": "removing ANY single feature block (centroid, radial, orientation, contacts, residue-contacts) breaks the k=2 B-vs-ACD partition -- the distinction is joint-multifactorial, not driven by a single coordinate convention"
+}

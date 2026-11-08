@@ -1,0 +1,11 @@
+# ==============================================================================
+# scene_ahrt_01_portable.cxc
+# Title: AHRT v0.1 Structural & Radiation-Target Workbench Launcher (Portable)
+# Epistemic Status: [MEASURED GEOMETRY FROM DEPOSITED COORDINATES - NO MECHANISM CLAIMED]
+# Compatible with UCSF ChimeraX 1.12
+#
+# Run from the repository root:
+#   /Applications/ChimeraX-1.12.app/Contents/MacOS/ChimeraX workbench/scene_ahrt_01_portable.cxc
+# ==============================================================================
+
+open workbench/scene_ahrt_01_portable.py

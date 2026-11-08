@@ -1,0 +1,18 @@
+{
+  "gate": "G1-Klein-Nishina",
+  "status": "PASS",
+  "energy_in_MeV": 0.661657,
+  "samples": 150000,
+  "seed": 81723,
+  "sample_mean_cos_theta": 0.3221617138691852,
+  "quadrature_mean_cos_theta": 0.3186931968032023,
+  "cos_theta_difference_in_standard_errors": 2.2698808525747247,
+  "sample_mean_photon_energy_out_MeV": 0.41004671082556987,
+  "quadrature_mean_photon_energy_out_MeV": 0.40920178774047167,
+  "energy_difference_in_standard_errors": 2.203059257464552,
+  "max_energy_angle_identity_error_MeV": 0.0,
+  "acceptance": "Both sampled moments within 5 Monte Carlo standard errors of numerical KN quadrature; event energy-angle identity <= 1e-12 MeV.",
+  "compton_backscatter_photon_energy_MeV": 0.18432298167013975,
+  "compton_edge_electron_kinetic_energy_MeV": 0.47733401832986033,
+  "model_scope": "Unpolarized free-electron Klein-Nishina angular law; no bound-electron scattering function."
+}

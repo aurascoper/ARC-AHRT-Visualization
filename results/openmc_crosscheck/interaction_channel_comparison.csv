@@ -1,0 +1,5 @@
+channel,stage_A_fraction,openmc_fraction,note
+compton_incoherent_frac,0.999757,0.998285,
+photoelectric_frac,0.000243,0.000127,
+coherent_scatter_frac,0.000000,0.001588,Rayleigh(coherent) REPORTED SEPARATELY; Stage A excludes it by design
+pair_production_frac,0.000000,0.000000,

@@ -1,0 +1,219 @@
+{
+ "module": "AHRT-ArcHydration-WA",
+ "evidence_class": "simulated",
+ "date": "2026-11-04",
+ "runtime": {
+  "image": "opentopas/opentopas:v4.3.0-geant4-11.3.2-arm64",
+  "digest": "sha256:5dd550c3817f890467a8cf92ffa00f511bf2272980c17c93aff57d2d6d4ba5bf",
+  "topas_nbio": "v4.1.0 local clone (./topas/tnb4.1.0)",
+  "datasets": "G4Data-11.3.2 md5-verified 15/15 from upstream manifest",
+  "build": "/ext topas + extensions, Qt5"
+ },
+ "runs": {
+  "refA_80kev_g4dna": {
+   "histories": 100,
+   "chemistry": "g4em-dna + g4em-dna-chemistry",
+   "energy_keV": 80,
+   "status": "executed",
+   "species": [
+    "H2O2^0",
+    "H3O^1",
+    "H^0",
+    "H_2^0",
+    "OH^-1",
+    "e_aq^-1",
+    "\u00b0OH^0"
+   ]
+  },
+  "refB_999kev_tsirt": {
+   "histories": 3000,
+   "chemistry": "TsEmDNAPhysics/TsEmDNAChemistry, ELSEPA, Meesungnoen, TOPAS-DefaultReactions.txt",
+   "energy_keV": 999.999,
+   "status": "executed",
+   "species": [
+    "H2O2^0",
+    "H3O^1",
+    "HO2^-1",
+    "HO2^0",
+    "H^0",
+    "H_2^0",
+    "None",
+    "O2^-1",
+    "O2^0",
+    "O3^-1",
+    "O3^0",
+    "OH^-1",
+    "OH^0",
+    "O^-1",
+    "O^0",
+    "e_aq^-1"
+   ],
+   "time_grid_ps": [
+    1.0,
+    1000000.0
+   ]
+  },
+  "arc_441kev_tsirt": {
+   "histories": 3000,
+   "seed": 20261104,
+   "energy_keV": 441.039,
+   "status": "executed",
+   "species": [
+    "H2O2^0",
+    "H3O^1",
+    "HO2^-1",
+    "HO2^0",
+    "H^0",
+    "H_2^0",
+    "None",
+    "O2^-1",
+    "O2^0",
+    "O3^-1",
+    "O3^0",
+    "OH^-1",
+    "OH^0",
+    "O^-1",
+    "O^0",
+    "e_aq^-1"
+   ],
+   "label": "project-transfer test; NOT experimentally validated by W-A"
+  }
+ },
+ "comparison_441vs999_same_chemistry": {
+  "H2O2^0": {
+   "early_ps": 1.0,
+   "G441_early": 0.1438,
+   "G999_early": 0.1473,
+   "late_ps": 1000000.0,
+   "G441_late": 0.7044,
+   "G999_late": 0.7322
+  },
+  "H3O^1": {
+   "early_ps": 1.0,
+   "G441_early": 4.2389,
+   "G999_early": 4.2047,
+   "late_ps": 1000000.0,
+   "G441_late": 3.2801,
+   "G999_late": 3.1539
+  },
+  "HO2^-1": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "HO2^0": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "H^0": {
+   "early_ps": 1.0,
+   "G441_early": 0.6154,
+   "G999_early": 0.6251,
+   "late_ps": 1000000.0,
+   "G441_late": 0.4966,
+   "G999_late": 0.5037
+  },
+  "H_2^0": {
+   "early_ps": 1.0,
+   "G441_early": 0.2489,
+   "G999_early": 0.254,
+   "late_ps": 1000000.0,
+   "G441_late": 0.3989,
+   "G999_late": 0.4212
+  },
+  "O2^-1": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "O2^0": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "O3^-1": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "O3^0": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "OH^-1": {
+   "early_ps": 1.0,
+   "G441_early": 0.0105,
+   "G999_early": 0.0096,
+   "late_ps": 1000000.0,
+   "G441_late": 0.4988,
+   "G999_late": 0.5011
+  },
+  "OH^0": {
+   "early_ps": 1.0,
+   "G441_early": 5.0432,
+   "G999_early": 5.0224,
+   "late_ps": 1000000.0,
+   "G441_late": 2.6559,
+   "G999_late": 2.5234
+  },
+  "O^-1": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "O^0": {
+   "early_ps": 1.0,
+   "G441_early": 0.0,
+   "G999_early": 0.0,
+   "late_ps": 1000000.0,
+   "G441_late": 0.0,
+   "G999_late": 0.0
+  },
+  "e_aq^-1": {
+   "early_ps": 1.0,
+   "G441_early": 4.2283,
+   "G999_early": 4.1954,
+   "late_ps": 1000000.0,
+   "G441_late": 2.781,
+   "G999_late": 2.6532
+  }
+ },
+ "acceptance": {
+  "W-A-01": "PASS (modules named, water-only geometry)",
+  "W-A-02": "PASS (both refs executed end-to-end, interpretable time-dependent output)",
+  "W-A-03": "PENDING \u2014 species agreement vs 2021 experimental values requires reference numbers not yet extracted; no invented local comparison",
+  "W-A-04": "PASS (header-declared units molecules/100 eV; species identities listed; seed pinned for the 441 run)",
+  "W-A-05": "PASS-separate; documented project-specific result only",
+  "W-A-06": "PASS (sha256 manifest in this receipt)"
+ },
+ "rms_displacement_note": "1.24 nm RMS displacement post-ionization/excitation implemented in TOPAS-nBio TsDNAWaterDissociationDisplacer.cc (line ~101); used by the TsEmDNAChemistry path; recorded, not silently inherited",
+ "file_sha256": {
+  "wa_arc_441kev_tsirt.phsp": "7def202d9ee016ffa6b5efde35245d53361859cf2ddf9aaaef86425c33aef553",
+  "wa_refA_80kev_g4dna.phsp": "7bf0de1fc1214890c1794de89301da6551765be328e679ada5629a2ff99eed89",
+  "wa_arc_441_config.txt": "373bde931347410766c8822ee15ea6aba526abbe895b2314457f5bd80156b177",
+  "wa_refB_999kev_tsirt.phsp": "3948247be49ad660ed46c7b04431f21ebbc02948f4082bf0a90b185b67373483"
+ }
+}

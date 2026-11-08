@@ -1,0 +1,500 @@
+{
+ "module": "V4-ASRA simulation layer",
+ "evidence_class": "simulated",
+ "date": "2026-11-05",
+ "runtime": "OpenTOPAS 4.3.0 / Geant4 11.3.2 / TOPAS-nBio 4.1.0 container opentopas/opentopas:v4.3.0-geant4-11.3.2-arm64 sha256:5dd550c3",
+ "source": {
+  "particle": "e-",
+  "energy_keV": 999.999,
+  "geometry": "1 cm TsBox G4_WATER",
+  "seed": 20261104,
+  "histories": 3000
+ },
+ "domain": "1 ps - 1 us (capped to W-A shared domain; Fricke 50 s skeleton corrected)",
+ "scorer": "TsIRTGvalue; ReportMoleculesNamed = OH^0 e_aq^-1 H2O2^0 H_2^0 H^0; pulse params per Fricke skeleton (PrescribedDose present) \u2014 normalization convention recorded, not silently reconciled",
+ "sinks": "None (deliberate terminal sink; products untracked)",
+ "results": {
+  "wc1_no3_25mM_meoh_0.001M": {
+   "fixture": "W-C1",
+   "scavenger_conc_M": 0.001,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.8263,
+     "err_1sd": 0.00295,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 1.0711,
+     "err_1sd": 0.00351,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3139,
+     "err_1sd": 0.00143,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.351,
+     "err_1sd": 0.00135,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "1acb8e3626466d88cc205d06e05b23ccfd38fa190388526b9d81392b7c5a193a"
+  },
+  "wc1_no3_25mM_meoh_0.01M": {
+   "fixture": "W-C1",
+   "scavenger_conc_M": 0.01,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.7791,
+     "err_1sd": 0.00267,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0002,
+     "err_1sd": 4e-05,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3136,
+     "err_1sd": 0.00143,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.3632,
+     "err_1sd": 0.00141,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "852244674bdb361aad25efbf6f04d0e9b80d0b91e4031656afc76218ce598abf"
+  },
+  "wc1_no3_25mM_meoh_0.1M": {
+   "fixture": "W-C1",
+   "scavenger_conc_M": 0.1,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.6747,
+     "err_1sd": 0.00236,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3155,
+     "err_1sd": 0.00144,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.3896,
+     "err_1sd": 0.00145,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "490e500fd0491630806520dc7308bcccead0696cd909a051b8c76720a5745b3b"
+  },
+  "wc1_no3_25mM_meoh_1M": {
+   "fixture": "W-C1",
+   "scavenger_conc_M": 1.0,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.4694,
+     "err_1sd": 0.00179,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3235,
+     "err_1sd": 0.00147,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.458,
+     "err_1sd": 0.00159,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "30f5917e0cab2cf5e92f7ab75c33b665eaed0b86db1bb78d15f26539cc2bc54e"
+  },
+  "wc1_no3_25mM_meoh_10M": {
+   "fixture": "W-C1",
+   "scavenger_conc_M": 10.0,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.1769,
+     "err_1sd": 0.00101,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3501,
+     "err_1sd": 0.0016,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.5893,
+     "err_1sd": 0.00184,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "bf89626feabac763f3a73c173132b15aac909840076bbbe68f3eee588f9ac911"
+  },
+  "wc2_o2sat_dmso_1e-06M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 1e-06,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.7566,
+     "err_1sd": 0.00252,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 2.5648,
+     "err_1sd": 0.00801,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0154,
+     "err_1sd": 0.00031,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3888,
+     "err_1sd": 0.00179,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0019,
+     "err_1sd": 0.0001,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "3df3afb09a5dbda16ac6be523e7db867bee383d6ed9afcff1591058220afd27e"
+  },
+  "wc2_o2sat_dmso_3e-06M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 3e-06,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.7561,
+     "err_1sd": 0.00251,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 2.529,
+     "err_1sd": 0.00791,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0155,
+     "err_1sd": 0.00031,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3889,
+     "err_1sd": 0.00179,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0019,
+     "err_1sd": 0.0001,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "1311c615e98b097f0be6cdf1d28930aba83147436e545cbb93749d293f7f7e55"
+  },
+  "wc2_o2sat_dmso_1e-05M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 1e-05,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.7555,
+     "err_1sd": 0.0025,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 2.4056,
+     "err_1sd": 0.00758,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0155,
+     "err_1sd": 0.00031,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3891,
+     "err_1sd": 0.00179,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0019,
+     "err_1sd": 0.0001,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "9a1c32ba63e985968e857a1f9cd67b793df518a99cca4349d5cf3ecd6c370615"
+  },
+  "wc2_o2sat_dmso_3e-05M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 3e-05,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.7539,
+     "err_1sd": 0.00249,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 2.0871,
+     "err_1sd": 0.00668,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0155,
+     "err_1sd": 0.00031,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3892,
+     "err_1sd": 0.00179,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0019,
+     "err_1sd": 0.00011,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "78804f528a36b45a5e6886eeb57fd364b79d1a4aa8e4b1b213ef4ef85c0b335c"
+  },
+  "wc2_o2sat_dmso_0.0001M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 0.0001,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.7464,
+     "err_1sd": 0.00246,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 1.2746,
+     "err_1sd": 0.00433,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0156,
+     "err_1sd": 0.00031,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.389,
+     "err_1sd": 0.00178,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.002,
+     "err_1sd": 0.00011,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "f7a37b73668a33dac184ce3aad8b72788d2409875a1124bb3d04a369b62e0cd7"
+  },
+  "wc2_o2sat_dmso_0.001M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 0.001,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.7138,
+     "err_1sd": 0.00231,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0024,
+     "err_1sd": 0.00012,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.016,
+     "err_1sd": 0.00031,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3908,
+     "err_1sd": 0.00179,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0019,
+     "err_1sd": 0.00011,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "a6215e29480e3439ccde9cd6c4d362468a5c0ee7af602e48e273434791cd6e52"
+  },
+  "wc2_o2sat_dmso_0.01M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 0.01,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.6341,
+     "err_1sd": 0.00208,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0167,
+     "err_1sd": 0.00032,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.3977,
+     "err_1sd": 0.00184,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0022,
+     "err_1sd": 0.00011,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "9d7e1a2496fe7abf43280ec6a9cbe3703965327eaa7983d2d67a05d0b3ee7deb"
+  },
+  "wc2_o2sat_dmso_0.1M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 0.1,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.4698,
+     "err_1sd": 0.00171,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0179,
+     "err_1sd": 0.00032,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.4242,
+     "err_1sd": 0.00207,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0025,
+     "err_1sd": 0.00012,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "53b0b1bb815ad22e8a09d9900b6cc41f1dd59bdae2ca9f338ca093ffd924b2bc"
+  },
+  "wc2_o2sat_dmso_1M": {
+   "fixture": "W-C2",
+   "scavenger_conc_M": 1.0,
+   "at_1us": {
+    "H2O2^0": {
+     "G_1us": 0.2675,
+     "err_1sd": 0.00123,
+     "result_state": "COMPLETED"
+    },
+    "OH^0": {
+     "G_1us": 0.0,
+     "err_1sd": 0.0,
+     "result_state": "COMPLETED"
+    },
+    "e_aq^-1": {
+     "G_1us": 0.0191,
+     "err_1sd": 0.00034,
+     "result_state": "COMPLETED"
+    },
+    "H_2^0": {
+     "G_1us": 0.4699,
+     "err_1sd": 0.00237,
+     "result_state": "COMPLETED"
+    },
+    "H^0": {
+     "G_1us": 0.0027,
+     "err_1sd": 0.00013,
+     "result_state": "COMPLETED"
+    }
+   },
+   "file_sha256": "76b42d04464439d233d0c498fd8c5079a12857131a3b29c11e7cf54ac5ebfd20"
+  }
+ },
+ "comparisons": [],
+ "verdicts": {
+  "W-C1_direction": {
+   "rule": "G(H2O2)@1us must fall monotonically with MeOH scavenging capacity (Rothwell-2026 deaerated expectation)",
+   "values": [
+    0.8263,
+    0.7791,
+    0.6747,
+    0.4694,
+    0.1769
+   ],
+   "PASS": true,
+   "note": "lowest point 0.177 at 10 M continues toward ~0; base elevated vs pure-water 0.7322 by NO3- e_aq scavenging (removes e_aq+H2O2 channel) \u2014 directionally expected"
+  },
+  "W-C2_nonmonotonicity": {
+   "rule": "oxygen-saturated H2O2 must RISE under moderate OH scavenging then fall at high capacity (Rothwell 2026)",
+   "values_dmso_sweep_low_to_high": [
+    0.7566,
+    0.7561,
+    0.7555,
+    0.7539,
+    0.7464,
+    0.7138,
+    0.6341,
+    0.4698,
+    0.2675
+   ],
+   "peak_at_conc_M": 1e-06,
+   "result": "NOT REPRODUCED in this configuration: series is flat (0.741-0.757 across 1e-6..1e-4 M DMSO) then falls; no moderate-capacity rise found",
+   "condition_caveat": "Rothwell used methanol AND DMSO across separate gaseous states; our fixture is DMSO-only in 0.27 mM O2. Not a demonstrated model failure; a condition-matched O2+methanol fixture would be required to test the actual rise",
+   "verdict": "FAIL on criterion as written (with condition-match caveat recorded)"
+  }
+ },
+ "note": "All 14 outputs exist as completed runs; no FAILED/INVALID states in this set"
+}

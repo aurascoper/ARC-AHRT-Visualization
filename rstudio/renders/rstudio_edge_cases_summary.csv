@@ -1,0 +1,7 @@
+"edge_case_id","metric_name","primary_value","comparison_value"
+"EC1_symmetry_only_interfaces","A-A + B-D + C-C contacts at 5.0 A (ASU vs 60-op)",0,83
+"EC1_AB_5A_percolation_onset","A-B contacts at 4.5 A vs 5.0 A (op 2 LYS181-ASN204)",0,1
+"EC2_homologous_83_holm_boundary","homologous_83_residue_same_domain (p_holm_within vs p_holm_omnibus12)",0.032497,0.058494
+"EC3_WC1_OH_zero_floor_vs_H_rise","W-C1 G(H^0) rise across 0.001 M -> 10 M MeOH while G(OH^0) -> 0",0.351011,0.589318
+"EC3_WC2_eaq_recombination_sparing","W-C2 G(e_aq^-1) rise across 1e-6 M -> 1 M DMSO",0.0154332,0.0190808
+"EC4_chain_E_bfactor_dispersion","Chain E B-factor SD vs Chains A-D max SD (A^2)",32.25,10.61

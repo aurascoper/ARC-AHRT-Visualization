@@ -1,0 +1,61 @@
+{
+ "domain": "1ps-1us shared with W-A",
+ "series": {
+  "wc1_no3_25mM_meoh_0.001M": {
+   "conc": 0.001,
+   "sha": "1acb8e3626466d88"
+  },
+  "wc1_no3_25mM_meoh_0.01M": {
+   "conc": 0.01,
+   "sha": "852244674bdb361a"
+  },
+  "wc1_no3_25mM_meoh_0.1M": {
+   "conc": 0.1,
+   "sha": "490e500fd0491630"
+  },
+  "wc1_no3_25mM_meoh_1M": {
+   "conc": 1.0,
+   "sha": "30f5917e0cab2cf5"
+  },
+  "wc1_no3_25mM_meoh_10M": {
+   "conc": 10.0,
+   "sha": "bf89626feabac763"
+  },
+  "wc2_o2sat_dmso_1e-06M": {
+   "conc": 1e-06,
+   "sha": "3df3afb09a5dbda1"
+  },
+  "wc2_o2sat_dmso_3e-06M": {
+   "conc": 3e-06,
+   "sha": "1311c615e98b097f"
+  },
+  "wc2_o2sat_dmso_1e-05M": {
+   "conc": 1e-05,
+   "sha": "9a1c32ba63e98596"
+  },
+  "wc2_o2sat_dmso_3e-05M": {
+   "conc": 3e-05,
+   "sha": "78804f528a36b45a"
+  },
+  "wc2_o2sat_dmso_0.0001M": {
+   "conc": 0.0001,
+   "sha": "f7a37b73668a33da"
+  },
+  "wc2_o2sat_dmso_0.001M": {
+   "conc": 0.001,
+   "sha": "a6215e29480e3439"
+  },
+  "wc2_o2sat_dmso_0.01M": {
+   "conc": 0.01,
+   "sha": "9d7e1a2496fe7abf"
+  },
+  "wc2_o2sat_dmso_0.1M": {
+   "conc": 0.1,
+   "sha": "53b0b1bb815ad22e"
+  },
+  "wc2_o2sat_dmso_1M": {
+   "conc": 1.0,
+   "sha": "76b42d04464439d2"
+  }
+ }
+}

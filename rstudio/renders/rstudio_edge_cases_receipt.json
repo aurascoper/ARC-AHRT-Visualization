@@ -1,0 +1,8 @@
+{
+  "schema": "arc-ahrt-rstudio-edge-cases-receipt-v1",
+  "r_version": "R version 4.4.3 (2025-02-28)",
+  "output_png": "rstudio/renders/rstudio_arc_ahrt_edge_cases.png",
+  "output_csv": "rstudio/renders/rstudio_edge_cases_summary.csv",
+  "resolution_px": [1920, 1080],
+  "edge_cases_verified": 4
+}

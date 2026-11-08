@@ -1,0 +1,153 @@
+# ==============================================================================
+# arc_camera_rack.cxc
+# Title: dArc1, Ty3 and a real T=4 virus capsid on their verified icosahedral axes
+# Epistemic Status: [MEASURED GEOMETRY FROM DEPOSITED COORDINATES - NO MECHANISM CLAIMED]
+# Author: Hunter Kinder (Mark Hunter Kinder II)
+# License: Code: MIT . Content: CC BY 4.0
+# Usage: chimerax workbench/arc_camera_rack.cxc
+# Compatible with UCSF ChimeraX 1.12
+# ==============================================================================
+#
+# 1. WHAT THIS SCENE SHOWS, AND WHAT IT DOES NOT
+#    Three protein shells, each regenerated from its own deposited symmetry
+#    operators and measured here, placed side by side at matched scale.
+#    The camera rack then orbits the symmetry axes of the dArc1 shell.
+#    This is a GEOMETRIC comparison. A visual overlay is NOT evidence of
+#    homology, shared mechanism, or shared biochemistry. No claim about RNA
+#    packaging, capsid stability or intercellular transfer is made or implied.
+#
+# 2. CORRECTION TO THE ACCESSIONS PREVIOUSLY USED FOR THIS FIGURE
+#    Earlier guidance in this program was to "load PDB 6GSE or 4X3H and render
+#    the T=4 icosahedral lattice". That cannot work, and the reason matters:
+#      - 6GSE is a solution NMR structure of the rat Arc CAPSID DOMAIN MONOMER.
+#        Point group C1, one chain. It contains NO capsid and NO symmetry.
+#      - 4X3H is an X-ray structure at 2.40 A of the rat Arc N-LOBE bound to a
+#        Stargazin peptide. It is a DOMAIN, not an assembly.
+#    Neither entry contains a lattice to render. The entry that holds the
+#    assembled icosahedral capsid is 6TAP.
+#    There is NO high resolution mammalian Arc capsid structure in the PDB.
+#    Every icosahedral measurement below is Drosophila dArc1 or yeast Ty3.
+#
+# 3. REGENERATE THE MEASUREMENTS BEFORE TRUSTING THIS SCRIPT
+#    From the ArcAdvisor repository root:
+#      julia --startup-file=no --project=. src/visualization/emit_camera_rack.jl
+#    That re-reads structures/*.cif, rebuilds each assembly from its operators,
+#    re-verifies the symmetry group and rewrites this file. Every number in
+#    this script is emitted by that run. None is hand entered.
+#
+# 4. PROVENANCE OF THE COORDINATES
+#    6TAP  sha256 61397d5502c44f6f  (Drosophila melanogaster)
+#    6R24  sha256 f1cbfc6847ed86e8  (Saccharomyces cerevisiae)
+#    1OHF  sha256 b797a5f1c40914b5  (Nudaurelia capensis omega virus)
+#    Fetched read only from https://files.rcsb.org/download/<ID>.cif
+#    Independent verification, straight from the archive in ChimeraX:
+#      open 6tap 6r24 1ohf
+#
+# 5. LITERATURE
+#    Erlendsson et al. 2020, Nat Neurosci 23:172-175, doi:10.1038/s41593-019-0569-y
+#      dArc1 and dArc2 virus-like capsid structures (6TAP, 6TAR and siblings).
+#    Cottee et al. 2020, Sci Adv, doi:10.1126/sciadv.aay6354
+#      dArc1 CA region; the same CTD-CTD interface retroviral CA uses (6S7X, 6S7Y).
+#    Dodonova et al. 2019, PNAS 116:10048-10057
+#      Ty3/gypsy capsid (6R24). Retroviruses evolved FROM LTR retrotransposons,
+#      so "an ancient HIV-like virus infected us" runs the inference backwards.
+#    Pastuzyn et al. 2018, Cell, PMID 29570995 and Ashley et al. 2018, Cell,
+#      PMID 29328915. The two landmark Arc papers.
+#
+# 6. UNIT CONVENTION
+#    ChimeraX labels map units as Angstrom. For PDB coordinates that label is
+#    CORRECT, unlike the Oklo macroscale scenes where 1 map unit is declared to
+#    be 1 m. All lengths below are given in Angstrom and in nm.
+#
+# 7. VERIFIED SYMMETRY, NOT ASSUMED SYMMETRY
+#    The 60 deposited operators of 6TAP were checked rather than believed:
+#      every operator is SO(3), the set closes under composition, and the
+#      rotation-order spectrum is 1 identity, 15 two-fold, 20 three-fold,
+#      24 five-fold = 60, which is the icosahedral group I.
+#      Worst orthonormality residual 1.1e-06 (dimensionless).
+#      Unique axes recovered: 6 five-fold, 10 three-fold, 15 two-fold.
+# ==============================================================================
+
+# Dark ground, matching the Oklo portal scenes (#080d14) and the saved
+# ChimeraX sessions beside oklo_cycle.cxc (#0b0f19).
+close session
+windowsize 1600 960
+set bgColor #080d14
+graphics silhouettes true
+lighting soft
+
+# --- The three shells, each rebuilt from its own operators -------------------
+# DISPLAY CHOICES. Every value on the next lines is a legibility choice, not a
+# physical quantity. The colours are arbitrary, the transparencies are chosen so
+# the three shells read side by side, and no transparency encodes a density, an
+# occupancy or a confidence. The only physical numbers here are the diameters
+# and subunit counts carried in the model names.
+
+open 6tap
+sym #1 assembly 1 copies true   # generate the 300-subunit assembly
+rename #1 "dArc1 capsid 6TAP (Drosophila melanogaster; 300 subunits, 300/60 = 5 which is NOT a Caspar-Klug number (decomposes as T=4 lattice plus 60 copies); outer diameter 39.85 nm = 398.5 A; shell 4.39 nm; Rg 17.55 nm; cryo-EM 3.5 A)"
+hide #1 atoms ; show #1 cartoon ; color #1 #38bdf8 ; transparency #1 25
+
+open 6r24
+sym #2 assembly 1 copies true   # generate the 540-subunit assembly
+rename #2 "Ty3/gypsy retrotransposon capsid 6R24 (Saccharomyces cerevisiae; 540 subunits, T = 9; outer diameter 55.11 nm = 551.1 A; shell 4.92 nm; Rg 24.87 nm; cryo-EM 7.5 A)"
+hide #2 atoms ; show #2 cartoon ; color #2 #f97316 ; transparency #2 25
+
+open 1ohf
+sym #3 assembly 1 copies true   # generate the 240-subunit assembly
+rename #3 "NwV T=4 ssRNA virus capsid 1OHF (Nudaurelia capensis omega virus; 240 subunits, T = 4; outer diameter 41.79 nm = 417.9 A; shell 8.51 nm; Rg 16.89 nm; X-ray)"
+hide #3 atoms ; show #3 cartoon ; color #3 #22c55e ; transparency #3 25
+
+# Side by side at matched scale, following oklo_cycle.cxc line 45.
+# CAVEAT: tile needs the ChimeraX window. Headless ChimeraX cannot run it
+# (oklo_pool_mobile/README.md line 44). Under --offscreen, replace this with
+# per-model move commands as open_6fields_cycle.cxc does.
+tile #1-3 columns 3 spacingFactor 1.4
+view orient
+zoom 0.9
+
+# --- 2D HUD annotations (strictly zero em/en-dashes) -------------------------
+2dlabels create title_hud text "Arc capsid geometry on verified icosahedral axes [MEASURED GEOMETRY - NO MECHANISM CLAIMED]" xpos 0.02 ypos 0.96 size 15 color #f8fafc
+2dlabels create scale_hud text "Map units are Angstrom and that label is correct for PDB coordinates. dArc1 outer diameter 39.85 nm (398.5 A); Ty3 55.11 nm; NwV 41.79 nm. Pipeline check: NwV 41.79 nm measured vs 42.8 nm published." xpos 0.03 ypos 0.90 size 14 color #94a3b8
+2dlabels create lattice_hud text "dArc1 is 300 subunits: 300/60 = 5, which is NOT a Caspar-Klug triangulation number. It is a T=4 lattice of 240 plus a 60-copy component. Ty3 is 540 = T 9. NwV is 240 = T 4." xpos 0.03 ypos 0.86 size 13 color #38bdf8
+2dlabels create caveat_hud text "Caveats: no high resolution mammalian Arc capsid structure exists | an overlay is not evidence of homology | dArc1 vs Ty3 cleared the null floor but is 1 of 7 comparisons with no multiple-comparison correction and a cutoff that is not yet scale normalized" xpos 0.03 ypos 0.025 size 11 color #fbbf24
+
+# --- Camera rack on the verified dArc1 axes ----------------------------------
+# DISPLAY CHOICE: 1.5 degrees per frame over 240 frames is one full turn at a
+# readable rate. The frame count carries no physical meaning. This follows the
+# house turntable idiom of open_polymer_yield.cxc line 42,
+#   turn <axis> <degrees per frame> <frames> coordinateSystem #<model>
+# rather than movie record / movie encode, which has no precedent in this tree.
+# Encode out of band from captured stills, as the portal scripts do:
+#   /Applications/ChimeraX-1.12.app/Contents/bin/ffmpeg -y -framerate 30 \
+#     -i frame_%04d.png -c:v libx264 -pix_fmt yuv420p -crf 18 chimerax_darc1_axes_1080p.mp4
+# Stills are written inside the repository so a clone can reproduce them.
+# Uncomment ONE axis block at a time; they are alternative views of the same shell.
+
+# fivefold axis, 1 of 6 unique axes of this order. Axis is an eigenvector of a
+# deposited 6TAP operator, not a guess.
+# view #1 ; turn 0.276393,-0.850651,-0.447213 0 coordinateSystem #1
+# save workbench/renders/dArc1_fivefold.png width 1600 height 1600 supersample 3
+# turn 0.276393,-0.850651,-0.447213 1.5 240 coordinateSystem #1
+
+# threefold axis, 1 of 10 unique axes of this order. Axis is an eigenvector of a
+# deposited 6TAP operator, not a guess.
+# view #1 ; turn 0.303531,0.934172,0.187592 0 coordinateSystem #1
+# save workbench/renders/dArc1_threefold.png width 1600 height 1600 supersample 3
+# turn 0.303531,0.934172,0.187592 1.5 240 coordinateSystem #1
+
+# twofold axis, 1 of 15 unique axes of this order. Axis is an eigenvector of a
+# deposited 6TAP operator, not a guess.
+# view #1 ; turn 0.688191,0.500000,-0.525731 0 coordinateSystem #1
+# save workbench/renders/dArc1_twofold.png width 1600 height 1600 supersample 3
+# turn 0.688191,0.500000,-0.525731 1.5 240 coordinateSystem #1
+
+# Default on load: the five-fold view, no animation.
+view #1
+turn 0.276393,-0.850651,-0.447213 0 coordinateSystem #1
+
+# --- Closing notes -----------------------------------------------------------
+log text Interface deletion at the 40.0 A percolation cutoff: the smallest class that fragments the dArc1 shell holds 60 of 570 edges (10.5 percent) at 3.8 nm centroid separation, and removing it takes beta_0 from 1 to 42 and lambda_2 to zero.
+log text LIMITATION: that measures structural importance to GRAPH CONNECTIVITY only. It is not mechanical load bearing, which needs an elastic-network or normal-mode analysis. Geometric integrity, graph connectivity and mechanical stability are three distinct properties.
+log text LIMITATION: which interface class fragments the shell is itself cutoff dependent. At a 4.6 nm cutoff no class fragments it. Read the whole sweep in geometry/interfaces.json, not any single cutoff.
+log text Next: vary the orbit with  turn <axis> 3 120  on any of the three axis triples above, or open the other dArc1 entries with  open 6tar 6s7x 6s7y

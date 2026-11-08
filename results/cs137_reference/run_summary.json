@@ -1,0 +1,56 @@
+{
+  "model": "AHRT Stage A v0.1",
+  "scope": "primary photon transport and Compton recoil-electron source phase space only",
+  "physics_omissions": [
+    "electron transport and track structure",
+    "coherent Rayleigh scattering",
+    "photoelectron and atomic-relaxation cascades",
+    "pair production",
+    "water radiolysis and chemical transport",
+    "Manning/PB and ion binding",
+    "Arc-specific molecular damage or biological response"
+  ],
+  "config": {
+    "photon_energy_MeV": 0.661657,
+    "density_g_cm3": 1.0,
+    "macro_radius_cm": 0.3,
+    "macro_length_cm": 0.6,
+    "cell_radius_cm": 0.0005,
+    "cell_length_cm": 0.002,
+    "photon_cutoff_MeV": 0.001,
+    "max_photon_interactions": 100,
+    "seed": 20261103,
+    "histories": 100000
+  },
+  "tallies": {
+    "histories": 100000,
+    "photon_interactions": 4108,
+    "compton_interactions": 4107,
+    "photoelectric_interactions": 1,
+    "photon_escapes": 99999,
+    "cutoff_terminations": 0,
+    "max_interaction_cap_terminations": 0,
+    "direct_cell_photon_interactions": 0,
+    "secondary_electron_sources": 4107,
+    "secondary_electron_energy_MeV": 1016.2464446152975,
+    "photoelectric_local_energy_MeV": 0.661657,
+    "escaped_photon_energy_MeV": 65148.79189825642,
+    "below_cutoff_unresolved_energy_MeV": 0.0,
+    "capped_unresolved_photon_energy_MeV": 0.0
+  },
+  "energy_accounting": {
+    "incident_energy_MeV": 66165.70000000001,
+    "escaped_photon_energy_MeV": 65148.79189825642,
+    "compton_electron_source_energy_MeV": 1016.2464446152975,
+    "photoelectric_local_energy_MeV": 0.661657,
+    "below_cutoff_unresolved_energy_MeV": 0.0,
+    "interaction_cap_unresolved_energy_MeV": 0.0,
+    "note": "Compton recoil-electron energy is emitted as phase-space source energy, not transported or deposited dose."
+  },
+  "xcom_provenance": {
+    "source": "https://physics.nist.gov/PhysRefData/Xcom/",
+    "material": "H2O",
+    "sha256": "9c829492a9b1a468887a2d5b7fff7d0cd071d969168f26d02df690c6b6122ac3",
+    "retrieved_utc": "2026-11-04T05:04:40Z"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "arc-ahrt-matlab-3d-visualization-receipt-v1",
+  "matlab_version": "26.2.0.3433840 (R2026b) Update 1",
+  "operator_count": 60,
+  "ca_points_rendered": 19800,
+  "nc_points_rendered": 1620,
+  "zn_points_rendered": 60,
+  "output_png": "matlab/renders/matlab_arc_ahrt_3d_dashboard.png",
+  "width_px": 2947,
+  "height_px": 1666,
+  "timestamp_utc": "2026-11-08T08:58:54Z"
+}

@@ -1,0 +1,20 @@
+ =========================>     TALLY 1: CELL     <=========================
+
+ Cell 1
+   Total Material
+     Scattering Rate                      0 +/- 0
+     coherent-scatter                     0 +/- 0
+     incoherent-scatter                   0 +/- 0
+     photoelectric                        0 +/- 0
+     pair-production                      0 +/- 0
+     heating                              0 +/- 0
+ ========================>     TALLY 2: MACRO     <=========================
+
+ Cell 2
+   Total Material
+     Scattering Rate                      0.0400451 +/- 0.00148257
+     coherent-scatter                     6.29022e-05 +/- 2.07099e-06
+     incoherent-scatter                   0.0399822 +/- 0.00148059
+     photoelectric                        4.85297e-06 +/- 1.64416e-07
+     pair-production                      0 +/- 0
+     heating                              9783.82 +/- 400.28

@@ -1,0 +1,21 @@
+{
+  "stage_A": {
+    "incident_energy_MeV": 66165.70000000001,
+    "escaped_photon_energy_MeV": 65148.79189825642,
+    "compton_electron_source_energy_MeV": 1016.2464446152975,
+    "photoelectric_local_energy_MeV": 0.661657,
+    "below_cutoff_unresolved_energy_MeV": 0.0,
+    "interaction_cap_unresolved_energy_MeV": 0.0,
+    "note": "Compton recoil-electron energy is emitted as phase-space source energy, not transported or deposited dose."
+  },
+  "openmc_full": {
+    "macro_heating_eV_per_source": 10164.399455577914,
+    "cell_heating_eV_per_source": 0.0,
+    "note": "OpenMC led deposits recoil-electron energy locally; NOT a transported dose"
+  },
+  "closure": {
+    "stage_A_incident_MeV": 66165.70000000001,
+    "stage_A_residuum_MeV": 1.2829172202355466e-07,
+    "target": "<=0.5% discrepancies subject to scoring-definition differences"
+  }
+}

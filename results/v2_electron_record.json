@@ -1,0 +1,42 @@
+{
+ "schema": "electron_record_v0_pending_geant4",
+ "parent_event": {
+  "source": "gamma_heterarchy/transport/photon_history",
+  "seed": 20261104,
+  "channel": "incoherent",
+  "E_gamma_in_MeV": 0.661657,
+  "E_gamma_out_MeV": 0.2206177916116193
+ },
+ "recoil_electron": {
+  "T_MeV": 0.44103920838838073,
+  "direction": [
+   0.9730801852705744,
+   -0.14845243061233307,
+   0.17628621295800506
+  ],
+  "interaction_point_cm": [
+   8.9055238468747e-07,
+   -1.0765287481621372e-06,
+   -4.779901322315249e-07
+  ],
+  "coordinate_frame": "static_6tap_frame_local_cm"
+ },
+ "estar_reference": {
+  "collision_MeVcm2_g": 2.093951466414318,
+  "radiative_MeVcm2_g": 0.0067053586697789925,
+  "total_MeVcm2_g": 2.0999558893908508,
+  "csda_range_cm": 0.14800301965832596,
+  "csda_range_g_cm2": 0.14800301965832596,
+  "interpolation": "log-log on NIST ESTAR grids; manifest estar_water_manifest.json"
+ },
+ "energy_ledger": {
+  "T_in_MeV": 0.44103920838838073,
+  "deposited_local_MeV": 0.44103920838838073,
+  "escaping_MeV": 0.0,
+  "closure_MeV": 0.0,
+  "distance_to_boundary_cm": 0.30477200650091285,
+  "method": "CSDA-range vs straight-line-to-boundary; no MCS; residual-E inversion by bisection on range table"
+ },
+ "status": "ESTAR-half of AHRT-ArcHydration-V2-Electron; Geant4 transport BLOCKED pending install",
+ "no_damage_claim": true
+}

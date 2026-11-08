@@ -1,0 +1,69 @@
+{
+  "fetched_utc": "2026-11-04T02:13:20.463486+00:00",
+  "source": "https://files.rcsb.org/download/<ID>.cif",
+  "entries": {
+    "6TAP": {
+      "sha256": "61397d5502c44f6fd83d887de353a698ed6f70fbd00604e2fc1c85fd1cd68e69",
+      "bytes": 649219,
+      "description": "dArc1 full capsid",
+      "organism": "Drosophila melanogaster",
+      "comparison_role": "global-shell"
+    },
+    "6TAR": {
+      "sha256": "921cf806302e45539d9b299544cf865eae1b202bd291e9d2ac5dc20703c74301",
+      "bytes": 694190,
+      "description": "dArc1 five-fold capsomer",
+      "organism": "Drosophila melanogaster",
+      "comparison_role": "local-interface"
+    },
+    "6S7X": {
+      "sha256": "a61247dd40d83a5f639cae06adaef1efcd3abb3069bbbfa1b32831aab491753b",
+      "bytes": 628815,
+      "description": "dArc1 CA domain dimer, orthorhombic",
+      "organism": "Drosophila melanogaster",
+      "comparison_role": "local-interface"
+    },
+    "6S7Y": {
+      "sha256": "3bd6a06320d05b0acacee26aaa3c1272718062069ef806941b9729c1ec22ecf8",
+      "bytes": 564236,
+      "description": "dArc1 CA domain dimer, hexagonal",
+      "organism": "Drosophila melanogaster",
+      "comparison_role": "local-interface"
+    },
+    "6GSE": {
+      "sha256": "4be5116b0113a8262c19b8225635aaebb065ff3d0a33d624948a85da2d946245",
+      "bytes": 4773816,
+      "description": "rat Arc capsid-domain monomer (solution NMR)",
+      "organism": "Rattus norvegicus",
+      "comparison_role": "domain-only"
+    },
+    "4X3H": {
+      "sha256": "930dc393bb3a05264c7d8750c4fc7370d2f062fa5ae1e4c8ee770e8ddf26751e",
+      "bytes": 135185,
+      "description": "rat Arc N-lobe + Stargazin peptide (X-ray)",
+      "organism": "Rattus norvegicus",
+      "comparison_role": "domain-only"
+    },
+    "6R24": {
+      "sha256": "f1cbfc6847ed86e862027b49225b55f546b214074fcaf0da8dab2b4db886a632",
+      "bytes": 986392,
+      "description": "Ty3/gypsy retrotransposon capsid",
+      "organism": "Saccharomyces cerevisiae",
+      "comparison_role": "global-shell"
+    },
+    "1OHF": {
+      "sha256": "b797a5f1c40914b5d8327b463ff0494b3aebcd09653644854b4f22835a52b1e7",
+      "bytes": 1888243,
+      "description": "Nudaurelia capensis omega virus, T=4 ssRNA virus",
+      "organism": "NwV",
+      "comparison_role": "global-shell"
+    },
+    "3H47": {
+      "sha256": "d4dcd00e3d074e82ec736ca7c6dd9799580c3f7503d6c3ec23782e2c21a1221f",
+      "bytes": 230137,
+      "description": "HIV-1 CA hexamer",
+      "organism": "HIV-1",
+      "comparison_role": "local-interface"
+    }
+  }
+}

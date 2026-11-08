@@ -1,0 +1,9 @@
+{
+  "source": "https://physics.nist.gov/PhysRefData/Xcom/",
+  "material": "H2O",
+  "units": "cm2/g; energy_MeV",
+  "retrieved_utc": "2026-11-04T05:04:40Z",
+  "sha256": "9c829492a9b1a468887a2d5b7fff7d0cd071d969168f26d02df690c6b6122ac3",
+  "raw_source_file": "data/original_xcom_output.txt",
+  "notes": "Normalized NIST XCOM output; verify coefficient columns and retain raw source output."
+}

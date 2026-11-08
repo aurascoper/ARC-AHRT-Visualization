@@ -1,0 +1,328 @@
+{
+  "comparisons": {
+    "1OHF vs ck_T4": {
+      "distance_standardized_dimensionless": 3.8322513710171173,
+      "edge_type_licensed": ":analogizes",
+      "effect_dimensionless": -0.49360581764742495,
+      "floor_dimensionless": 1.2467847855484988,
+      "floor_multiple_dimensionless": 2.0,
+      "n_nulls_count": 12,
+      "note": "Geometric comparison only. Never licenses :is_homologous_to or :causally_connected, which require a citation field.",
+      "null_distance_mean_dimensionless": 3.3386455533696924,
+      "null_distance_std_dimensionless": 0.6233923927742494,
+      "pair": "1OHF vs ck_T4",
+      "verdict": "RHYME"
+    },
+    "6R24 vs 1OHF": {
+      "distance_standardized_dimensionless": 4.221923534714811,
+      "edge_type_licensed": ":analogizes",
+      "effect_dimensionless": -0.10898424622709779,
+      "floor_dimensionless": 0.9247146731200245,
+      "floor_multiple_dimensionless": 2.0,
+      "n_nulls_count": 12,
+      "note": "Geometric comparison only. Never licenses :is_homologous_to or :causally_connected, which require a citation field.",
+      "null_distance_mean_dimensionless": 4.112939288487714,
+      "null_distance_std_dimensionless": 0.46235733656001227,
+      "pair": "6R24 vs 1OHF",
+      "verdict": "RHYME"
+    },
+    "6R24 vs ck_T9": {
+      "distance_standardized_dimensionless": 5.727419550364782,
+      "edge_type_licensed": ":analogizes",
+      "effect_dimensionless": -1.614480261877068,
+      "floor_dimensionless": 0.9247146731200245,
+      "floor_multiple_dimensionless": 2.0,
+      "n_nulls_count": 12,
+      "note": "Geometric comparison only. Never licenses :is_homologous_to or :causally_connected, which require a citation field.",
+      "null_distance_mean_dimensionless": 4.112939288487714,
+      "null_distance_std_dimensionless": 0.46235733656001227,
+      "pair": "6R24 vs ck_T9",
+      "verdict": "RHYME"
+    },
+    "6TAP vs 1OHF": {
+      "distance_standardized_dimensionless": 3.182198034290428,
+      "edge_type_licensed": ":analogizes",
+      "effect_dimensionless": -0.11269005072138327,
+      "floor_dimensionless": 1.039313706684622,
+      "floor_multiple_dimensionless": 2.0,
+      "n_nulls_count": 12,
+      "note": "Geometric comparison only. Never licenses :is_homologous_to or :causally_connected, which require a citation field.",
+      "null_distance_mean_dimensionless": 3.0695079835690446,
+      "null_distance_std_dimensionless": 0.519656853342311,
+      "pair": "6TAP vs 1OHF",
+      "verdict": "RHYME"
+    },
+    "6TAP vs 6R24": {
+      "distance_standardized_dimensionless": 1.5925812240527881,
+      "edge_type_licensed": ":shares_geometry_with",
+      "effect_dimensionless": 1.4769267595162565,
+      "floor_dimensionless": 1.039313706684622,
+      "floor_multiple_dimensionless": 2.0,
+      "n_nulls_count": 12,
+      "note": "Geometric comparison only. Never licenses :is_homologous_to or :causally_connected, which require a citation field.",
+      "null_distance_mean_dimensionless": 3.0695079835690446,
+      "null_distance_std_dimensionless": 0.519656853342311,
+      "pair": "6TAP vs 6R24",
+      "verdict": "MATCH_CANDIDATE"
+    },
+    "6TAP vs ck_T4": {
+      "distance_standardized_dimensionless": 2.5991774939681296,
+      "edge_type_licensed": ":analogizes",
+      "effect_dimensionless": 0.47033048960091506,
+      "floor_dimensionless": 1.039313706684622,
+      "floor_multiple_dimensionless": 2.0,
+      "n_nulls_count": 12,
+      "note": "Geometric comparison only. Never licenses :is_homologous_to or :causally_connected, which require a citation field.",
+      "null_distance_mean_dimensionless": 3.0695079835690446,
+      "null_distance_std_dimensionless": 0.519656853342311,
+      "pair": "6TAP vs ck_T4",
+      "verdict": "RHYME"
+    },
+    "6TAP vs ck_T9": {
+      "distance_standardized_dimensionless": 4.40341075218663,
+      "edge_type_licensed": ":analogizes",
+      "effect_dimensionless": -1.3339027686175857,
+      "floor_dimensionless": 1.039313706684622,
+      "floor_multiple_dimensionless": 2.0,
+      "n_nulls_count": 12,
+      "note": "Geometric comparison only. Never licenses :is_homologous_to or :causally_connected, which require a citation field.",
+      "null_distance_mean_dimensionless": 3.0695079835690446,
+      "null_distance_std_dimensionless": 0.519656853342311,
+      "pair": "6TAP vs ck_T9",
+      "verdict": "RHYME"
+    }
+  },
+  "cutoffs_angstrom": {
+    "1OHF": 36.0,
+    "6R24": 38.0,
+    "6TAP": 40.0
+  },
+  "fingerprint_components": [
+    "normalized_shell_thickness_dimensionless",
+    "relative_shape_anisotropy_dimensionless",
+    "mean_degree_dimensionless",
+    "beta_1_per_subunit_dimensionless",
+    "algebraic_connectivity_dimensionless",
+    "interface_classes_per_60_subunits_dimensionless"
+  ],
+  "null_fingerprints": {
+    "ck_T1": [
+      0.0983873626193242,
+      4.412609328305433e-5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ck_T3": [
+      0.0944431229981077,
+      2.5657826274817012e-5,
+      2.033333333333333,
+      0.1111111111111111,
+      0.0,
+      3.0
+    ],
+    "ck_T4": [
+      0.09411956790633422,
+      1.9630571167788616e-5,
+      2.0,
+      0.08333333333333333,
+      0.0,
+      3.5
+    ],
+    "ck_T7": [
+      0.0932645904913406,
+      7.918361254722755e-6,
+      3.7904761904761903,
+      0.9047619047619048,
+      0.0,
+      4.571428571428571
+    ],
+    "ck_T9": [
+      0.09509460215226856,
+      9.514646285768133e-6,
+      6.737037037037037,
+      2.3703703703703702,
+      0.06880276583196562,
+      3.7777777777777777
+    ],
+    "random_sphere_s1": [
+      0.17564663758502255,
+      0.0008759921142717816,
+      3.96,
+      1.02,
+      0.0,
+      7.8
+    ],
+    "random_sphere_s10": [
+      0.1629918000429472,
+      0.00042699788384097115,
+      3.82,
+      0.9766666666666667,
+      0.0,
+      7.6
+    ],
+    "random_sphere_s11": [
+      0.21550556406882376,
+      0.00702673764525433,
+      4.22,
+      1.1766666666666667,
+      0.0,
+      7.2
+    ],
+    "random_sphere_s12": [
+      0.12098821230118569,
+      0.004646780098264015,
+      4.06,
+      1.09,
+      0.0,
+      7.8
+    ],
+    "random_sphere_s2": [
+      0.13213348477269027,
+      0.0051300238469956135,
+      3.6933333333333334,
+      0.9233333333333333,
+      0.0,
+      7.6
+    ],
+    "random_sphere_s3": [
+      0.18330987614833757,
+      0.0008907600871814752,
+      3.973333333333333,
+      1.05,
+      0.0,
+      7.6
+    ],
+    "random_sphere_s4": [
+      0.22203365891243956,
+      0.0034663682806582866,
+      3.88,
+      0.9933333333333333,
+      0.0,
+      7.4
+    ],
+    "random_sphere_s5": [
+      0.1904408578667573,
+      0.005604824807899753,
+      3.92,
+      1.01,
+      0.0,
+      7.6
+    ],
+    "random_sphere_s6": [
+      0.1278055202287372,
+      0.007735786521893131,
+      3.8066666666666666,
+      0.9533333333333334,
+      0.0,
+      7.6
+    ],
+    "random_sphere_s7": [
+      0.18188730392831332,
+      0.0031822853394341283,
+      3.6933333333333334,
+      0.9133333333333333,
+      0.0,
+      7.8
+    ],
+    "random_sphere_s8": [
+      0.1940008357375286,
+      0.0016479459790587922,
+      3.96,
+      1.0566666666666666,
+      0.0,
+      7.6
+    ],
+    "random_sphere_s9": [
+      0.18948106222201097,
+      0.0029296267782602027,
+      3.7466666666666666,
+      0.9566666666666667,
+      0.0,
+      7.8
+    ],
+    "rewired_s1": [
+      0.09249695505548462,
+      8.96257991029238e-13,
+      3.8,
+      0.9033333333333333,
+      0.4592819843110354,
+      1.6
+    ],
+    "rewired_s2": [
+      0.09249695505548462,
+      8.96257991029238e-13,
+      3.8,
+      0.9033333333333333,
+      0.4525961983198618,
+      1.6
+    ],
+    "rewired_s3": [
+      0.09249695505548462,
+      8.96257991029238e-13,
+      3.8,
+      0.9033333333333333,
+      0.4764339608502654,
+      1.6
+    ],
+    "rewired_s4": [
+      0.09249695505548462,
+      8.96257991029238e-13,
+      3.8,
+      0.9033333333333333,
+      0.43319555897517287,
+      1.6
+    ],
+    "rewired_s5": [
+      0.09249695505548462,
+      8.96257991029238e-13,
+      3.8,
+      0.9033333333333333,
+      0.4610335363891429,
+      1.6
+    ],
+    "rewired_s6": [
+      0.09249695505548462,
+      8.96257991029238e-13,
+      3.8,
+      0.9033333333333333,
+      0.4669139633429659,
+      1.6
+    ]
+  },
+  "real_fingerprints": {
+    "1OHF": [
+      0.269812661458895,
+      1.816842244127926e-19,
+      3.5,
+      0.7520833333333333,
+      0.04584720165580375,
+      1.125
+    ],
+    "6R24": [
+      0.03579764717167071,
+      5.265026690346633e-17,
+      3.0,
+      0.5018518518518519,
+      0.026835383239959244,
+      0.5555555555555556
+    ],
+    "6TAP": [
+      0.09249695505548462,
+      8.96257991029238e-13,
+      3.8,
+      0.9033333333333333,
+      0.027213074932132503,
+      1.6
+    ]
+  },
+  "scale_dimensionless": [
+    0.05637268008622767,
+    0.0024525618902405217,
+    1.0914740618165488,
+    0.4311494234508263,
+    0.19408906705057363,
+    3.010591415714587
+  ]
+}

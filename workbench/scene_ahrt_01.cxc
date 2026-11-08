@@ -1,0 +1,13 @@
+# ==============================================================================
+# scene_ahrt_01.cxc -- canonical entry point for AHRT Scene 01
+# Title: chain-class-aware 6TAP dArc1 assembly (AHRT structural reference)
+# Usage: chimerax workbench/scene_ahrt_01.cxc   (from ArcAdvisor repo root)
+# Requires UCSF ChimeraX 1.12. Headless verification run:
+#   ChimeraX --nogui --offscreen --exit --script workbench/scene_ahrt_01.py
+# Chain classes: A-D = CA (T=4 shell, 240 copies), E = NC zinc-knuckle fragment
+# res 224-250 (60 copies), F = one deposited Zn (E:Cys227 SG, 2.333 A) expanded
+# to 60 assembly markers via structures/6TAP_operators.json (60 point-symmetry
+# ops parsed from pdbx_struct_oper_list; det=+1 all; interleaved cif layout).
+# No fabricated trajectories. No rescaled coordinates. No mammalian-Arc claims.
+# ==============================================================================
+runscript workbench/scene_ahrt_01.py

@@ -1,0 +1,16 @@
+{
+ "retrieved": "2026-11-04",
+ "host": "physics.nist.gov (NIST ESTAR)",
+ "material": "matno=276 Water Liquid",
+ "query_forms": [
+  "GraphType=StopPwr custom grid",
+  "GraphType=Range default grid"
+ ],
+ "note": "ESTAR: custom-energy rows omit CSDA range (documented NIST behavior); range interpolated on default grid, log-log",
+ "files": {
+  "estar_water_stopping.csv": "44585ff917e2306a5821d2df8dc1a1e90fbb4751d402e157b32f143e05aea78f",
+  "estar_water_csda.csv": "f5e4f574c60a34107dc11d9413baf715c08f4ad44dcfa6f9a1cbca4987d42964",
+  "original_estar_range_output.html": "cd7a41042093e790206282eea033012c5cbca8e7481886942887a40f1ddef0df",
+  "original_estar_stoppwr_output.html": "bab4aadac43ff7fed89b3ae39ffe558095f81e661f8e4a429233efee39b3392f"
+ }
+}

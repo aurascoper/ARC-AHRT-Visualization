@@ -1,0 +1,1872 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m7.neurocompose.org/schemas/m7_arc_level2_residue_interface_graph.schema.json",
+  "title": "M7 6TAP Level-2 Symmetry-Expanded Residue Interface Graph & Atlas Validation Receipt Schema",
+  "description": "Strict machine-readable JSON Schema (2020-12 / draft-07 compatible) for the M7 / 6TAP Level-2 symmetry-expanded residue-interface graph, multi-cutoff contact census (L2-A), per-residue and per-interface SASA/BSA (L2-B), interface chemistry (L2-C), exact operator-to-axis mapping (L2-D), and NC/Zn coordination context (L2-E).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "module",
+    "evidence_class",
+    "verification_disposition",
+    "publication_and_ci_provenance",
+    "level1_separation_statement",
+    "artifact_hashes",
+    "mmcif_provenance",
+    "node_schema",
+    "edge_schema",
+    "work_packages",
+    "epistemic_qualifications",
+    "historical_level1_superseded_evidence"
+  ],
+  "properties": {
+    "schema_id": {
+      "type": "string",
+      "const": "m7-arc-level2-residue-interface-graph-v1"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "module": {
+      "type": "string",
+      "const": "M7ArcLevel2InterfaceAtlas"
+    },
+    "evidence_class": {
+      "type": "string",
+      "enum": [
+        "STRUCTURE_DERIVED_GEOMETRIC_CENSUS"
+      ]
+    },
+    "verification_disposition": {
+      "type": "string",
+      "const": "remotely_published_on_github_pr6_local_tests_verified_remote_ci_not_run"
+    },
+    "publication_and_ci_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "github_pr_url",
+        "historical_v1_baseline_commit",
+        "level1_v2_repair_commit",
+        "level2_atlas_and_crosscheck_commit",
+        "level3_initial_publication_commit",
+        "local_test_execution_summary",
+        "remote_github_actions_ci_status"
+      ],
+      "properties": {
+        "github_pr_url": {
+          "type": "string",
+          "const": "https://github.com/aurascoper/flow-cytometry-model-bridge/pull/6"
+        },
+        "historical_v1_baseline_commit": {
+          "type": "string",
+          "const": "955e32dc673d3a874f874ffb8965497db03ca112"
+        },
+        "level1_v2_repair_commit": {
+          "type": "string",
+          "const": "6a09714d03fccf29905c99bddc416785781063d1"
+        },
+        "level2_atlas_and_crosscheck_commit": {
+          "type": "string",
+          "const": "fc5e1a407e375014653b2b72f73b89559c14e2ee"
+        },
+        "level3_initial_publication_commit": {
+          "type": "string",
+          "const": "1abeaad2e44fe25e3e4cd17b7920a51f990fc55e"
+        },
+        "local_test_execution_summary": {
+          "type": "string",
+          "const": "28/28 Python pytest assertions and 2,996/2,996 Julia assertions executed and verified locally"
+        },
+        "remote_github_actions_ci_status": {
+          "type": "string",
+          "const": "No GitHub Actions workflow runs executed on remote; test counts are recorded local verification results, not remote CI reruns"
+        }
+      }
+    },
+    "level1_separation_statement": {
+      "type": "string",
+      "minLength": 40
+    },
+    "artifact_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cif_path",
+        "cif_sha256",
+        "operators_path",
+        "operators_sha256",
+        "spec_path",
+        "spec_sha256",
+        "schema_path",
+        "schema_sha256",
+        "generator_script_path",
+        "generator_script_sha256"
+      ],
+      "properties": {
+        "cif_path": { "type": "string" },
+        "cif_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "operators_path": { "type": "string" },
+        "operators_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "spec_path": { "type": "string" },
+        "spec_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "schema_path": { "type": "string" },
+        "schema_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "generator_script_path": { "type": "string" },
+        "generator_script_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "mmcif_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "structure_id",
+        "assembly_id",
+        "point_symmetry",
+        "symmetry_provenance_note",
+        "pdb_doi",
+        "emdb_id",
+        "cif_sha256",
+        "cif_size_bytes",
+        "operators_sha256",
+        "deposited_entities",
+        "functional_components",
+        "struct_asym_inventory",
+        "assembly_generation",
+        "inventory_reconciliation"
+      ],
+      "properties": {
+        "structure_id": { "type": "string", "const": "6TAP" },
+        "assembly_id": { "type": "string", "const": "1" },
+        "point_symmetry": { "type": "string", "const": "I" },
+        "symmetry_provenance_note": {
+          "type": "string",
+          "const": "PDB 6TAP has icosahedral point-group symmetry I (_em_single_particle_entity.point_symmetry = I, 60 rotation operators). Cubic space-group notation I432 (No. 211, octahedral) is not applicable to 6TAP."
+        },
+        "pdb_doi": { "type": "string" },
+        "emdb_id": { "type": "string", "const": "EMD-10423" },
+        "cif_sha256": {
+          "type": "string",
+          "const": "61397d5502c44f6fd83d887de353a698ed6f70fbd00604e2fc1c85fd1cd68e69"
+        },
+        "cif_size_bytes": { "type": "integer", "const": 649219 },
+        "operators_sha256": {
+          "type": "string",
+          "const": "176dcfc3c500ea286bae0dd0ea0a3053a82007d80d11d44530339062073b16e2"
+        },
+        "deposited_entities": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "entity_id",
+              "entity_type",
+              "description",
+              "formula_weight",
+              "pdbx_number_of_molecules",
+              "asym_ids"
+            ],
+            "properties": {
+              "entity_id": { "type": "string", "enum": ["1", "2"] },
+              "entity_type": { "type": "string" },
+              "description": { "type": "string" },
+              "formula_weight": { "type": "number" },
+              "pdbx_number_of_molecules": { "type": "integer" },
+              "asym_ids": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "functional_components": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "functional_component_id",
+              "label_entity_id",
+              "struct_asym_entity_id",
+              "mmcif_label_entity_id",
+              "domain_role",
+              "asym_ids",
+              "deposited_copies_per_asu",
+              "operators_count",
+              "symmetry_instances_in_assembly",
+              "reconciliation_note"
+            ],
+            "properties": {
+              "functional_component_id": {
+                "type": "string",
+                "enum": ["CA_CAPSID_SHELL", "NC_ZINC_KNUCKLE_FRAGMENT", "ZN_COORDINATION_LIGAND"]
+              },
+              "label_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "struct_asym_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "mmcif_label_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "domain_role": {
+                "type": "string",
+                "enum": ["CA_CAPSID_SHELL", "NC_ZINC_KNUCKLE_FRAGMENT", "ZN_COORDINATION_LIGAND"]
+              },
+              "asym_ids": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "deposited_copies_per_asu": { "type": "integer" },
+              "operators_count": { "type": "integer", "const": 60 },
+              "symmetry_instances_in_assembly": { "type": "integer" },
+              "reconciliation_note": { "type": "string" }
+            }
+          }
+        },
+        "struct_asym_inventory": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label_asym_id",
+              "auth_asym_id",
+              "label_entity_id",
+              "struct_asym_entity_id",
+              "mmcif_label_entity_id",
+              "functional_component_id",
+              "biological_domain_or_fragment_designation",
+              "domain_role",
+              "record_group",
+              "atom_count_per_asu",
+              "residue_count_per_asu",
+              "label_seq_id_range",
+              "auth_seq_id_range",
+              "insertion_codes_present",
+              "b_factor_mean_A2",
+              "b_factor_std_A2",
+              "b_factor_min_A2",
+              "b_factor_max_A2",
+              "symmetry_instances_in_assembly"
+            ],
+            "properties": {
+              "label_asym_id": { "type": "string", "enum": ["A", "B", "C", "D", "E", "F"] },
+              "auth_asym_id": { "type": "string", "enum": ["A", "B", "C", "D", "E"] },
+              "label_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "struct_asym_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "mmcif_label_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "functional_component_id": {
+                "type": "string",
+                "enum": ["CA_CAPSID_SHELL", "NC_ZINC_KNUCKLE_FRAGMENT", "ZN_COORDINATION_LIGAND"]
+              },
+              "biological_domain_or_fragment_designation": {
+                "type": "string",
+                "enum": [
+                  "CA_capsid_shell_domain_pentamer_A_41_205",
+                  "CA_capsid_shell_domain_hexamer_B_43_205",
+                  "CA_capsid_shell_domain_hexamer_C_43_206",
+                  "CA_capsid_shell_domain_hexamer_D_41_206",
+                  "NC_zinc_knuckle_C_terminal_fragment_224_250_of_entity_1",
+                  "ZN_tetrahedral_CCHC_ligand_entity_2"
+                ]
+              },
+              "domain_role": { "type": "string" },
+              "record_group": { "type": "string", "enum": ["ATOM", "HETATM"] },
+              "atom_count_per_asu": { "type": "integer", "minimum": 1 },
+              "residue_count_per_asu": { "type": "integer", "minimum": 1 },
+              "label_seq_id_range": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": ["integer", "null"] }
+              },
+              "auth_seq_id_range": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": "integer" }
+              },
+              "insertion_codes_present": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "b_factor_mean_A2": { "type": "number" },
+              "b_factor_std_A2": { "type": "number" },
+              "b_factor_min_A2": { "type": "number" },
+              "b_factor_max_A2": { "type": "number" },
+              "symmetry_instances_in_assembly": { "type": "integer", "const": 60 }
+            }
+          }
+        },
+        "assembly_generation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assembly_id",
+            "details",
+            "oligomeric_details",
+            "declared_oligomeric_count",
+            "oper_expression",
+            "operator_count",
+            "asym_id_list"
+          ],
+          "properties": {
+            "assembly_id": { "type": "string", "const": "1" },
+            "details": { "type": "string", "const": "author_defined_assembly" },
+            "oligomeric_details": { "type": "string", "const": "300-meric" },
+            "declared_oligomeric_count": { "type": "integer", "const": 300 },
+            "oper_expression": { "type": "string", "const": "(1-60)" },
+            "operator_count": { "type": "integer", "const": 60 },
+            "asym_id_list": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "inventory_reconciliation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "deposited_ca_chains",
+            "deposited_nc_chains",
+            "deposited_zn_ions",
+            "deposited_water_or_other_ligands",
+            "operators_count",
+            "expanded_ca_instances",
+            "expanded_nc_instances",
+            "expanded_polymer_instances",
+            "expanded_zn_instances",
+            "expanded_total_chain_instances",
+            "deposited_atoms_per_asu",
+            "expanded_atoms_in_assembly"
+          ],
+          "properties": {
+            "deposited_ca_chains": { "type": "integer", "const": 4 },
+            "deposited_nc_chains": { "type": "integer", "const": 1 },
+            "deposited_zn_ions": { "type": "integer", "const": 1 },
+            "deposited_water_or_other_ligands": { "type": "integer", "const": 0 },
+            "operators_count": { "type": "integer", "const": 60 },
+            "expanded_ca_instances": { "type": "integer", "const": 240 },
+            "expanded_nc_instances": { "type": "integer", "const": 60 },
+            "expanded_polymer_instances": { "type": "integer", "const": 300 },
+            "expanded_zn_instances": { "type": "integer", "const": 60 },
+            "expanded_total_chain_instances": { "type": "integer", "const": 360 },
+            "deposited_atoms_per_asu": { "type": "integer", "const": 5619 },
+            "expanded_atoms_in_assembly": { "type": "integer", "const": 337140 }
+          }
+        }
+      }
+    },
+    "node_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_node_identity_tuple",
+        "canonical_node_id_format",
+        "required_fields",
+        "asu_residue_node_count_ca",
+        "asu_residue_node_count_total",
+        "expanded_residue_node_count_ca",
+        "expanded_residue_node_count_total",
+        "sample_nodes"
+      ],
+      "properties": {
+        "canonical_node_identity_tuple": {
+          "type": "array",
+          "const": [
+            "structure_id",
+            "assembly_id",
+            "entity_id",
+            "asym_id",
+            "operator_id",
+            "label_seq_id",
+            "auth_seq_id",
+            "insertion_code"
+          ]
+        },
+        "canonical_node_id_format": {
+          "type": "string",
+          "const": "{structure_id}.{assembly_id}.{entity_id}.{asym_id}.{operator_id}.{label_seq_id}.{auth_seq_id}.{insertion_code}"
+        },
+        "required_fields": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "asu_residue_node_count_ca": { "type": "integer", "const": 659 },
+        "asu_residue_node_count_total": { "type": "integer", "const": 687 },
+        "expanded_residue_node_count_ca": { "type": "integer", "const": 39540 },
+        "expanded_residue_node_count_total": { "type": "integer", "const": 41220 },
+        "sample_nodes": {
+          "type": "array",
+          "minItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "node_id",
+              "structure_id",
+              "assembly_id",
+              "entity_id",
+              "label_entity_id",
+              "struct_asym_entity_id",
+              "functional_component_id",
+              "biological_domain_or_fragment_designation",
+              "asym_id",
+              "label_asym_id",
+              "auth_asym_id",
+              "operator_id",
+              "label_seq_id",
+              "auth_seq_id",
+              "insertion_code",
+              "comp_id",
+              "atom_count",
+              "b_factor_mean_A2"
+            ],
+            "properties": {
+              "node_id": { "type": "string" },
+              "structure_id": { "type": "string", "const": "6TAP" },
+              "assembly_id": { "type": "string", "const": "1" },
+              "entity_id": { "type": "string", "enum": ["1", "2"] },
+              "label_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "struct_asym_entity_id": { "type": "string", "enum": ["1", "2"] },
+              "functional_component_id": {
+                "type": "string",
+                "enum": ["CA_CAPSID_SHELL", "NC_ZINC_KNUCKLE_FRAGMENT", "ZN_COORDINATION_LIGAND"]
+              },
+              "biological_domain_or_fragment_designation": { "type": "string" },
+              "asym_id": { "type": "string", "enum": ["A", "B", "C", "D", "E", "F"] },
+              "label_asym_id": { "type": "string", "enum": ["A", "B", "C", "D", "E", "F"] },
+              "auth_asym_id": { "type": "string", "enum": ["A", "B", "C", "D", "E"] },
+              "operator_id": { "type": "string" },
+              "label_seq_id": { "type": ["integer", "null"] },
+              "auth_seq_id": { "type": "integer" },
+              "insertion_code": { "type": "string" },
+              "comp_id": { "type": "string" },
+              "atom_count": { "type": "integer", "minimum": 1 },
+              "b_factor_mean_A2": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "edge_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_edge_identity_tuple",
+        "canonical_edge_id_format",
+        "required_edge_attributes",
+        "baseline_cutoff_angstrom",
+        "baseline_cutoff_definition_id",
+        "contact_metric_id",
+        "unique_asym_interface_edge_count_at_5A",
+        "symmetry_expanded_instance_edge_count_at_5A",
+        "edges_at_5A"
+      ],
+      "properties": {
+        "canonical_edge_identity_tuple": {
+          "type": "array",
+          "const": [
+            "residue_instance_i",
+            "residue_instance_j",
+            "cutoff_definition_id",
+            "contact_metric_id"
+          ]
+        },
+        "canonical_edge_id_format": {
+          "type": "string",
+          "const": "{residue_instance_i}__{residue_instance_j}__{cutoff_definition_id}__{contact_metric_id}"
+        },
+        "required_edge_attributes": {
+          "type": "array",
+          "const": [
+            "minimum_heavy_atom_distance",
+            "atom_pair_count",
+            "residue_pair_contact",
+            "buried_surface_area",
+            "interaction_features",
+            "interface_class",
+            "operator_pair",
+            "symmetry_axis_relation"
+          ]
+        },
+        "baseline_cutoff_angstrom": { "type": "number", "const": 5.0 },
+        "baseline_cutoff_definition_id": { "type": "string", "const": "HA_5.0A" },
+        "contact_metric_id": { "type": "string", "const": "MIN_HEAVY_ATOM_EUCLIDEAN" },
+        "unique_asym_interface_edge_count_at_5A": { "type": "integer", "const": 204 },
+        "symmetry_expanded_instance_edge_count_at_5A": { "type": "integer", "const": 12240 },
+        "edges_at_5A": {
+          "type": "array",
+          "minItems": 204,
+          "maxItems": 204,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "edge_id",
+              "residue_instance_i",
+              "residue_instance_j",
+              "cutoff_definition_id",
+              "contact_metric_id",
+              "minimum_heavy_atom_distance",
+              "atom_pair_count",
+              "residue_pair_contact",
+              "buried_surface_area",
+              "interaction_features",
+              "interface_class",
+              "operator_pair",
+              "symmetry_axis_relation"
+            ],
+            "properties": {
+              "edge_id": { "type": "string" },
+              "residue_instance_i": { "type": "string" },
+              "residue_instance_j": { "type": "string" },
+              "cutoff_definition_id": { "type": "string", "const": "HA_5.0A" },
+              "contact_metric_id": { "type": "string", "const": "MIN_HEAVY_ATOM_EUCLIDEAN" },
+              "minimum_heavy_atom_distance": { "type": "number", "minimum": 0.0, "maximum": 5.0 },
+              "atom_pair_count": { "type": "integer", "minimum": 1 },
+              "residue_pair_contact": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "is_contact",
+                  "chain_pair",
+                  "comp_i",
+                  "seq_i",
+                  "closest_atom_i",
+                  "comp_j",
+                  "seq_j",
+                  "closest_atom_j",
+                  "symmetry_multiplicity_in_assembly"
+                ],
+                "properties": {
+                  "is_contact": { "type": "boolean", "const": true },
+                  "chain_pair": { "type": "string" },
+                  "comp_i": { "type": "string" },
+                  "seq_i": { "type": "integer" },
+                  "closest_atom_i": { "type": "string" },
+                  "comp_j": { "type": "string" },
+                  "seq_j": { "type": "integer" },
+                  "closest_atom_j": { "type": "string" },
+                  "symmetry_multiplicity_in_assembly": { "type": "integer", "const": 60 }
+                }
+              },
+              "buried_surface_area": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "direct_pair_occluded_sasa_A2",
+                  "residue_i_interface_delta_sasa_A2",
+                  "residue_j_interface_delta_sasa_A2"
+                ],
+                "properties": {
+                  "direct_pair_occluded_sasa_A2": { "type": "number", "minimum": 0.0 },
+                  "residue_i_interface_delta_sasa_A2": { "type": "number", "minimum": 0.0 },
+                  "residue_j_interface_delta_sasa_A2": { "type": "number", "minimum": 0.0 }
+                }
+              },
+              "interaction_features": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "is_hydrophobic_contact_4p5A",
+                  "is_hydrophobic_contact_5p0A",
+                  "is_hbond_candidate_3p5A",
+                  "is_salt_bridge_candidate_4p0A",
+                  "is_pi_stacking_candidate_7p0A",
+                  "feature_tags"
+                ],
+                "properties": {
+                  "is_hydrophobic_contact_4p5A": { "type": "boolean" },
+                  "is_hydrophobic_contact_5p0A": { "type": "boolean" },
+                  "is_hbond_candidate_3p5A": { "type": "boolean" },
+                  "is_salt_bridge_candidate_4p0A": { "type": "boolean" },
+                  "is_pi_stacking_candidate_7p0A": { "type": "boolean" },
+                  "feature_tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              },
+              "interface_class": { "type": "string" },
+              "operator_pair": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": "string" }
+              },
+              "symmetry_axis_relation": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "relative_operator_id",
+                  "symmetry_symbol",
+                  "rotation_order",
+                  "rotation_angle_deg",
+                  "axis_unit_vector_xyz",
+                  "is_true_crystallographic_self_rotation"
+                ],
+                "properties": {
+                  "relative_operator_id": { "type": "string" },
+                  "symmetry_symbol": {
+                    "type": "string",
+                    "enum": ["C1_identity", "C2", "C3", "C5"]
+                  },
+                  "rotation_order": {
+                    "type": "integer",
+                    "enum": [1, 2, 3, 5]
+                  },
+                  "rotation_angle_deg": { "type": "number" },
+                  "axis_unit_vector_xyz": {
+                    "type": "array",
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "items": { "type": "number" }
+                  },
+                  "is_true_crystallographic_self_rotation": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "work_packages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "L2_A_residue_pair_contact_census",
+        "L2_B_sasa_buried_area",
+        "L2_C_interface_chemistry",
+        "L2_D_icosahedral_operator_axis_mapping",
+        "L2_E_nc_zn_spatial_context"
+      ],
+      "properties": {
+        "L2_A_residue_pair_contact_census": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "cutoffs_angstrom",
+            "chain_class_pairs",
+            "metric_definitions",
+            "census_by_cutoff",
+            "asu_only_contacts_by_cutoff",
+            "per_operator_sub_interfaces_at_5A",
+            "A_B_contacts_up_to_6A",
+            "complete_residue_pair_list_at_5A"
+          ],
+          "properties": {
+            "cutoffs_angstrom": {
+              "type": "array",
+              "const": [3.5, 4.0, 4.5, 5.0, 5.5, 6.0]
+            },
+            "chain_class_pairs": {
+              "type": "array",
+              "const": ["A-A", "A-B", "A-C", "A-D", "B-B", "B-C", "B-D", "C-C", "C-D", "D-D"]
+            },
+            "metric_definitions": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "unique_asym_residue_pair_count",
+                "instance_residue_pair_observation_count",
+                "heavy_atom_pair_hit_count"
+              ],
+              "properties": {
+                "unique_asym_residue_pair_count": { "type": "string" },
+                "instance_residue_pair_observation_count": { "type": "string" },
+                "heavy_atom_pair_hit_count": { "type": "string" }
+              }
+            },
+            "census_by_cutoff": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["3.5", "4.0", "4.5", "5.0", "5.5", "6.0"],
+              "properties": {
+                "3.5": { "$ref": "#/$defs/cutoffCensusEntry" },
+                "4.0": { "$ref": "#/$defs/cutoffCensusEntry" },
+                "4.5": { "$ref": "#/$defs/cutoffCensusEntry" },
+                "5.0": { "$ref": "#/$defs/cutoffCensusEntry" },
+                "5.5": { "$ref": "#/$defs/cutoffCensusEntry" },
+                "6.0": { "$ref": "#/$defs/cutoffCensusEntry" }
+              }
+            },
+            "asu_only_contacts_by_cutoff": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/chainPairCountMap"
+              }
+            },
+            "per_operator_sub_interfaces_at_5A": {
+              "type": "array",
+              "minItems": 10,
+              "maxItems": 10,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "interface_class",
+                  "chain_pair",
+                  "reference_chain",
+                  "reference_operator_id",
+                  "partner_chain",
+                  "partner_operator_id",
+                  "inverse_operator_id",
+                  "symmetry_symbol",
+                  "rotation_order",
+                  "rotation_angle_deg",
+                  "centroid_distance_angstrom",
+                  "min_heavy_atom_distance_angstrom",
+                  "unique_asym_residue_pair_count",
+                  "instance_residue_pair_observation_count",
+                  "heavy_atom_pair_hit_count"
+                ],
+                "properties": {
+                  "interface_class": { "type": "string" },
+                  "chain_pair": { "type": "string" },
+                  "reference_chain": { "type": "string" },
+                  "reference_operator_id": { "type": "string", "const": "1" },
+                  "partner_chain": { "type": "string" },
+                  "partner_operator_id": { "type": "string" },
+                  "inverse_operator_id": { "type": "string" },
+                  "symmetry_symbol": { "type": "string" },
+                  "rotation_order": { "type": "integer" },
+                  "rotation_angle_deg": { "type": "number" },
+                  "centroid_distance_angstrom": { "type": "number" },
+                  "min_heavy_atom_distance_angstrom": { "type": "number" },
+                  "unique_asym_residue_pair_count": { "type": "integer" },
+                  "instance_residue_pair_observation_count": { "type": "integer" },
+                  "heavy_atom_pair_hit_count": { "type": "integer" }
+                }
+              }
+            },
+            "A_B_contacts_up_to_6A": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "operator_id",
+                  "centroid_distance_angstrom",
+                  "chain_A_residue",
+                  "chain_A_atom",
+                  "chain_B_residue",
+                  "chain_B_atom",
+                  "min_heavy_atom_distance_angstrom"
+                ],
+                "properties": {
+                  "operator_id": { "type": "string" },
+                  "centroid_distance_angstrom": { "type": "number" },
+                  "chain_A_residue": { "type": "string" },
+                  "chain_A_atom": { "type": "string" },
+                  "chain_B_residue": { "type": "string" },
+                  "chain_B_atom": { "type": "string" },
+                  "min_heavy_atom_distance_angstrom": { "type": "number" }
+                }
+              }
+            },
+            "complete_residue_pair_list_at_5A": {
+              "type": "array",
+              "minItems": 204,
+              "maxItems": 204,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "chain_pair",
+                  "interface_class",
+                  "operator_pair",
+                  "chain_i",
+                  "comp_i",
+                  "label_seq_id_i",
+                  "auth_seq_id_i",
+                  "closest_atom_i",
+                  "chain_j",
+                  "comp_j",
+                  "label_seq_id_j",
+                  "auth_seq_id_j",
+                  "closest_atom_j",
+                  "minimum_heavy_atom_distance_A",
+                  "atom_pair_count_at_5A"
+                ],
+                "properties": {
+                  "chain_pair": { "type": "string" },
+                  "interface_class": { "type": "string" },
+                  "operator_pair": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": { "type": "string" }
+                  },
+                  "chain_i": { "type": "string" },
+                  "comp_i": { "type": "string" },
+                  "label_seq_id_i": { "type": "integer" },
+                  "auth_seq_id_i": { "type": "integer" },
+                  "closest_atom_i": { "type": "string" },
+                  "chain_j": { "type": "string" },
+                  "comp_j": { "type": "string" },
+                  "label_seq_id_j": { "type": "integer" },
+                  "auth_seq_id_j": { "type": "integer" },
+                  "closest_atom_j": { "type": "string" },
+                  "minimum_heavy_atom_distance_A": { "type": "number" },
+                  "atom_pair_count_at_5A": { "type": "integer" }
+                }
+              }
+            }
+          }
+        },
+        "L2_B_sasa_buried_area": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "algorithm",
+            "probe_radius_angstrom",
+            "sphere_points_per_atom",
+            "vdw_radii_angstrom",
+            "representative_subinterface_pairwise_bsa_sum_A2",
+            "representative_subinterface_per_side_bsa_sum_A2",
+            "whole_capsid_total_buried_surface_area_A2",
+            "whole_capsid_one_side_interface_area_A2",
+            "bsa_normalization_note",
+            "subunit_sasa_summary",
+            "interface_buried_surface_area_by_sub_interface",
+            "interface_buried_surface_area_by_chain_pair",
+            "per_residue_delta_sasa"
+          ],
+          "properties": {
+            "algorithm": { "type": "string" },
+            "probe_radius_angstrom": { "type": "number", "const": 1.4 },
+            "sphere_points_per_atom": { "type": "integer", "const": 100 },
+            "vdw_radii_angstrom": {
+              "type": "object",
+              "additionalProperties": { "type": "number" }
+            },
+            "representative_subinterface_pairwise_bsa_sum_A2": {
+              "type": "number",
+              "const": 9570.22
+            },
+            "representative_subinterface_per_side_bsa_sum_A2": {
+              "type": "number",
+              "const": 4785.1
+            },
+            "whole_capsid_total_buried_surface_area_A2": {
+              "type": "number",
+              "const": 574213.2
+            },
+            "whole_capsid_one_side_interface_area_A2": {
+              "type": "number",
+              "const": 287106.6
+            },
+            "bsa_normalization_note": {
+              "type": "string",
+              "minLength": 40
+            },
+            "subunit_sasa_summary": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["A", "B", "C", "D"],
+              "properties": {
+                "A": { "$ref": "#/$defs/subunitSasaSummary" },
+                "B": { "$ref": "#/$defs/subunitSasaSummary" },
+                "C": { "$ref": "#/$defs/subunitSasaSummary" },
+                "D": { "$ref": "#/$defs/subunitSasaSummary" }
+              }
+            },
+            "interface_buried_surface_area_by_sub_interface": {
+              "type": "array",
+              "minItems": 10,
+              "maxItems": 10,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "interface_class",
+                  "chain_pair",
+                  "operator_pair",
+                  "unordered_capsid_edge_multiplicity",
+                  "subunit_i_buried_sasa_A2",
+                  "subunit_j_buried_sasa_A2",
+                  "total_buried_surface_area_A2",
+                  "buried_surface_area_per_side_A2",
+                  "buried_surface_area_A2",
+                  "whole_capsid_sub_interface_buried_surface_area_A2",
+                  "whole_capsid_one_side_bsa_A2"
+                ],
+                "properties": {
+                  "interface_class": { "type": "string" },
+                  "chain_pair": { "type": "string" },
+                  "operator_pair": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": { "type": "string" }
+                  },
+                  "unordered_capsid_edge_multiplicity": {
+                    "type": "integer",
+                    "enum": [30, 60]
+                  },
+                  "subunit_i_buried_sasa_A2": { "type": "number", "minimum": 0.0 },
+                  "subunit_j_buried_sasa_A2": { "type": "number", "minimum": 0.0 },
+                  "total_buried_surface_area_A2": { "type": "number", "minimum": 0.0 },
+                  "buried_surface_area_per_side_A2": { "type": "number", "minimum": 0.0 },
+                  "buried_surface_area_A2": { "type": "number", "minimum": 0.0 },
+                  "whole_capsid_sub_interface_buried_surface_area_A2": { "type": "number", "minimum": 0.0 },
+                  "whole_capsid_one_side_bsa_A2": { "type": "number", "minimum": 0.0 }
+                }
+              }
+            },
+            "interface_buried_surface_area_by_chain_pair": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["A-A", "A-B", "A-C", "A-D", "B-B", "B-C", "B-D", "C-C", "C-D", "D-D"],
+              "properties": {
+                "A-A": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "A-B": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "A-C": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "A-D": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "B-B": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "B-C": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "B-D": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "C-C": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "C-D": { "$ref": "#/$defs/chainPairBsaEntry" },
+                "D-D": { "$ref": "#/$defs/chainPairBsaEntry" }
+              }
+            },
+            "per_residue_delta_sasa": {
+              "type": "array",
+              "minItems": 659,
+              "maxItems": 659,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "asym_id",
+                  "comp_id",
+                  "label_seq_id",
+                  "auth_seq_id",
+                  "isolated_subunit_sasa_A2",
+                  "assembly_sasa_A2",
+                  "delta_sasa_A2"
+                ],
+                "properties": {
+                  "asym_id": { "type": "string", "enum": ["A", "B", "C", "D"] },
+                  "comp_id": { "type": "string" },
+                  "label_seq_id": { "type": "integer" },
+                  "auth_seq_id": { "type": "integer" },
+                  "isolated_subunit_sasa_A2": { "type": "number", "minimum": 0.0 },
+                  "assembly_sasa_A2": { "type": "number", "minimum": 0.0 },
+                  "delta_sasa_A2": { "type": "number", "minimum": 0.0 }
+                }
+              }
+            }
+          }
+        },
+        "L2_C_interface_chemistry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "criteria",
+            "candidate_qualification_caveats",
+            "summary_by_sub_interface",
+            "summary_by_chain_pair",
+            "hydrophobic_contacts_at_4p5A",
+            "aromatic_pi_stacking_candidates",
+            "hydrogen_bond_candidates",
+            "salt_bridge_candidates"
+          ],
+          "properties": {
+            "criteria": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "hydrophobic_cutoff_angstrom",
+                "hydrophobic_extended_cutoff_angstrom",
+                "pi_stacking_centroid_cutoff_angstrom",
+                "hbond_donor_acceptor_cutoff_angstrom",
+                "salt_bridge_cation_anion_cutoff_angstrom"
+              ],
+              "properties": {
+                "hydrophobic_cutoff_angstrom": { "type": "number", "const": 4.5 },
+                "hydrophobic_extended_cutoff_angstrom": { "type": "number", "const": 5.0 },
+                "pi_stacking_centroid_cutoff_angstrom": { "type": "number", "const": 7.0 },
+                "hbond_donor_acceptor_cutoff_angstrom": { "type": "number", "const": 3.5 },
+                "salt_bridge_cation_anion_cutoff_angstrom": { "type": "number", "const": 4.0 }
+              }
+            },
+            "candidate_qualification_caveats": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "hbond_heavy_atom_distance_caveat",
+                "pi_stacking_centroid_angle_caveat",
+                "salt_bridge_heavy_atom_distance_caveat",
+                "hydrophobic_sidechain_distance_caveat"
+              ],
+              "properties": {
+                "hbond_heavy_atom_distance_caveat": { "type": "string", "minLength": 20 },
+                "pi_stacking_centroid_angle_caveat": { "type": "string", "minLength": 20 },
+                "salt_bridge_heavy_atom_distance_caveat": { "type": "string", "minLength": 20 },
+                "hydrophobic_sidechain_distance_caveat": { "type": "string", "minLength": 20 }
+              }
+            },
+            "summary_by_sub_interface": {
+              "type": "array",
+              "minItems": 10,
+              "maxItems": 10,
+              "items": {
+                "$ref": "#/$defs/chemistrySummaryEntry"
+              }
+            },
+            "summary_by_chain_pair": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/chemistrySummaryCounts"
+              }
+            },
+            "hydrophobic_contacts_at_4p5A": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "interface_class",
+                  "chain_pair",
+                  "operator_pair",
+                  "residue_i",
+                  "atom_i",
+                  "residue_j",
+                  "atom_j",
+                  "min_sidechain_carbon_sulfur_distance_A"
+                ],
+                "properties": {
+                  "interface_class": { "type": "string" },
+                  "chain_pair": { "type": "string" },
+                  "operator_pair": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "residue_i": { "type": "string" },
+                  "atom_i": { "type": "string" },
+                  "residue_j": { "type": "string" },
+                  "atom_j": { "type": "string" },
+                  "min_sidechain_carbon_sulfur_distance_A": { "type": "number" }
+                }
+              }
+            },
+            "aromatic_pi_stacking_candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "interface_class",
+                  "chain_pair",
+                  "operator_pair",
+                  "residue_i",
+                  "residue_j",
+                  "ring_centroid_distance_A",
+                  "ring_plane_angle_deg",
+                  "ring_normal_angle_deg",
+                  "min_heavy_atom_distance_A",
+                  "stacking_geometry_class"
+                ],
+                "properties": {
+                  "interface_class": { "type": "string" },
+                  "chain_pair": { "type": "string" },
+                  "operator_pair": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "residue_i": { "type": "string" },
+                  "residue_j": { "type": "string" },
+                  "ring_centroid_distance_A": { "type": "number", "maximum": 7.0 },
+                  "ring_plane_angle_deg": { "type": "number", "minimum": 0.0, "maximum": 90.0 },
+                  "ring_normal_angle_deg": { "type": "number", "minimum": 0.0, "maximum": 90.0 },
+                  "min_heavy_atom_distance_A": { "type": "number" },
+                  "stacking_geometry_class": {
+                    "type": "string",
+                    "enum": ["parallel_face_to_face", "tilted_intermediate", "T_shaped_edge_to_face"]
+                  }
+                }
+              }
+            },
+            "hydrogen_bond_candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "interface_class",
+                  "chain_pair",
+                  "operator_pair",
+                  "residue_i",
+                  "atom_i",
+                  "residue_j",
+                  "atom_j",
+                  "donor_acceptor_distance_A"
+                ],
+                "properties": {
+                  "interface_class": { "type": "string" },
+                  "chain_pair": { "type": "string" },
+                  "operator_pair": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "residue_i": { "type": "string" },
+                  "atom_i": { "type": "string" },
+                  "residue_j": { "type": "string" },
+                  "atom_j": { "type": "string" },
+                  "donor_acceptor_distance_A": { "type": "number", "maximum": 3.5 }
+                }
+              }
+            },
+            "salt_bridge_candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "interface_class",
+                  "chain_pair",
+                  "operator_pair",
+                  "cationic_residue",
+                  "cationic_atom",
+                  "anionic_residue",
+                  "anionic_atom",
+                  "nitrogen_oxygen_distance_A"
+                ],
+                "properties": {
+                  "interface_class": { "type": "string" },
+                  "chain_pair": { "type": "string" },
+                  "operator_pair": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "cationic_residue": { "type": "string" },
+                  "cationic_atom": { "type": "string" },
+                  "anionic_residue": { "type": "string" },
+                  "anionic_atom": { "type": "string" },
+                  "nitrogen_oxygen_distance_A": { "type": "number", "maximum": 4.0 }
+                }
+              }
+            }
+          }
+        },
+        "L2_D_icosahedral_operator_axis_mapping": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mathematical_derivation_formula",
+            "group_verification",
+            "icosahedral_fixed_point_center_xyz_A",
+            "fixed_point_max_residual_A",
+            "rotation_order_spectrum",
+            "unique_axis_line_counts",
+            "directed_axis_ray_counts",
+            "subunit_radial_and_axis_alignment",
+            "active_contact_operators",
+            "deposit_specific_op_id_proof",
+            "all_60_operators_axis_table"
+          ],
+          "properties": {
+            "mathematical_derivation_formula": { "type": "string" },
+            "group_verification": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "n_operators",
+                "all_so3_verified",
+                "max_orthonormality_error",
+                "max_determinant_error",
+                "group_closure_verified",
+                "max_closure_residual"
+              ],
+              "properties": {
+                "n_operators": { "type": "integer", "const": 60 },
+                "all_so3_verified": { "type": "boolean", "const": true },
+                "max_orthonormality_error": { "type": "number" },
+                "max_determinant_error": { "type": "number" },
+                "group_closure_verified": { "type": "boolean", "const": true },
+                "max_closure_residual": { "type": "number" }
+              }
+            },
+            "icosahedral_fixed_point_center_xyz_A": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": { "type": "number" }
+            },
+            "fixed_point_max_residual_A": { "type": "number" },
+            "rotation_order_spectrum": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["C1_identity", "C2", "C3", "C5"],
+              "properties": {
+                "C1_identity": { "type": "integer", "const": 1 },
+                "C2": { "type": "integer", "const": 15 },
+                "C3": { "type": "integer", "const": 20 },
+                "C5": { "type": "integer", "const": 24 }
+              }
+            },
+            "unique_axis_line_counts": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["C5_axes", "C3_axes", "C2_axes"],
+              "properties": {
+                "C5_axes": { "type": "integer", "const": 6 },
+                "C3_axes": { "type": "integer", "const": 10 },
+                "C2_axes": { "type": "integer", "const": 15 }
+              }
+            },
+            "directed_axis_ray_counts": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["C5_rays", "C3_rays", "C2_rays"],
+              "properties": {
+                "C5_rays": { "type": "integer", "const": 12 },
+                "C3_rays": { "type": "integer", "const": 20 },
+                "C2_rays": { "type": "integer", "const": 30 }
+              }
+            },
+            "subunit_radial_and_axis_alignment": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["A", "B", "C", "D", "E", "F"],
+              "properties": {
+                "A": { "$ref": "#/$defs/subunitAxisAlignment" },
+                "B": { "$ref": "#/$defs/subunitAxisAlignment" },
+                "C": { "$ref": "#/$defs/subunitAxisAlignment" },
+                "D": { "$ref": "#/$defs/subunitAxisAlignment" },
+                "E": { "$ref": "#/$defs/subunitAxisAlignment" },
+                "F": { "$ref": "#/$defs/subunitAxisAlignment" }
+              }
+            },
+            "active_contact_operators": {
+              "type": "array",
+              "minItems": 6,
+              "items": {
+                "$ref": "#/$defs/operatorAxisEntry"
+              }
+            },
+            "deposit_specific_op_id_proof": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "explanation",
+                "cross_deposit_comparison"
+              ],
+              "properties": {
+                "explanation": { "type": "string" },
+                "cross_deposit_comparison": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "structure_id",
+                      "operator_id",
+                      "symmetry_symbol",
+                      "rotation_order",
+                      "rotation_angle_deg"
+                    ],
+                    "properties": {
+                      "structure_id": { "type": "string" },
+                      "operator_id": { "type": "string" },
+                      "symmetry_symbol": { "type": "string" },
+                      "rotation_order": { "type": "integer" },
+                      "rotation_angle_deg": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            },
+            "all_60_operators_axis_table": {
+              "type": "array",
+              "minItems": 60,
+              "maxItems": 60,
+              "items": {
+                "$ref": "#/$defs/operatorAxisEntry"
+              }
+            }
+          }
+        },
+        "L2_E_nc_zn_spatial_context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "entity_reconciliation",
+            "nc_peptide_model",
+            "zn_coordination_sphere",
+            "nc_ca_proximity_by_cutoff",
+            "nc_nc_dimer_interface_across_op2"
+          ],
+          "properties": {
+            "entity_reconciliation": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "nc_asym_id",
+                "nc_label_asym_id",
+                "nc_auth_asym_id",
+                "nc_label_entity_id",
+                "nc_struct_asym_entity_id",
+                "nc_mmcif_label_entity_id",
+                "nc_functional_component_id",
+                "nc_biological_domain_or_fragment_designation",
+                "zn_asym_id",
+                "zn_label_asym_id",
+                "zn_auth_asym_id",
+                "zn_label_entity_id",
+                "zn_struct_asym_entity_id",
+                "zn_mmcif_label_entity_id",
+                "zn_functional_component_id",
+                "zn_biological_domain_or_fragment_designation",
+                "zn_label_seq_id",
+                "zn_auth_seq_id",
+                "zn_pdbx_nonpoly_scheme_auth_seq_num",
+                "explanation"
+              ],
+              "properties": {
+                "nc_asym_id": { "type": "string", "const": "E" },
+                "nc_label_asym_id": { "type": "string", "const": "E" },
+                "nc_auth_asym_id": { "type": "string", "const": "E" },
+                "nc_label_entity_id": { "type": "string", "const": "1" },
+                "nc_struct_asym_entity_id": { "type": "string", "const": "1" },
+                "nc_mmcif_label_entity_id": { "type": "string", "const": "1" },
+                "nc_functional_component_id": { "type": "string", "const": "NC_ZINC_KNUCKLE_FRAGMENT" },
+                "nc_biological_domain_or_fragment_designation": {
+                  "type": "string",
+                  "const": "NC_zinc_knuckle_C_terminal_fragment_224_250_of_entity_1"
+                },
+                "zn_asym_id": { "type": "string", "const": "F" },
+                "zn_label_asym_id": { "type": "string", "const": "F" },
+                "zn_auth_asym_id": { "type": "string", "const": "E" },
+                "zn_label_entity_id": { "type": "string", "const": "2" },
+                "zn_struct_asym_entity_id": { "type": "string", "const": "2" },
+                "zn_mmcif_label_entity_id": { "type": "string", "const": "2" },
+                "zn_functional_component_id": { "type": "string", "const": "ZN_COORDINATION_LIGAND" },
+                "zn_biological_domain_or_fragment_designation": {
+                  "type": "string",
+                  "const": "ZN_tetrahedral_CCHC_ligand_entity_2"
+                },
+                "zn_label_seq_id": { "type": "null" },
+                "zn_auth_seq_id": { "type": "integer", "const": 301 },
+                "zn_pdbx_nonpoly_scheme_auth_seq_num": { "type": "integer", "const": 251 },
+                "explanation": { "type": "string" }
+              }
+            },
+            "nc_peptide_model": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "asym_id",
+                "residue_count",
+                "atom_count",
+                "sequence_range",
+                "sequence_one_letter",
+                "cchc_motif_signature",
+                "radial_distance_from_center_A",
+                "nearest_C2_axis_angle_deg",
+                "symmetry_copies_in_assembly"
+              ],
+              "properties": {
+                "asym_id": { "type": "string", "const": "E" },
+                "residue_count": { "type": "integer", "const": 27 },
+                "atom_count": { "type": "integer", "const": 233 },
+                "sequence_range": {
+                  "type": "array",
+                  "const": [224, 250]
+                },
+                "sequence_one_letter": { "type": "string" },
+                "cchc_motif_signature": { "type": "string", "const": "C227-X2-C230-X4-H235-X4-C240" },
+                "radial_distance_from_center_A": { "type": "number" },
+                "nearest_C2_axis_angle_deg": { "type": "number" },
+                "symmetry_copies_in_assembly": { "type": "integer", "const": 60 }
+              }
+            },
+            "zn_coordination_sphere": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "zn_asym_id",
+                "zn_auth_asym_id",
+                "zn_auth_seq_id",
+                "zn_coordinates_asu_xyz_A",
+                "zn_b_factor_A2",
+                "coordination_number",
+                "coordination_geometry",
+                "mean_bond_angle_deg",
+                "tau_4_tetrahedrality_index",
+                "coordinating_ligands",
+                "ligand_zn_ligand_angles_deg"
+              ],
+              "properties": {
+                "zn_asym_id": { "type": "string", "const": "F" },
+                "zn_auth_asym_id": { "type": "string", "const": "E" },
+                "zn_auth_seq_id": { "type": "integer", "const": 301 },
+                "zn_coordinates_asu_xyz_A": {
+                  "type": "array",
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "items": { "type": "number" }
+                },
+                "zn_b_factor_A2": { "type": "number" },
+                "coordination_number": { "type": "integer", "const": 4 },
+                "coordination_geometry": { "type": "string", "const": "tetrahedral_CCHC_zinc_knuckle" },
+                "mean_bond_angle_deg": { "type": "number" },
+                "tau_4_tetrahedrality_index": { "type": "number" },
+                "coordinating_ligands": {
+                  "type": "array",
+                  "minItems": 4,
+                  "maxItems": 4,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "struct_conn_id",
+                      "asym_id",
+                      "comp_id",
+                      "label_seq_id",
+                      "auth_seq_id",
+                      "atom_id",
+                      "computed_distance_A",
+                      "deposited_struct_conn_distance_A"
+                    ],
+                    "properties": {
+                      "struct_conn_id": { "type": "string" },
+                      "asym_id": { "type": "string", "const": "E" },
+                      "comp_id": { "type": "string", "enum": ["CYS", "HIS"] },
+                      "label_seq_id": { "type": "integer" },
+                      "auth_seq_id": { "type": "integer" },
+                      "atom_id": { "type": "string", "enum": ["SG", "NE2"] },
+                      "computed_distance_A": { "type": "number" },
+                      "deposited_struct_conn_distance_A": { "type": "number" }
+                    }
+                  }
+                },
+                "ligand_zn_ligand_angles_deg": {
+                  "type": "array",
+                  "minItems": 6,
+                  "maxItems": 6,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "ligand_1",
+                      "ligand_2",
+                      "computed_angle_deg",
+                      "deposited_angle_deg"
+                    ],
+                    "properties": {
+                      "ligand_1": { "type": "string" },
+                      "ligand_2": { "type": "string" },
+                      "computed_angle_deg": { "type": "number" },
+                      "deposited_angle_deg": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            },
+            "nc_ca_proximity_by_cutoff": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["E-A", "E-B", "E-C", "E-D", "contacts"],
+                "properties": {
+                  "E-A": { "type": "integer", "const": 0 },
+                  "E-B": { "type": "integer" },
+                  "E-C": { "type": "integer" },
+                  "E-D": { "type": "integer" },
+                  "contacts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "nc_operator_id",
+                        "nc_residue",
+                        "ca_chain",
+                        "ca_operator_id",
+                        "ca_residue",
+                        "min_heavy_atom_distance_A"
+                      ],
+                      "properties": {
+                        "nc_operator_id": { "type": "string" },
+                        "nc_residue": { "type": "string" },
+                        "ca_chain": { "type": "string" },
+                        "ca_operator_id": { "type": "string" },
+                        "ca_residue": { "type": "string" },
+                        "min_heavy_atom_distance_A": { "type": "number" }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "nc_nc_dimer_interface_across_op2": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "operator_pair",
+                "symmetry_symbol",
+                "rotation_angle_deg",
+                "zn_zn_distance_A",
+                "nc_centroid_distance_A",
+                "directed_residue_pairs_at_5A",
+                "unique_unordered_residue_pairs_at_5A",
+                "min_heavy_atom_distance_A"
+              ],
+              "properties": {
+                "operator_pair": {
+                  "type": "array",
+                  "const": ["1", "2"]
+                },
+                "symmetry_symbol": { "type": "string", "const": "C2" },
+                "rotation_angle_deg": { "type": "number", "const": 180.0 },
+                "zn_zn_distance_A": { "type": "number" },
+                "nc_centroid_distance_A": { "type": "number" },
+                "directed_residue_pairs_at_5A": { "type": "integer", "const": 21 },
+                "unique_unordered_residue_pairs_at_5A": { "type": "integer", "const": 12 },
+                "min_heavy_atom_distance_A": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "epistemic_qualifications": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cutoff_5A_is_geometric_definition_not_binding_energy",
+        "chain_D_also_has_zero_self_contacts_alongside_chain_B",
+        "uniform_partner_degree_5_does_not_imply_uniform_area_or_energetics",
+        "no_transferred_viral_capsid_interaction_energies",
+        "self_contact_free_ca_chains",
+        "verification_disposition",
+        "publication_and_ci_provenance",
+        "m7_falsification_design_rules"
+      ],
+      "properties": {
+        "cutoff_5A_is_geometric_definition_not_binding_energy": { "type": "string" },
+        "chain_D_also_has_zero_self_contacts_alongside_chain_B": { "type": "string" },
+        "uniform_partner_degree_5_does_not_imply_uniform_area_or_energetics": { "type": "string" },
+        "no_transferred_viral_capsid_interaction_energies": { "type": "string" },
+        "self_contact_free_ca_chains": {
+          "type": "array",
+          "const": ["B", "D"]
+        },
+        "verification_disposition": {
+          "type": "string",
+          "const": "remotely_published_on_github_pr6_local_tests_verified_remote_ci_not_run"
+        },
+        "publication_and_ci_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "github_pr_url",
+            "historical_v1_baseline_commit",
+            "level1_v2_repair_commit",
+            "level2_atlas_and_crosscheck_commit",
+            "level3_initial_publication_commit",
+            "local_test_execution_summary",
+            "remote_github_actions_ci_status"
+          ],
+          "properties": {
+            "github_pr_url": {
+              "type": "string",
+              "const": "https://github.com/aurascoper/flow-cytometry-model-bridge/pull/6"
+            },
+            "historical_v1_baseline_commit": {
+              "type": "string",
+              "const": "955e32dc673d3a874f874ffb8965497db03ca112"
+            },
+            "level1_v2_repair_commit": {
+              "type": "string",
+              "const": "6a09714d03fccf29905c99bddc416785781063d1"
+            },
+            "level2_atlas_and_crosscheck_commit": {
+              "type": "string",
+              "const": "fc5e1a407e375014653b2b72f73b89559c14e2ee"
+            },
+            "level3_initial_publication_commit": {
+              "type": "string",
+              "const": "1abeaad2e44fe25e3e4cd17b7920a51f990fc55e"
+            },
+            "local_test_execution_summary": {
+              "type": "string",
+              "const": "28/28 Python pytest assertions and 2,996/2,996 Julia assertions executed and verified locally"
+            },
+            "remote_github_actions_ci_status": {
+              "type": "string",
+              "const": "No GitHub Actions workflow runs executed on remote; test counts are recorded local verification results, not remote CI reruns"
+            }
+          }
+        },
+        "m7_falsification_design_rules": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": { "type": "string", "minLength": 20 }
+        }
+      }
+    },
+    "historical_level1_superseded_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "disposition",
+        "v1_receipt_path",
+        "v1_receipt_sha256",
+        "v1_assignments_path",
+        "v1_assignments_sha256",
+        "v1_features_path",
+        "v1_features_sha256",
+        "superseded_findings_note",
+        "superseded_homotypic_rationale_status",
+        "corrected_homotypic_census_statement",
+        "level2_re_evaluation_of_k2_B_vs_ACD_partition"
+      ],
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "const": "PRESERVED_AS_HISTORICAL_EXPLORATORY_EVIDENCE_NOT_FOUNDATION_FOR_LEVEL2"
+        },
+        "v1_receipt_path": { "type": "string" },
+        "v1_receipt_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "v1_assignments_path": { "type": "string" },
+        "v1_assignments_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "v1_features_path": { "type": "string" },
+        "v1_features_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "superseded_findings_note": { "type": "string" },
+        "superseded_homotypic_rationale_status": {
+          "type": "string",
+          "const": ":Superseded"
+        },
+        "corrected_homotypic_census_statement": {
+          "type": "string",
+          "minLength": 40
+        },
+        "level2_re_evaluation_of_k2_B_vs_ACD_partition": {
+          "type": "string",
+          "minLength": 40
+        }
+      }
+    }
+  },
+  "$defs": {
+    "chainPairCountMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["A-A", "A-B", "A-C", "A-D", "B-B", "B-C", "B-D", "C-C", "C-D", "D-D"],
+      "properties": {
+        "A-A": { "type": "integer", "minimum": 0 },
+        "A-B": { "type": "integer", "minimum": 0 },
+        "A-C": { "type": "integer", "const": 0 },
+        "A-D": { "type": "integer", "minimum": 0 },
+        "B-B": { "type": "integer", "const": 0 },
+        "B-C": { "type": "integer", "minimum": 0 },
+        "B-D": { "type": "integer", "minimum": 0 },
+        "C-C": { "type": "integer", "minimum": 0 },
+        "C-D": { "type": "integer", "minimum": 0 },
+        "D-D": { "type": "integer", "const": 0 }
+      }
+    },
+    "cutoffCensusEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cutoff_angstrom",
+        "unique_asym_residue_pair_count",
+        "instance_residue_pair_observation_count",
+        "heavy_atom_pair_hit_count",
+        "canonical_residue_pair_ids",
+        "totals"
+      ],
+      "properties": {
+        "cutoff_angstrom": { "type": "number" },
+        "unique_asym_residue_pair_count": { "$ref": "#/$defs/chainPairCountMap" },
+        "instance_residue_pair_observation_count": { "$ref": "#/$defs/chainPairCountMap" },
+        "heavy_atom_pair_hit_count": { "$ref": "#/$defs/chainPairCountMap" },
+        "canonical_residue_pair_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[ABCD]:[0-9]+-[ABCD]:[0-9]+@op[0-9]+$"
+          }
+        },
+        "totals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unique_asym_residue_pair_count_total",
+            "instance_residue_pair_observation_count_total",
+            "heavy_atom_pair_hit_count_total"
+          ],
+          "properties": {
+            "unique_asym_residue_pair_count_total": { "type": "integer", "minimum": 0 },
+            "instance_residue_pair_observation_count_total": { "type": "integer", "minimum": 0 },
+            "heavy_atom_pair_hit_count_total": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "subunitSasaSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "isolated_subunit_sasa_A2",
+        "assembly_sasa_A2",
+        "delta_sasa_A2",
+        "buried_fraction"
+      ],
+      "properties": {
+        "isolated_subunit_sasa_A2": { "type": "number", "minimum": 0.0 },
+        "assembly_sasa_A2": { "type": "number", "minimum": 0.0 },
+        "delta_sasa_A2": { "type": "number", "minimum": 0.0 },
+        "buried_fraction": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "chainPairBsaEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sub_interface_count",
+        "total_buried_surface_area_A2",
+        "buried_surface_area_per_side_A2",
+        "buried_surface_area_A2"
+      ],
+      "properties": {
+        "sub_interface_count": { "type": "integer", "minimum": 0 },
+        "total_buried_surface_area_A2": { "type": "number", "minimum": 0.0 },
+        "buried_surface_area_per_side_A2": { "type": "number", "minimum": 0.0 },
+        "buried_surface_area_A2": { "type": "number", "minimum": 0.0 }
+      }
+    },
+    "chemistrySummaryCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hydrophobic_candidate_pairs",
+        "pi_stacking_candidate_pairs",
+        "hbond_heavy_atom_distance_candidate_pairs",
+        "salt_bridge_heavy_atom_distance_candidate_pairs",
+        "hydrophobic_residue_pairs_4p5A",
+        "hydrophobic_residue_pairs_5p0A",
+        "aromatic_pi_stacking_candidates_7p0A",
+        "hydrogen_bond_candidates_3p5A",
+        "salt_bridge_candidates_4p0A"
+      ],
+      "properties": {
+        "hydrophobic_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "pi_stacking_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "hbond_heavy_atom_distance_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "salt_bridge_heavy_atom_distance_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "hydrophobic_residue_pairs_4p5A": { "type": "integer", "minimum": 0 },
+        "hydrophobic_residue_pairs_5p0A": { "type": "integer", "minimum": 0 },
+        "aromatic_pi_stacking_candidates_7p0A": { "type": "integer", "minimum": 0 },
+        "hydrogen_bond_candidates_3p5A": { "type": "integer", "minimum": 0 },
+        "salt_bridge_candidates_4p0A": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "chemistrySummaryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "interface_class",
+        "chain_pair",
+        "operator_pair",
+        "hydrophobic_candidate_pairs",
+        "pi_stacking_candidate_pairs",
+        "hbond_heavy_atom_distance_candidate_pairs",
+        "salt_bridge_heavy_atom_distance_candidate_pairs",
+        "hydrophobic_residue_pairs_4p5A",
+        "hydrophobic_residue_pairs_5p0A",
+        "aromatic_pi_stacking_candidates_7p0A",
+        "hydrogen_bond_candidates_3p5A",
+        "salt_bridge_candidates_4p0A"
+      ],
+      "properties": {
+        "interface_class": { "type": "string" },
+        "chain_pair": { "type": "string" },
+        "operator_pair": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "string" }
+        },
+        "hydrophobic_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "pi_stacking_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "hbond_heavy_atom_distance_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "salt_bridge_heavy_atom_distance_candidate_pairs": { "type": "integer", "minimum": 0 },
+        "hydrophobic_residue_pairs_4p5A": { "type": "integer", "minimum": 0 },
+        "hydrophobic_residue_pairs_5p0A": { "type": "integer", "minimum": 0 },
+        "aromatic_pi_stacking_candidates_7p0A": { "type": "integer", "minimum": 0 },
+        "hydrogen_bond_candidates_3p5A": { "type": "integer", "minimum": 0 },
+        "salt_bridge_candidates_4p0A": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "subunitAxisAlignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "radial_distance_from_capsid_center_A",
+        "nearest_C5_axis_angle_deg",
+        "nearest_C3_axis_angle_deg",
+        "nearest_C2_axis_angle_deg",
+        "symmetry_copy_angle_std_deg"
+      ],
+      "properties": {
+        "radial_distance_from_capsid_center_A": { "type": "number" },
+        "nearest_C5_axis_angle_deg": { "type": "number" },
+        "nearest_C3_axis_angle_deg": { "type": "number" },
+        "nearest_C2_axis_angle_deg": { "type": "number" },
+        "symmetry_copy_angle_std_deg": { "type": "number", "const": 0.0 }
+      }
+    },
+    "operatorAxisEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operator_id",
+        "trace",
+        "theta_deg",
+        "rotation_order",
+        "symmetry_symbol",
+        "u_xyz",
+        "nearest_canonical_axis_alignment_deg",
+        "translation_vector_A"
+      ],
+      "properties": {
+        "operator_id": { "type": "string" },
+        "trace": { "type": "number" },
+        "theta_deg": { "type": "number" },
+        "rotation_order": { "type": "integer", "enum": [1, 2, 3, 5] },
+        "symmetry_symbol": { "type": "string", "enum": ["C1_identity", "C2", "C3", "C5"] },
+        "u_xyz": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "number" }
+        },
+        "nearest_canonical_axis_alignment_deg": { "type": "number" },
+        "translation_vector_A": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "number" }
+        }
+      }
+    }
+  }
+}
