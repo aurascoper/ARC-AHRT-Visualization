@@ -1,0 +1,42 @@
+# ==============================================================================
+# workbench/arc_live_animation.cxc
+# Title: Live Turntable Animation of PDB 6TAP (dArc1 Capsid + Interior NC/Zn)
+# Epistemic Status: [MEASURED GEOMETRY FROM DEPOSITED COORDINATES - NO MECHANISM CLAIMED]
+# Compatible with UCSF ChimeraX 1.12. Strictly zero em-dashes and zero en-dashes.
+# ==============================================================================
+
+close session
+windowsize 1600 960
+set bgColor #080d14
+graphics silhouettes true
+lighting soft
+
+open structures/6TAP.cif
+sym #1 assembly 1 copies true
+
+hide #1 atoms
+show #1 cartoons
+color #1/A-D #38bdf8
+transparency #1/A-D 58 cartoons
+color #1/E #ec4899
+transparency #1/E 0 cartoons
+show #1/F atoms
+style #1/F sphere
+color #1/F #facc15
+size #1/F atomRadius 3.5
+
+view orient
+zoom 1.05
+
+2dlabels create title_hud text "AHRT v0.1 Live Animation: PDB 6TAP dArc1 Capsid + Interior NC/Zn Target [MEASURED GEOMETRY]" xpos 0.02 ypos 0.95 size 15 color #f8fafc
+2dlabels create sub_hud text "Outer Shell: 240 CA subunits (Chains A-D, blue translucent, R_out=19.93 nm) | Interior: 60 NC Zn-knuckle (Chain E, pink) + 60 Zn2+ (Chain F, yellow spheres)" xpos 0.02 ypos 0.90 size 12 color #94a3b8
+2dlabels create axes_hud text "Orbiting verified 6TAP icosahedral axes: 5-fold (0.276,-0.851,-0.447) -> 3-fold (0.304,0.934,0.188) -> 2-fold (0.688,0.500,-0.526)" xpos 0.02 ypos 0.03 size 12 color #38bdf8
+
+# Orbit on the verified 5-fold, 3-fold, and 2-fold icosahedral axes, then continuous roll
+turn 0.276393,-0.850651,-0.447213 1.0 360 coordinateSystem #1
+wait 360
+turn 0.303531,0.934172,0.187592 1.0 360 coordinateSystem #1
+wait 360
+turn 0.688191,0.500000,-0.525731 1.0 360 coordinateSystem #1
+wait 360
+roll y 0.6
