@@ -21,6 +21,7 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
+matplotlib.rcParams["font.family"] = "DejaVu Sans"  # ships with matplotlib; a local rc default would change the bytes
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -268,13 +269,16 @@ def main() -> None:
                  x=0.01, ha="left", fontsize=13, fontweight="bold", color=INK)
     fig.supxlabel("Sources: " + ";  ".join(f"{n} sha256 {h[:12]}" for n, h in hashes.items()),
                   x=0.01, ha="left", fontsize=8, color=MUTED)
-    fig.savefig(args.out)
+    fig.savefig(args.out, metadata={"Software": None})
     args.out.with_suffix(".receipt.json").write_text(json.dumps({
         "schema": "arc-ahrt-6tap-interface-figure-receipt-v1",
         "figure": {"file": args.out.name, "sha256": sha256(args.out)},
         "inputs_sha256": hashes,
+        "matplotlib_version": matplotlib.__version__,
         "reproducibility_note": f"{args.pov.name} is a ChimeraX export that is not tracked in this repository; "
-                                "the figure can be regenerated only with the file matching its sha256 above.",
+                                "regenerating the figure needs the input files matching the sha256 values above. "
+                                "The figure's own sha256 reproduces only under the same matplotlib_version; "
+                                "across versions, compare the numbers in this file instead.",
         "slab_half_thickness_nm": SLAB_HALF_NM,
         "pov_sphere_classes": pov_summary,
     }, indent=2) + "\n")
