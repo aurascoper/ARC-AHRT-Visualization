@@ -1,0 +1,51 @@
+{
+  "schema": "arc-ahrt-6tap-interface-figure-receipt-v1",
+  "figure": {
+    "file": "6tap_interface_atlas_figure.png",
+    "sha256": "ef9c704f1e99c53f57d78d16471cd87b7fd97242fefe1af44b784b9743d43be9"
+  },
+  "inputs_sha256": {
+    "m7_arc_level3_interface_comparison_receipt.json": "17e33810cb298391365c8c589577ae2a45764263e25ac4e5e6434088b67048ee",
+    "ARC-AHRT.pov": "6f4af7eb8416a20f872c6488448363e305551b0c4fd99fed6396d7f39f9274e9"
+  },
+  "reproducibility_note": "ARC-AHRT.pov is a ChimeraX export that is not tracked in this repository; the figure can be regenerated only with the file matching its sha256 above.",
+  "slab_half_thickness_nm": 2.0,
+  "pov_sphere_classes": {
+    "capsid": {
+      "count": 39540,
+      "centre_radius_nm": [
+        15.286,
+        20.347
+      ],
+      "lines": [
+        5,
+        82387
+      ],
+      "in_slab": 4612
+    },
+    "nc": {
+      "count": 1620,
+      "centre_radius_nm": [
+        15.885,
+        16.947
+      ],
+      "lines": [
+        1323,
+        82441
+      ],
+      "in_slab": 538
+    },
+    "zn": {
+      "count": 60,
+      "centre_radius_nm": [
+        16.498,
+        16.499
+      ],
+      "lines": [
+        1377,
+        82443
+      ],
+      "in_slab": 20
+    }
+  }
+}
