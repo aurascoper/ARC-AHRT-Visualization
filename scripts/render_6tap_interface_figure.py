@@ -37,6 +37,10 @@ CONTACT = [  # (receipt key, legend label, colour)
     ("NTD_CTD_pairs", "NTD-CTD (cross domain)", "#1baf7a"),
 ]
 NC_COLOR, ZN_COLOR = "#6250d6", "#eda100"
+NULL_SCHEMES = {  # receipt key under the MCMC audit -> axis label in panel C
+    "global_degree_preserving_simple_graph_double_edge_swap_mcmc": "Scheme I\nglobal degree-preserving",
+    "within_subinterface_bipartite_degree_preserving_double_edge_swap_mcmc": "Scheme II\nwithin sub-interface",
+}
 
 SPHERE = re.compile(r"sphere\{<([-\d.eE]+),([-\d.eE]+),([-\d.eE]+)>,\s*([\d.]+)")
 
@@ -69,16 +73,21 @@ def receipt_gates(rows: list[dict], receipt: dict) -> None:
     Sum gate: the rows summed over all sub-interfaces equal the E_NN, E_CC and E_CN
     recorded in the stub-identity section, and that section's derived values
     (E_same, conserved E_CC - E_NN) follow from them.
+    Observed gate: both null schemes record that same E_same as their observed value.
     """
     fingerprints = receipt["symmetry_normalized_residue_fingerprints"]["subinterface_fingerprints"]
     pairs = {f["interface_class"]: f["unique_residue_pair_count_at_5A"] for f in fingerprints}
+    names = {r["name"] for r in rows}
+    if names != pairs.keys():
+        sys.exit(f"receipt disagrees with itself: sub-interfaces only in chemistry profiles "
+                 f"{sorted(names - pairs.keys())}, only in fingerprints {sorted(pairs.keys() - names)}")
     for r in rows:
         total = sum(r[key] for key, _, _ in CONTACT)
         if total != pairs[r["name"]]:
             sys.exit(f"receipt disagrees with itself: {r['name']} profile total {total} "
                      f"!= fingerprint pair count {pairs[r['name']]}")
-    stub = receipt["constrained_graph_state_space_connectivity_and_mcmc_audit"][
-        "stub_difference_conservation_identity"]["empirical_6tap_5A_cutoff_values"]
+    audit = receipt["constrained_graph_state_space_connectivity_and_mcmc_audit"]
+    stub = audit["stub_difference_conservation_identity"]["empirical_6tap_5A_cutoff_values"]
     nn, cc, cn = (sum(r[key] for r in rows) for key, _, _ in CONTACT)
     derived = {"observed_E_NN": nn, "observed_E_CC": cc, "observed_E_CN": cn,
                "observed_E_same": nn + cc, "conserved_E_CC_minus_E_NN": cc - nn}
@@ -86,6 +95,10 @@ def receipt_gates(rows: list[dict], receipt: dict) -> None:
     if derived != recorded:
         sys.exit(f"receipt disagrees with itself: summed rows give {derived}, "
                  f"stub-identity section records {recorded}")
+    observed = {key: audit[key]["observed_same_domain_contacts"] for key in NULL_SCHEMES}
+    if set(observed.values()) != {nn + cc}:
+        sys.exit(f"receipt disagrees with itself: summed rows give E_same {nn + cc}, "
+                 f"null schemes record observed {observed}")
 
 
 def expected_sphere_counts(receipt: dict) -> dict[str, int]:
@@ -104,6 +117,8 @@ def read_pov(path: Path, expected: dict[str, int]) -> dict[str, list[tuple]]:
 
     The export carries no labels, so classes are assigned by matching each
     sphere-radius group's count to the receipt's inventory; a mismatch aborts.
+    Counts alone cannot catch a capsid radius group whose size happens to equal the
+    NC or Zn count; in ARC-AHRT.pov the groups hold 19,770, 19,770, 1,620 and 60, so none does.
     """
     by_radius: dict[float, list[tuple]] = defaultdict(list)
     for lineno, line in enumerate(path.read_text().splitlines(), 1):
@@ -185,11 +200,8 @@ def panel_families(ax, rows: list[dict], stub: dict) -> None:
 
 
 def panel_nulls(ax, audit: dict) -> None:
-    schemes = [
-        ("Scheme I\nglobal degree-preserving", audit["global_degree_preserving_simple_graph_double_edge_swap_mcmc"]),
-        ("Scheme II\nwithin sub-interface", audit["within_subinterface_bipartite_degree_preserving_double_edge_swap_mcmc"]),
-    ]
-    observed = schemes[0][1]["observed_same_domain_contacts"]
+    schemes = [(label, audit[key]) for key, label in NULL_SCHEMES.items()]
+    observed = schemes[0][1]["observed_same_domain_contacts"]  # equal across schemes, per receipt_gates
     for i, (_, s) in enumerate(schemes):
         mean, sd = s["mcmc_mean_same_domain_contacts"], s["mcmc_std_same_domain_contacts"]
         ax.plot([s["mcmc_min_same_domain_contacts"], s["mcmc_max_same_domain_contacts"]], [i, i],
@@ -214,7 +226,7 @@ def panel_nulls(ax, audit: dict) -> None:
           "Dot: MCMC mean. Thick bar: ± 1 s.d. Thin line: sampled min to max.")
 
 
-def panel_pov(ax, classes: dict[str, list[tuple]], pov_name: str) -> dict:
+def panel_pov(ax, classes: dict[str, list[tuple]]) -> dict:
     span = {k: (min(s[3] for s in v), max(s[3] for s in v)) for k, v in classes.items()}
     slab = {k: [s for s in v if abs(s[2]) < SLAB_HALF_NM] for k, v in classes.items()}
     ax.scatter([s[0] for s in slab["capsid"]], [s[1] for s in slab["capsid"]], s=5, color=MUTED,
@@ -236,7 +248,7 @@ def panel_pov(ax, classes: dict[str, list[tuple]], pov_name: str) -> dict:
     legend = ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), fontsize=8, frameon=False)
     for handle in legend.legend_handles:
         handle.set_sizes([36])
-    style(ax, f"D. Central slab of {pov_name}",
+    style(ax, "D. Central slab of the POV scene",
           f"|z| < {SLAB_HALF_NM:g} nm, one sphere per residue. Dashed: innermost and outermost capsid centres.")
     return {k: {"count": len(v), "centre_radius_nm": [round(x, 3) for x in span[k]],
                 "lines": [min(s[4] for s in v), max(s[4] for s in v)], "in_slab": len(slab[k])}
@@ -256,27 +268,29 @@ def main() -> None:
     audit = receipt["constrained_graph_state_space_connectivity_and_mcmc_audit"]
     stub = audit["stub_difference_conservation_identity"]["empirical_6tap_5A_cutoff_values"]
     classes = read_pov(args.pov, expected_sphere_counts(receipt))
-    hashes = {args.receipt.name: sha256(args.receipt), args.pov.name: sha256(args.pov)}
+    # Inputs are named by role, not file name, so a renamed copy renders the same bytes.
+    hashes = {"level3_receipt": sha256(args.receipt), "pov_scene": sha256(args.pov)}
 
     fig, axes = plt.subplots(2, 2, figsize=(14, 10.5), dpi=160, facecolor=SURFACE,
                              gridspec_kw={"width_ratios": [1.25, 1]}, layout="constrained")
     panel_interfaces(axes[0][0], rows)
     panel_families(axes[0][1], rows, stub)
     panel_nulls(axes[1][0], audit)
-    pov_summary = panel_pov(axes[1][1], classes, args.pov.name)
+    pov_summary = panel_pov(axes[1][1], classes)
     fig.suptitle(f"PDB {receipt['mmcif_provenance']['structure_id']} capsid: interface contacts, "
                  "null-model comparison and assembly cross-section",
                  x=0.01, ha="left", fontsize=13, fontweight="bold", color=INK)
-    fig.supxlabel("Sources: " + ";  ".join(f"{n} sha256 {h[:12]}" for n, h in hashes.items()),
+    fig.supxlabel("Sources: " + ";  ".join(f"{n.replace('_', ' ')} sha256 {h[:12]}" for n, h in hashes.items()),
                   x=0.01, ha="left", fontsize=8, color=MUTED)
     fig.savefig(args.out, metadata={"Software": None})
     args.out.with_suffix(".receipt.json").write_text(json.dumps({
-        "schema": "arc-ahrt-6tap-interface-figure-receipt-v1",
+        "schema": "arc-ahrt-6tap-interface-figure-receipt-v2",
         "figure": {"file": args.out.name, "sha256": sha256(args.out)},
         "inputs_sha256": hashes,
         "matplotlib_version": matplotlib.__version__,
-        "reproducibility_note": f"{args.pov.name} is a ChimeraX export that is not tracked in this repository; "
-                                "regenerating the figure needs the input files matching the sha256 values above. "
+        "reproducibility_note": "The POV scene is a ChimeraX export of the 6TAP assembly (ARC-AHRT.pov in the "
+                                "author's checkout) that is not tracked in this repository. Inputs are identified "
+                                "by sha256, not file name; regenerating the figure needs files matching those values. "
                                 "The figure's own sha256 reproduces only under the same matplotlib_version; "
                                 "across versions, compare the numbers in this file instead.",
         "slab_half_thickness_nm": SLAB_HALF_NM,
