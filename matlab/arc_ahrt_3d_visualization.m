@@ -6,6 +6,12 @@
 %
 % Run from repository root:
 %   /Applications/MATLAB_R2026b.app/Contents/MacOS/matlab -batch "run('matlab/arc_ahrt_3d_visualization.m')"
+%
+% Fail-closed: before drawing, the script checks the parsed structure against the
+% Level 3 receipt's mmCIF inventory and checks the receipt against itself (the same
+% identities scripts/render_6tap_interface_figure.py enforces). Any disagreement
+% raises an error, so -batch exits nonzero and no figure or sidecar is written.
+% Needs the JVM (the default) for SHA-256; do not run with -nojvm.
 % ==============================================================================
 
 scriptDir = fileparts(mfilename('fullpath'));
@@ -30,8 +36,16 @@ shells = jsondecode(fileread(shellsPath));
 l3 = jsondecode(fileread(l3Path));
 v4Table = readtable(v4CsvPath);
 
-% Extract ASU C-alpha and ZN coordinates from 6TAP.cif
+% Extract ASU C-alpha and ZN coordinates from 6TAP.cif.
+% Columns are located by their _atom_site header names, not by fixed positions.
 cifLines = splitlines(fileread(cifPath));
+hdrLines = strtrim(cifLines(startsWith(cifLines, '_atom_site.')));
+col = @(name) find(strcmp(hdrLines, ['_atom_site.' name]), 1);
+iAtom = col('label_atom_id'); iChain = col('label_asym_id');
+iX = col('Cartn_x'); iY = col('Cartn_y'); iZ = col('Cartn_z');
+if any(cellfun(@isempty, {iAtom, iChain, iX, iY, iZ}))
+    error('arc:cifHeader', '6TAP.cif is missing one of the _atom_site columns this script reads');
+end
 atomMask = startsWith(cifLines, 'ATOM ') | startsWith(cifLines, 'HETATM ');
 atomLines = cifLines(atomMask);
 
@@ -41,26 +55,80 @@ znASU = zeros(0, 3);
 
 for i = 1:numel(atomLines)
     toks = strsplit(strtrim(atomLines{i}));
-    if numel(toks) < 13
+    if numel(toks) < numel(hdrLines)
         continue;
     end
-    atomName = toks{4};
-    chainID = toks{7};
-    x = str2double(toks{11});
-    y = str2double(toks{12});
-    z = str2double(toks{13});
+    atomName = toks{iAtom};
+    chainID = toks{iChain};
+    xyz = str2double(toks([iX, iY, iZ]));
     if strcmp(atomName, 'CA') && ismember(chainID, {'A', 'B', 'C', 'D'})
-        caShellASU(end+1, :) = [x, y, z]; %#ok<AGROW>
+        caShellASU(end+1, :) = xyz; %#ok<AGROW>
     elseif strcmp(atomName, 'CA') && strcmp(chainID, 'E')
-        ncCoreASU(end+1, :) = [x, y, z]; %#ok<AGROW>
+        ncCoreASU(end+1, :) = xyz; %#ok<AGROW>
     elseif strcmp(chainID, 'F') || strcmp(atomName, 'ZN')
-        znASU(end+1, :) = [x, y, z]; %#ok<AGROW>
+        znASU(end+1, :) = xyz; %#ok<AGROW>
     end
 end
 
+% ------------------------------------------------------------------------------
+% Gates: parsed structure vs receipt inventory, and receipt vs itself
+% ------------------------------------------------------------------------------
+nOps = numel(ops);
+prov = l3.mmcif_provenance;
+if nOps ~= prov.inventory_reconciliation.operators_count
+    error('arc:receiptMismatch', 'operators file has %d operators, receipt records %d', ...
+        nOps, prov.inventory_reconciliation.operators_count);
+end
+inv = asCell(prov.struct_asym_inventory);
+expected = struct('CA_CAPSID_SHELL', 0, 'NC_ZINC_KNUCKLE_FRAGMENT', 0, 'ZN_COORDINATION_LIGAND', 0);
+for i = 1:numel(inv)
+    role = inv{i}.functional_component_id;
+    expected.(role) = expected.(role) + inv{i}.residue_count_per_asu * nOps;
+end
+parsed = [size(caShellASU, 1), size(ncCoreASU, 1), size(znASU, 1)] * nOps;
+recorded = [expected.CA_CAPSID_SHELL, expected.NC_ZINC_KNUCKLE_FRAGMENT, expected.ZN_COORDINATION_LIGAND];
+if ~isequal(parsed, recorded)
+    error('arc:receiptMismatch', 'parsed CA/NC/Zn residues %s do not match receipt inventory %s', ...
+        mat2str(parsed), mat2str(recorded));
+end
+
+profiles = asCell(l3.normalized_interface_chemistry_and_area_profiles.subinterface_profiles);
+fingerprints = asCell(l3.symmetry_normalized_residue_fingerprints.subinterface_fingerprints);
+fpNames = cellfun(@(f) f.interface_class, fingerprints, 'UniformOutput', false);
+prNames = cellfun(@(p) p.interface_class, profiles, 'UniformOutput', false);
+if ~isempty(setxor(fpNames, prNames))
+    error('arc:receiptMismatch', 'receipt disagrees with itself: sub-interfaces in only one section: %s', ...
+        strjoin(setxor(fpNames, prNames), ', '));
+end
+sumNN = 0; sumCC = 0; sumCN = 0;
+for i = 1:numel(profiles)
+    dap = profiles{i}.domain_architecture_profile;
+    total = dap.NTD_NTD_pairs + dap.CTD_CTD_pairs + dap.NTD_CTD_pairs;
+    fp = fingerprints{strcmp(fpNames, profiles{i}.interface_class)};
+    if total ~= fp.unique_residue_pair_count_at_5A
+        error('arc:receiptMismatch', 'receipt disagrees with itself: %s profile total %d ~= fingerprint pair count %d', ...
+            profiles{i}.interface_class, total, fp.unique_residue_pair_count_at_5A);
+    end
+    sumNN = sumNN + dap.NTD_NTD_pairs; sumCC = sumCC + dap.CTD_CTD_pairs; sumCN = sumCN + dap.NTD_CTD_pairs;
+end
+audit = l3.constrained_graph_state_space_connectivity_and_mcmc_audit;
+stub = audit.stub_difference_conservation_identity.empirical_6tap_5A_cutoff_values;
+derived = [sumNN, sumCC, sumCN, sumNN + sumCC, sumCC - sumNN];
+stubRec = [stub.observed_E_NN, stub.observed_E_CC, stub.observed_E_CN, stub.observed_E_same, stub.conserved_E_CC_minus_E_NN];
+if ~isequal(derived, stubRec)
+    error('arc:receiptMismatch', 'receipt disagrees with itself: summed rows give %s, stub-identity section records %s', ...
+        mat2str(derived), mat2str(stubRec));
+end
+schemeObs = [audit.global_degree_preserving_simple_graph_double_edge_swap_mcmc.observed_same_domain_contacts, ...
+    audit.within_subinterface_bipartite_degree_preserving_double_edge_swap_mcmc.observed_same_domain_contacts];
+if any(schemeObs ~= sumNN + sumCC)
+    error('arc:receiptMismatch', 'receipt disagrees with itself: null schemes record E_same %s, rows give %d', ...
+        mat2str(schemeObs), sumNN + sumCC);
+end
+rOutNm = shells.x6TAP.descriptors.radial_profile.outer_radius_nm;  % p99 CA radius, from shells.json
+
 % Subsample CA shell ASU by factor of 2 for crisp 60-copy 3D point cloud rendering
 caShellSub = caShellASU(1:2:end, :);
-nOps = numel(ops);
 allCA = zeros(size(caShellSub, 1) * nOps, 3);
 allNC = zeros(size(ncCoreASU, 1) * nOps, 3);
 allZN = zeros(size(znASU, 1) * nOps, 3);
@@ -97,7 +165,7 @@ hold(ax1, 'on');
 set(ax1, 'Color', [0.05 0.08 0.12], 'XColor', [0.75 0.80 0.88], ...
     'YColor', [0.75 0.80 0.88], 'ZColor', [0.75 0.80 0.88], 'FontSize', 10);
 
-% Cutaway front octant (x > 0 & y > 0 & z > 0) of CA shell so interior NC/Zn shows
+% Cutaway front octant (x > 0 & y < 0 & z > 0, the one facing the camera) of CA shell so interior NC/Zn shows
 cutMask = ~(allCA_nm(:,1) > 0 & allCA_nm(:,2) < 0 & allCA_nm(:,3) > 0);
 scatter3(ax1, allCA_nm(cutMask,1), allCA_nm(cutMask,2), allCA_nm(cutMask,3), ...
     5, [0.22 0.74 0.97], 'filled', 'MarkerFaceAlpha', 0.35, 'DisplayName', 'CA Shell (Chains A-D, 240 copies)');
@@ -110,7 +178,7 @@ axis(ax1, 'equal');
 grid(ax1, 'on');
 view(ax1, 38, 22);
 xlabel(ax1, 'x (nm)'); ylabel(ax1, 'y (nm)'); zlabel(ax1, 'z (nm)');
-title(ax1, '1. PDB 6TAP Full 60-Operator Assembly (Octant Cutaway, R_{out} = 19.93 nm)', ...
+title(ax1, sprintf('1. PDB 6TAP Full %d-Operator Assembly (Octant Cutaway, R_{out} = %.2f nm)', nOps, rOutNm), ...
     'Color', [0.97 0.98 0.99], 'FontSize', 12);
 lg1 = legend(ax1, 'Location', 'southwest', 'TextColor', [0.95 0.96 0.98], 'Color', [0.08 0.11 0.16]);
 lg1.FontSize = 9;
@@ -164,14 +232,13 @@ hold(ax3, 'on');
 set(ax3, 'Color', [0.05 0.08 0.12], 'XColor', [0.75 0.80 0.88], ...
     'YColor', [0.75 0.80 0.88], 'FontSize', 10);
 
-profiles = l3.normalized_interface_chemistry_and_area_profiles.subinterface_profiles;
 nProf = numel(profiles);
 labels = cell(nProf, 1);
 srOneSide = zeros(nProf, 1);
 vorArea = zeros(nProf, 1);
 
 for i = 1:nProf
-    p = profiles(i);
+    p = profiles{i};
     labels{i} = strrep(p.interface_class, '_', ' ');
     srOneSide(i) = p.area_metrics_A2.shrake_rupley_per_side_bsa_A2;
     vorArea(i) = p.area_metrics_A2.voronoi_radical_plane_contact_area_A2;
@@ -224,19 +291,55 @@ exportgraphics(fig, outPng, 'Resolution', 150, 'BackgroundColor', [0.03 0.05 0.0
 close(fig);
 
 imgInfo = imfinfo(outPng);
+inputs = struct( ...
+    'level3_receipt', sha256File(l3Path), ...
+    'mmcif_6tap', sha256File(cifPath), ...
+    'operators', sha256File(opsPath), ...
+    'shells', sha256File(shellsPath), ...
+    'v4_series_csv', sha256File(v4CsvPath));
 receipt = struct( ...
-    'schema', 'arc-ahrt-matlab-3d-visualization-receipt-v1', ...
+    'schema', 'arc-ahrt-matlab-3d-visualization-receipt-v2', ...
     'matlab_version', version, ...
+    'figure', struct('file', 'matlab/renders/matlab_arc_ahrt_3d_dashboard.png', 'sha256', sha256File(outPng), ...
+        'width_px', int64(imgInfo.Width), 'height_px', int64(imgInfo.Height)), ...
+    'inputs_sha256', inputs, ...
+    'reproducibility_note', ['Inputs are identified by sha256. The figure''s own sha256 reproduces only under ' ...
+        'the same matlab_version; across versions, compare the numbers in this file instead.'], ...
     'operator_count', int64(nOps), ...
+    'residues_in_assembly', struct('ca', int64(parsed(1)), 'nc', int64(parsed(2)), 'zn', int64(parsed(3))), ...
     'ca_points_rendered', int64(size(allCA, 1)), ...
+    'ca_subsample_step', int64(2), ...
     'nc_points_rendered', int64(size(allNC, 1)), ...
     'zn_points_rendered', int64(size(allZN, 1)), ...
-    'output_png', 'matlab/renders/matlab_arc_ahrt_3d_dashboard.png', ...
-    'width_px', int64(imgInfo.Width), ...
-    'height_px', int64(imgInfo.Height), ...
-    'timestamp_utc', char(datetime('now', 'TimeZone', 'UTC', 'Format', 'yyyy-MM-dd''T''HH:mm:ss''Z''')) ...
+    'outer_radius_nm_from_shells_json', rOutNm, ...
+    'receipt_identities', struct('E_NN', int64(sumNN), 'E_CC', int64(sumCC), 'E_CN', int64(sumCN), ...
+        'E_same', int64(sumNN + sumCC), 'E_CC_minus_E_NN', int64(sumCC - sumNN)) ...
 );
 fid = fopen(fullfile(outDir, 'matlab_arc_ahrt_3d_receipt.json'), 'w');
 fprintf(fid, '%s\n', jsonencode(receipt, 'PrettyPrint', true));
 fclose(fid);
 disp('MATLAB 3D ARC/AHRT visualization complete.');
+
+% ------------------------------------------------------------------------------
+% Local functions
+% ------------------------------------------------------------------------------
+function c = asCell(x)
+% jsondecode returns a struct array for uniform JSON arrays and a cell array otherwise.
+if iscell(x)
+    c = x(:)';
+else
+    c = num2cell(x(:)');
+end
+end
+
+function hex = sha256File(path)
+fid = fopen(path, 'r');
+if fid < 0
+    error('arc:io', 'cannot open %s', path);
+end
+bytes = fread(fid, Inf, '*uint8');
+fclose(fid);
+md = java.security.MessageDigest.getInstance('SHA-256');
+md.update(typecast(bytes, 'int8'));
+hex = lower(reshape(dec2hex(typecast(md.digest(), 'uint8'), 2)', 1, []));
+end
