@@ -1,0 +1,52 @@
+{
+  "schema": "arc-ahrt-6tap-interface-figure-receipt-v2",
+  "figure": {
+    "file": "6tap_interface_atlas_figure.png",
+    "sha256": "2e9984f85db02031532bcbc08f04ddcfcafaad20dc7cadfef1046542fbc26ece"
+  },
+  "inputs_sha256": {
+    "level3_receipt": "17e33810cb298391365c8c589577ae2a45764263e25ac4e5e6434088b67048ee",
+    "pov_scene": "6f4af7eb8416a20f872c6488448363e305551b0c4fd99fed6396d7f39f9274e9"
+  },
+  "matplotlib_version": "3.10.8",
+  "reproducibility_note": "The POV scene is a ChimeraX export of the 6TAP assembly (ARC-AHRT.pov in the author's checkout) that is not tracked in this repository. Inputs are identified by sha256, not file name; regenerating the figure needs files matching those values. The figure's own sha256 reproduces only under the same matplotlib_version; across versions, compare the numbers in this file instead.",
+  "slab_half_thickness_nm": 2.0,
+  "pov_sphere_classes": {
+    "capsid": {
+      "count": 39540,
+      "centre_radius_nm": [
+        15.286,
+        20.347
+      ],
+      "lines": [
+        5,
+        82387
+      ],
+      "in_slab": 4612
+    },
+    "nc": {
+      "count": 1620,
+      "centre_radius_nm": [
+        15.885,
+        16.947
+      ],
+      "lines": [
+        1323,
+        82441
+      ],
+      "in_slab": 538
+    },
+    "zn": {
+      "count": 60,
+      "centre_radius_nm": [
+        16.498,
+        16.499
+      ],
+      "lines": [
+        1377,
+        82443
+      ],
+      "in_slab": 20
+    }
+  }
+}
