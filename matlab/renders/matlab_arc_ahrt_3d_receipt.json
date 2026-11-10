@@ -1,12 +1,36 @@
 {
-  "schema": "arc-ahrt-matlab-3d-visualization-receipt-v1",
+  "schema": "arc-ahrt-matlab-3d-visualization-receipt-v2",
   "matlab_version": "26.2.0.3433840 (R2026b) Update 1",
+  "figure": {
+    "file": "matlab/renders/matlab_arc_ahrt_3d_dashboard.png",
+    "sha256": "0bdf3aeadff73f6b66c7a6f8b7ddbd36c84c0c6340ada2f4694ffbdae2234b12",
+    "width_px": 2947,
+    "height_px": 1666
+  },
+  "inputs_sha256": {
+    "level3_receipt": "17e33810cb298391365c8c589577ae2a45764263e25ac4e5e6434088b67048ee",
+    "mmcif_6tap": "61397d5502c44f6fd83d887de353a698ed6f70fbd00604e2fc1c85fd1cd68e69",
+    "operators": "176dcfc3c500ea286bae0dd0ea0a3053a82007d80d11d44530339062073b16e2",
+    "shells": "74601ff04f996e9b6820adc7fcc00b34e5e5b4de44131b8195904718ffdc77db",
+    "v4_series_csv": "1122e8ac7b8ba586bcdc5b9ff545e9b7206483ea4a1f652358e51b6579435219"
+  },
+  "reproducibility_note": "Inputs are identified by sha256. The figure's own sha256 reproduces only under the same matlab_version; across versions, compare the numbers in this file instead.",
   "operator_count": 60,
+  "residues_in_assembly": {
+    "ca": 39540,
+    "nc": 1620,
+    "zn": 60
+  },
   "ca_points_rendered": 19800,
+  "ca_subsample_step": 2,
   "nc_points_rendered": 1620,
   "zn_points_rendered": 60,
-  "output_png": "matlab/renders/matlab_arc_ahrt_3d_dashboard.png",
-  "width_px": 2947,
-  "height_px": 1666,
-  "timestamp_utc": "2026-11-08T08:58:54Z"
+  "outer_radius_nm_from_shells_json": 19.92748105446065,
+  "receipt_identities": {
+    "E_NN": 56,
+    "E_CC": 75,
+    "E_CN": 73,
+    "E_same": 131,
+    "E_CC_minus_E_NN": 19
+  }
 }
