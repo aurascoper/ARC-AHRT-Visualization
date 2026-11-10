@@ -11,7 +11,8 @@
 % Level 3 receipt's mmCIF inventory and checks the receipt against itself (the same
 % identities scripts/render_6tap_interface_figure.py enforces). Any disagreement
 % raises an error, so -batch exits nonzero and no figure or sidecar is written.
-% Needs the JVM (the default) for SHA-256; do not run with -nojvm.
+% SHA-256 values come from the system shasum command (no Java needed), and the
+% inputs are hashed before drawing, so a hashing failure also writes nothing.
 % ==============================================================================
 
 scriptDir = fileparts(mfilename('fullpath'));
@@ -126,6 +127,12 @@ if any(schemeObs ~= sumNN + sumCC)
         mat2str(schemeObs), sumNN + sumCC);
 end
 rOutNm = shells.x6TAP.descriptors.radial_profile.outer_radius_nm;  % p99 CA radius, from shells.json
+inputs = struct( ...
+    'level3_receipt', sha256File(l3Path), ...
+    'mmcif_6tap', sha256File(cifPath), ...
+    'operators', sha256File(opsPath), ...
+    'shells', sha256File(shellsPath), ...
+    'v4_series_csv', sha256File(v4CsvPath));
 
 % Subsample CA shell ASU by factor of 2 for crisp 60-copy 3D point cloud rendering
 caShellSub = caShellASU(1:2:end, :);
@@ -291,12 +298,6 @@ exportgraphics(fig, outPng, 'Resolution', 150, 'BackgroundColor', [0.03 0.05 0.0
 close(fig);
 
 imgInfo = imfinfo(outPng);
-inputs = struct( ...
-    'level3_receipt', sha256File(l3Path), ...
-    'mmcif_6tap', sha256File(cifPath), ...
-    'operators', sha256File(opsPath), ...
-    'shells', sha256File(shellsPath), ...
-    'v4_series_csv', sha256File(v4CsvPath));
 receipt = struct( ...
     'schema', 'arc-ahrt-matlab-3d-visualization-receipt-v2', ...
     'matlab_version', version, ...
@@ -333,13 +334,9 @@ end
 end
 
 function hex = sha256File(path)
-fid = fopen(path, 'r');
-if fid < 0
-    error('arc:io', 'cannot open %s', path);
+[status, out] = system(sprintf('shasum -a 256 "%s"', path));
+hex = regexp(out, '^[0-9a-f]{64}', 'match', 'once');
+if status ~= 0 || isempty(hex)
+    error('arc:io', 'shasum failed for %s: %s', path, strtrim(out));
 end
-bytes = fread(fid, Inf, '*uint8');
-fclose(fid);
-md = java.security.MessageDigest.getInstance('SHA-256');
-md.update(typecast(bytes, 'int8'));
-hex = lower(reshape(dec2hex(typecast(md.digest(), 'uint8'), 2)', 1, []));
 end
